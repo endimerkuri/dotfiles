@@ -1,0 +1,2 @@
+# enable incremental search
+set incremental-search true
