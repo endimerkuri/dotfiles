@@ -30,6 +30,8 @@ inoremap [ []<Esc>i
 
 " vim gruvbox theme
 call plug#begin('~/.vim/plugged')
+Plug 'itchyny/lightline.vim'
+Plug 'ajh17/VimCompletesMe'
 Plug 'sainnhe/gruvbox-material'
 call plug#end()
 
