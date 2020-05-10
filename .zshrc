@@ -101,4 +101,6 @@ export VISUAL='vim'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export PATH=/usr/lib/jvm/jdk-14/bin:$PATH
 export TERM=xterm-256color
+
+# Dotfiles git bare repository
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
