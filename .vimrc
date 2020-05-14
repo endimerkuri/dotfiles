@@ -35,7 +35,11 @@ nnoremap <leader>8 8gt
 nnoremap <leader>9 9gt
 
 " Create new tab
-nnoremap <leader>t :tabnew 
+nnoremap <leader>t :tabnew<Space>
+
+" Create new split
+nnoremap <leader>s :sp<Space>
+nnoremap <leader>v :vsp<Space>
 
 " autoinsert matching brackets
 inoremap ( ()<Esc>i
