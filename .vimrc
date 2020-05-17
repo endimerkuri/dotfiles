@@ -1,10 +1,11 @@
+syntax on
+filetype indent on
+
 set nocompatible
 set t_Co=256
 set nu rnu
 set laststatus=2
 set ttimeoutlen=50
-syntax on
-filetype indent on
 set smartindent
 set incsearch
 set nohlsearch
@@ -15,6 +16,7 @@ set shiftround
 set wildmenu
 set splitbelow splitright
 set ruler
+set nowrap
 
 " Easier keybindings for switching panes
 let mapleader = " "
@@ -41,19 +43,19 @@ nnoremap <leader>t :tabnew<Space>
 nnoremap <leader>s :sp<Space>
 nnoremap <leader>v :vsp<Space>
 
-" autoinsert matching brackets
+" Autoinsert matching brackets
 inoremap ( ()<Esc>i
 inoremap { {<CR>}<Esc>O
 inoremap [ []<Esc>i
 
-" vim gruvbox theme
+" Vim-Plug plugins
 call plug#begin('~/.vim/plugged')
 Plug 'itchyny/lightline.vim'
 Plug 'ajh17/VimCompletesMe'
 Plug 'sainnhe/gruvbox-material'
 call plug#end()
 
-" important!!
+" important!! - For gruvbox theme
 if has('termguicolors')
   set termguicolors
 endif
