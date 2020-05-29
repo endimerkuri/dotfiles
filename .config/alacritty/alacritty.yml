@@ -31,7 +31,7 @@ colors:
 
 # Font configuration (changes require restart)
 font:
-  size: 12.0  
+  size: 12.5
 
   # The normal (roman) font face to use.
   normal:

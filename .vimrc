@@ -45,7 +45,7 @@ nnoremap <leader>v :vsp<Space>
 
 " Autoinsert matching brackets
 inoremap ( ()<Esc>i
-inoremap { {<CR>}<Esc>O
+inoremap { {}<Esc>i
 inoremap [ []<Esc>i
 
 " Vim-Plug plugins
