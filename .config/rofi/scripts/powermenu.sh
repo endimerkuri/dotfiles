@@ -47,8 +47,6 @@ case $chosen in
     $suspend)
 		ans=$($dir/confirm.sh)
 		if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]]; then
-        mpc -q pause
-        amixer set Master mute
         systemctl suspend
 		elif [[ $ans == "no" ]] || [[ $ans == "NO" ]] || [[ $ans == "n" ]]; then
         exit
@@ -59,7 +57,7 @@ case $chosen in
     $logout)
 		ans=$($dir/confirm.sh)
 		if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]]; then
-        openbox --exit
+		xdotool key super+Escape
 		elif [[ $ans == "no" ]] || [[ $ans == "NO" ]] || [[ $ans == "n" ]]; then
         exit
         else
