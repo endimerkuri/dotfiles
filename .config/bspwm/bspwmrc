@@ -1,0 +1,38 @@
+#! /bin/sh
+
+sxhkd &
+
+feh --bg-scale /usr/share/backgrounds/cosmos/earth-horizon.jpg
+
+nm-applet &
+
+killall -q redshift
+killall -q redshift-gtk
+
+redshift-gtk &
+
+killall -q polybar
+
+polybar mybar &
+
+bspc monitor -d I II III IV
+
+bspc config border_width         2
+bspc config window_gap           0
+
+bspc config split_ratio          0.50
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config single_monocle      true
+
+# bspc rule -a Gimp desktop='^8' state=floating follow=on
+# bspc rule -a Chromium desktop='^2'
+# bspc rule -a mplayer2 state=floating
+# bspc rule -a Kupfer.py focus=on
+# bspc rule -a Screenkey manage=off
+bspc rule -a Klavaro state=floating
+bspc rule -a Mate-control-center state=floating
+bspc rule -a Mate-appearance-properties state=floating
+bspc rule -a zoom desktop='^2'
+
+wmname LG3D

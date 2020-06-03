@@ -57,6 +57,7 @@ case $chosen in
     $logout)
 		ans=$($dir/confirm.sh)
 		if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]]; then
+		bspc quit
 		xdotool key super+Escape
 		elif [[ $ans == "no" ]] || [[ $ans == "NO" ]] || [[ $ans == "n" ]]; then
         exit
