@@ -261,15 +261,15 @@ type = internal/date
 interval = 5
 
 date =
-date-alt = " %A %d %B %Y"
+date-alt = "%A %d %B %Y "
 
-time = %H:%M
+time = "%H:%M"
 time-alt = %H:%M
 
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #0a6cf5
 
-label = %date% %time%
+label = %date%%time%
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -339,7 +339,7 @@ format-charging-underline = #ffb52a
 format-discharging = <animation-discharging> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
-format-full-prefix = "  "
+format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${self.format-charging-underline}
 
