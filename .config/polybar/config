@@ -382,7 +382,7 @@ ramp-foreground = ${colors.foreground-alt}
 
 [module/powermenu]
 type = custom/script
-exec = echo "%{A1:/home/endi/.config/rofi/scripts/powermenu.sh:}  %{A}"
+exec = echo "%{A1:/home/endi/.config/rofi/scripts/powermenu.sh:} %{A}"
 
 # expand-right = false
 # 

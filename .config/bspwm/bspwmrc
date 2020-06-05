@@ -19,6 +19,10 @@ killall -q dunst
 
 dunst &
 
+killall -q picom
+
+picom &
+
 bspc monitor -d I II III IV
 
 bspc config border_width         2
