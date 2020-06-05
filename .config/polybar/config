@@ -48,13 +48,13 @@ border-color = #00000000
 padding-left = 0
 padding-right = 0
 
-module-margin-left = 1
+module-margin-left = 0
 module-margin-right = 1
 
 font-0 = ubuntumono:pixelsize=12;1
 font-1 = fontawesome:pixelsize=10;1
 
-modules-left = bspwm xwindow
+modules-left = powermenu bspwm xwindow
 modules-center = 
 modules-right = xbacklight pulseaudio battery date
 
@@ -382,11 +382,7 @@ ramp-foreground = ${colors.foreground-alt}
 
 [module/powermenu]
 type = custom/script
-exec = echo "asdfa"
-click-left = /home/endi/.config/rofi/scripts/powermenu.sh
-format = <label>
-interval = never
-label = 
+exec = echo "%{A1:/home/endi/.config/rofi/scripts/powermenu.sh:}  %{A}"
 
 # expand-right = false
 # 
