@@ -50,25 +50,18 @@ inoremap [ []<Esc>i
 
 " Vim-Plug plugins
 call plug#begin('~/.vim/plugged')
-Plug 'itchyny/lightline.vim'
 Plug 'ajh17/VimCompletesMe'
-Plug 'sainnhe/gruvbox-material'
+Plug 'morhetz/gruvbox'
+Plug 'vim-airline/vim-airline'
 call plug#end()
 
-" important!! - For gruvbox theme
 if has('termguicolors')
-  set termguicolors
+	set termguicolors
 endif
 
-" for dark version
+autocmd vimenter * colorscheme gruvbox
+autocmd vimenter * AirlineTheme gruvbox
+let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_termcolors=256
+
 set background=dark
-
-" set contrast
-" this configuration option should be placed before `colorscheme gruvbox-material`
-" available values: 'hard', 'medium'(default), 'soft'
-let g:gruvbox_material_background = 'hard'
-let g:gruvbox_material_palette = 'original'
-colorscheme gruvbox-material
-
-" lightline gruvbox theme
-let g:lightline = {'colorscheme' : 'gruvbox_material'}
