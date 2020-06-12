@@ -8,17 +8,17 @@
  */
 
 configuration {
+	modi: "drun";
     drun-display-format: "{icon} {name}";
-    display-drun: "Apps";
 	show-icons: true;
-	icon-theme: "Papirus-Dark";
+	icon-theme: "Ambiant-MATE";
 	location: 2;
 	fake-transparency: false;
 	hide-scrollbar: true;
 	bw: 0;
-    fullscreen: true;
+    fullscreen: false;
     show-icons: true;
-	terminal: "termite";
+	terminal: "st";
 	sidebar-mode: false;
 }
 
@@ -44,7 +44,7 @@ configuration {
 
 * {
   background-color: rgba(0,0,0,0);
-  font: "FantasqueSansMono Nerd Font 12";
+  // font: "UbuntuMono Nerd Font 48";
 }
 
 window {
@@ -54,7 +54,7 @@ window {
 
 mainbox {
   children: [ inputbar, listview ];
-  margin: 25% 30% 25% 30%;
+  margin: 20% 25% 20% 25%;
   background-color: @bg;
   border-radius: 12;
   border: 2;
@@ -62,7 +62,7 @@ mainbox {
 }
 
 listview {
-  columns: 2;
+  columns: 3;
   padding: 8;
   spacing: 0;
 }
@@ -88,16 +88,10 @@ element-icon {
   vertical-align: 0.5;
 }
 
-element-icon {
-  size: 40;
-  horizontal-align: 0.5;
-  vertical-align: 0.5;
-}
-
 element-text {
+  font: "UbuntuMono Nerd Font 12";
   horizontal-align: 0.5;
   vertical-align: 0.5;
-  text-color: inherit;
 }
 
 inputbar {
