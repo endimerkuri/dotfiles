@@ -7,10 +7,16 @@
  *
  */
 
+
+configuration {
+	location: 1;
+	xoffset: 0;
+	yoffset: 25; // polybar height
+}
+
 @import "colors.rasi"
 
 /* ########### */
-
 * {
   /* General */
   text-font:                            "Comfortaa 12";
