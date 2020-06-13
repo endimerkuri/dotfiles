@@ -62,6 +62,7 @@ tray-position = right
 tray-padding = 1
 ;tray-background = #0063ff
 
+enable-ipc = true
 wm-restack = bspwm
 ;wm-restack = i3
 
