@@ -120,7 +120,8 @@ label-focused-padding = 1
 
 label-occupied = %index%
 label-occupied-padding = 1
-label-occupied-background = #444
+label-occupied-background = #a89984
+label-occupied-foreground = #000000
 # label-occupied-underline= ${colors.primary}
 
 label-urgent = %index%!
