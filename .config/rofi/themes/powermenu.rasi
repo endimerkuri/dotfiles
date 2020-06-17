@@ -43,7 +43,8 @@ configuration {
 /* ########### */
 
 * {
-  background-color: @background;
+  // background-color: @background;
+  background-color: #222;
   text-color: @foreground;
   font: @icon-font;
 }

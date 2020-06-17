@@ -42,7 +42,7 @@ case $chosen in
         fi
         ;;
     $lock)
-        i3lock -d -c 000000
+        betterlockscreen -l dimblur
         ;;
     $suspend)
 		ans=$($dir/confirm.sh)

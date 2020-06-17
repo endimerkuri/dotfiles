@@ -27,7 +27,8 @@ configuration {
 
 // black version
 * {
-  bg: #000000;
+  // bg: #000000;
+  bg: #222;
   ac: #868fa176;
   ac-txt: #869fa2;
   item: #bdc3c3;
@@ -58,8 +59,8 @@ window {
 mainbox {
   children: [ inputbar, listview ];
   background-color: @bg;
-  border-radius: 12;
-  border: 1;
+  // border-radius: 12;
+  // border: 1;
   border-color: #ffffff0A;
 }
 
