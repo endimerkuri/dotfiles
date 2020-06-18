@@ -2,7 +2,9 @@
 
 sxhkd &
 
-nitrogen -restore &
+/usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
+
+nitrogen --restore &
 
 nm-applet &
 
@@ -42,5 +44,7 @@ bspc rule -a zoom desktop='^2'
 bspc rule -a Thunar state=floating
 bspc rule -a Nitrogen state=floating
 bspc rule -a Zathura state=tiled
+bspc rule -a Arandr state=floating
+bspc rule -a Lxappearance state=floating
 
 wmname LG3D

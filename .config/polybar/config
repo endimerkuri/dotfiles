@@ -51,12 +51,12 @@ padding-right = 0
 module-margin-left = 0
 module-margin-right = 1
 
-font-0 = ubuntumono:pixelsize=12;1
+font-0 = sourcecodepro:pixelsize=11;1
 font-1 = fontawesome:pixelsize=10;1
 
 modules-left = powermenu bspwm launcher xwindow
 modules-center = 
-modules-right = xbacklight pulseaudio battery date
+modules-right = backlight-acpi pulseaudio battery date
 
 tray-position = right
 tray-padding = 1
