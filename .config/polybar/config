@@ -189,8 +189,8 @@ label-song-ellipsis = true
 [module/xbacklight]
 type = internal/xbacklight
 
-format = <label>
-label =  %percentage%%
+format =  <label>
+label = %percentage%%
 format-underline = #cc241d
 
 bar-width = 10
@@ -281,8 +281,8 @@ label = %date%%time%
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <label-volume>
-label-volume =  %percentage%%
+format-volume =  <label-volume>
+label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
 format-volume-underline = #0a6cf5
 
