@@ -24,6 +24,7 @@ nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
+nnoremap <leader>q :wincmd q<CR>
 
 " Easier keybindings to switch tabs
 nnoremap <leader>1 1gt
