@@ -1,10 +1,14 @@
 #! /bin/sh
 
+killall -q sxhkd
+
 sxhkd &
 
 /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 
 nitrogen --restore &
+
+killall -q nm-applet
 
 nm-applet &
 

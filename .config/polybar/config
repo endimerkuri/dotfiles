@@ -18,7 +18,7 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #aa222
+background = #222
 background-alt = #444
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
@@ -51,7 +51,7 @@ padding-right = 0
 module-margin-left = 0
 module-margin-right = 1
 
-font-0 = sourcecodepro:pixelsize=11;1
+font-0 = SourceCodePro:pixelsize=12;1
 font-1 = fontawesome:pixelsize=10;1
 
 modules-left = powermenu bspwm launcher xwindow
@@ -191,7 +191,7 @@ type = internal/xbacklight
 
 format =  <label>
 label = %percentage%%
-format-underline = #cc241d
+## format-underline = #cc241d
 
 bar-width = 10
 bar-indicator = |
@@ -274,7 +274,7 @@ time = "%H:%M"
 time-alt = %H:%M
 
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #0a6cf5
+# format-underline = #0a6cf5
 
 label = %date%%time%
 
@@ -284,7 +284,7 @@ type = internal/pulseaudio
 format-volume =  <label-volume>
 label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
-format-volume-underline = #0a6cf5
+# format-volume-underline = #0a6cf5
 
 label-muted =  muted
 label-muted-foreground = #666
@@ -343,11 +343,11 @@ full-at = 98
 label-charging =  %percentage%% %time%
 label-discharging =  %percentage%% %time%
 time-format = %H:%M
-format-charging-underline = #ffb52a
-format-discharging-underline = #ffb52a
+# format-charging-underline = #ffb52a
+# format-discharging-underline = #ffb52a
 
 format-full-prefix = " "
-format-full-underline = #ffb52a
+# format-full-underline = #ffb52a
 # format-charging = <animation-charging> <label-charging>
 # format-charging-underline = #ffb52a
 # 
