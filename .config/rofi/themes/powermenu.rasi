@@ -57,7 +57,8 @@ configuration {
 }
 #element {
   padding: 0px;
-  background-color: @background-light;
+  // background-color: @background-light;
+  background-color: #222;
 }
 #element.selected {
   background-color: @accent;
@@ -105,7 +106,8 @@ textbox-prompt-colon {
   font: @icon-font;
   border: @menu-element-border;
   padding: @menu-element-padding;
-  border-color: @background-light;
+  // border-color: @background-light;
+  border-color: #222;
 }
 #element.selected {
   border-color: @accent;
