@@ -86,7 +86,8 @@ textbox-prompt-colon {
 }
 #prompt {
   margin: @menu-prompt-margin;
-  background-color: @background-light;
+  // background-color: @background-light;
+  background-color: #222;
   text-color: @accent;
 }
 #textbox-prompt-colon {
