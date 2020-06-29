@@ -66,3 +66,5 @@ let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_termcolors=256
 
 set background=dark
+" Tabline with airline
+let g:airline#extensions#tabline#enabled = 1
