@@ -55,7 +55,7 @@ font-0 = SourceCodePro:pixelsize=12;1
 font-1 = fontawesome:pixelsize=10;1
 
 modules-left = powermenu bspwm launcher xwindow
-modules-center = 
+modules-center =
 modules-right = backlight-acpi pulseaudio battery date
 
 tray-position = right
@@ -240,11 +240,11 @@ format-disconnected =
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
-ramp-signal-0 =  
-ramp-signal-1 =  
-ramp-signal-2 =  
-ramp-signal-3 =  
-ramp-signal-4 =  
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
 ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
@@ -350,25 +350,25 @@ format-full-prefix = " "
 # format-full-underline = #ffb52a
 # format-charging = <animation-charging> <label-charging>
 # format-charging-underline = #ffb52a
-# 
+#
 # format-discharging = <animation-discharging> <label-discharging>
 # format-discharging-underline = ${self.format-charging-underline}
-# 
+#
 # format-full-prefix = " "
 # format-full-prefix-foreground = ${colors.foreground-alt}
 # format-full-underline = ${self.format-charging-underline}
-# 
+#
 # ramp-capacity-0 = 
 # ramp-capacity-1 = 
 # ramp-capacity-2 = 
 # ramp-capacity-foreground = ${colors.foreground-alt}
-# 
+#
 # animation-charging-0 = 
 # animation-charging-1 = 
 # animation-charging-2 = 
 # animation-charging-foreground = ${colors.foreground-alt}
 # animation-charging-framerate = 0
-# 
+#
 # animation-discharging-0 = 
 # animation-discharging-1 = 
 # animation-discharging-2 = 
@@ -403,26 +403,26 @@ type = custom/script
 exec = echo "%{A1:/home/endi/.config/rofi/launchers/launcher.sh:}%{A}"
 
 # expand-right = false
-# 
+#
 # format-spacing = 1
-# 
+#
 # label-open = 
 # label-open-foreground = ${colors.secondary}
 # label-close =  cancel
 # label-close-foreground = ${colors.secondary}
 # label-separator = |
 # label-separator-foreground = ${colors.foreground-alt}
-# 
+#
 # menu-0-0 = reboot
 # menu-0-0-exec = menu-open-1
 # menu-0-1 = power off
 # menu-0-1-exec = menu-open-2
-# 
+#
 # menu-1-0 = cancel
 # menu-1-0-exec = menu-open-0
 # menu-1-1 = reboot
 # menu-1-1-exec = sudo reboot
-# 
+#
 # menu-2-0 = power off
 # menu-2-0-exec = sudo poweroff
 # menu-2-1 = cancel
