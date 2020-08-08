@@ -33,6 +33,11 @@ killall -q libinput-gestures
 
 libinput-gestures &
 
+killall -q xob
+
+mkfifo /tmp/xobpipe
+tail -f /tmp/xobpipe | xob &
+
 bspc monitor -d I II III IV
 
 bspc config border_width         1
@@ -56,5 +61,6 @@ bspc rule -a Arandr state=floating
 bspc rule -a Lxappearance state=floating
 bspc rule -a Gnome-disks state=floating
 bspc rule -a Gestures state=floating
+bspc rule -a Gufw.py state=floating
 
 wmname LG3D

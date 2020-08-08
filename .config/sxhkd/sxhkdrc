@@ -128,11 +128,10 @@ XF86MonBrightness{Up,Down}
 	xbacklight {-inc,-dec} 5
 
 XF86AudioLowerVolume
-	pulsemixer --change-volume -10
+	pulsemixer --change-volume -10 && echo $(pulsemixer --get-volume) > /tmp/xobpipe
 
 XF86AudioRaiseVolume
-	pulsemixer --change-volume +10
+	pulsemixer --change-volume +10 && echo $(pulsemixer --get-volume) > /tmp/xobpipe
 
 XF86AudioMute
 	pulsemixer --toggle-mute
-	notify-send "Volume muted" $(pulsemixer --get-mute)
