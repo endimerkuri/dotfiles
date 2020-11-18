@@ -60,6 +60,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'ajh17/VimCompletesMe'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
+Plug 'JuliaEditorSupport/julia-vim'
 call plug#end()
 
 if has('termguicolors')
