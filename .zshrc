@@ -99,11 +99,9 @@ export VISUAL='vim'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export PATH=/usr/lib/jvm/jdk-14/bin:$PATH
 export TERM=xterm-256color
-export PATH=$PATH:/home/endi/julia-1.5.2/bin
+export PATH=$PATH:/home/endi/julia-1.5.3/bin
 export PATH=$PATH:/home/endi/.local/bin
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/pulse/extra/usr/lib/x86_64-linux-gnu/
 
 # Dotfiles git bare repository
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
