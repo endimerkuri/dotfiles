@@ -45,27 +45,25 @@ nnoremap <leader>t :e<Space>
 nnoremap <leader>s :sp<Space>
 nnoremap <leader>v :vsp<Space>
 
-" Autoinsert matching brackets
-inoremap ( ()<Esc>i
-inoremap { {}<Esc>i
-inoremap [ []<Esc>i
-
 " Vim-Plug plugins
 if empty(glob('~/.vim/autoload/plug.vim'))
-	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'ajh17/VimCompletesMe'
-Plug 'morhetz/gruvbox'
-Plug 'vim-airline/vim-airline'
-Plug 'JuliaEditorSupport/julia-vim'
+    Plug 'ajh17/VimCompletesMe'
+    Plug 'morhetz/gruvbox'
+    Plug 'vim-airline/vim-airline'
+    Plug 'JuliaEditorSupport/julia-vim'
+    Plug 'tpope/vim-commentary'
+    Plug 'jiangmiao/auto-pairs'
+    Plug 'mhinz/vim-startify'
 call plug#end()
 
 if has('termguicolors')
-	set termguicolors
+    set termguicolors
 endif
 
 autocmd vimenter * colorscheme gruvbox
