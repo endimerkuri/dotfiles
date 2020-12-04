@@ -9,6 +9,7 @@ set ttimeoutlen=50
 set smartindent
 set incsearch
 set nohlsearch
+set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -28,6 +29,7 @@ nnoremap <leader>d :bd<CR>
 nnoremap <leader>q :wq<CR>
 
 " Easier keybindings to switch buffers
+nnoremap <leader><Tab> :bnext<CR>
 nnoremap <leader>1 :b1<CR>
 nnoremap <leader>2 :b2<CR>
 nnoremap <leader>3 :b3<CR>
@@ -74,3 +76,4 @@ let g:gruvbox_termcolors=256
 set background=dark
 " Tabline with airline
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
