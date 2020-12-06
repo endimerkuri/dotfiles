@@ -55,6 +55,7 @@ local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.ge
 beautiful.init(theme_path)
 beautiful.wallpaper = "/home/endi/Pictures/wallpapers/0059.jpg"
 beautiful.useless_gap = 2
+beautiful.border_width = 0
 beautiful.gap_single_client = false
 
 -- This is used later as the default terminal and editor to run.

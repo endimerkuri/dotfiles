@@ -9,4 +9,4 @@ function run {
 
 run nm-applet &&
 run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &&
-# run compton
+run compton
