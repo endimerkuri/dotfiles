@@ -119,6 +119,13 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
+separator = wibox.widget {
+    widget = wibox.widget.separator,
+    orientation = "vertical",
+    forced_width = 10,
+    -- color = "#3F3F3F",
+    visible = true
+}
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -216,24 +223,30 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             mylauncher,
             s.mytaglist,
+            s.mylayoutbox,
             s.mypromptbox,
         },
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             -- mykeyboardlayout,
+            separator,
             volume_widget({display_notifications = true}),
+            separator,
             brightness_widget({
                 get_brightness_cmd = 'xbacklight -get',
                 inc_brightness_cmd = 'xbacklight -inc 5',
                 dec_brightness_cmd = 'xbacklight -dec 5'
             }),
+            separator,
             battery_widget({
                 show_current_level = true
             }),
+            separator,
             wibox.widget.systray(),
+            separator,
             mytextclock,
-            s.mylayoutbox,
+            separator,
             logout_widget.widget{},
         },
     }
@@ -525,6 +538,7 @@ awful.rules.rules = {
           "zoom",
           "Thunar",
           "Klavaro",
+          "Orage",
           "Pamac-manager",
           "File-roller",
           "xtightvncviewer"},
