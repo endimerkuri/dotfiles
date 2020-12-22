@@ -224,6 +224,7 @@ awful.screen.connect_for_each_screen(function(s)
             mylauncher,
             s.mytaglist,
             s.mylayoutbox,
+            separator,
             s.mypromptbox,
         },
         s.mytasklist, -- Middle widget

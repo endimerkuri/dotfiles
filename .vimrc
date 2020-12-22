@@ -55,25 +55,35 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-    Plug 'ajh17/VimCompletesMe'
     Plug 'morhetz/gruvbox'
     Plug 'vim-airline/vim-airline'
     Plug 'JuliaEditorSupport/julia-vim'
     Plug 'tpope/vim-commentary'
     Plug 'jiangmiao/auto-pairs'
     Plug 'mhinz/vim-startify'
+    " LSP client
+    Plug 'dense-analysis/ale'
 call plug#end()
 
 if has('termguicolors')
     set termguicolors
 endif
 
+" Gruvbox color theme
 autocmd vimenter * colorscheme gruvbox
 autocmd vimenter * AirlineTheme gruvbox
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_termcolors=256
-
 set background=dark
+
 " Tabline with airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
+
+" ALE config
+let g:ale_completion_enabled = 1
+nnoremap gd :ALEGoToDefinition<CR>
+
+" Tab autocompletion
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
