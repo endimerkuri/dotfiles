@@ -3,7 +3,7 @@
 local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
 local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightness")
 local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
-local logout_widget = require("awesome-wm-widgets.logout-widget.logout")
+local logout_widget = require("awesome-wm-widgets.logout-popup-widget.logout-popup")
 
 pcall(require, "luarocks.loader")
 
@@ -122,8 +122,8 @@ mytextclock = wibox.widget.textclock()
 separator = wibox.widget {
     widget = wibox.widget.separator,
     orientation = "vertical",
-    forced_width = 10,
-    -- color = "#3F3F3F",
+    forced_width = 6,
+    color = "#3F3F3F",
     visible = true
 }
 
@@ -232,6 +232,8 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             -- mykeyboardlayout,
             separator,
+            wibox.widget.systray(),
+            separator,
             volume_widget({display_notifications = true}),
             separator,
             brightness_widget({
@@ -244,10 +246,7 @@ awful.screen.connect_for_each_screen(function(s)
                 show_current_level = true
             }),
             separator,
-            wibox.widget.systray(),
-            separator,
             mytextclock,
-            separator,
             logout_widget.widget{},
         },
     }
