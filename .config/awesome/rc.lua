@@ -239,11 +239,13 @@ awful.screen.connect_for_each_screen(function(s)
             brightness_widget({
                 get_brightness_cmd = 'xbacklight -get',
                 inc_brightness_cmd = 'xbacklight -inc 5',
-                dec_brightness_cmd = 'xbacklight -dec 5'
+                dec_brightness_cmd = 'xbacklight -dec 5',
+                font = 'Play 9'
             }),
             separator,
             battery_widget({
-                show_current_level = true
+                show_current_level = true,
+                font = 'Play 9'
             }),
             separator,
             mytextclock,
@@ -541,6 +543,8 @@ awful.rules.rules = {
           "Orage",
           "Pamac-manager",
           "File-roller",
+          "Lxappearance",
+          "Gufw.py",
           "xtightvncviewer"},
 
         -- Note that the name property shown in xprop might be set slightly after creation of the client
