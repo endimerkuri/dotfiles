@@ -54,7 +54,7 @@ end
 local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "zenburn")
 beautiful.init(theme_path)
 beautiful.wallpaper = "/home/endi/Pictures/wallpapers/0059.jpg"
-beautiful.useless_gap = 2
+beautiful.useless_gap = 0
 beautiful.border_width = 0
 beautiful.gap_single_client = false
 
