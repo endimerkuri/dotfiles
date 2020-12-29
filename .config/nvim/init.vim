@@ -67,7 +67,7 @@ nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>d :bd<CR>
-nnoremap <leader>q :wq<CR>
+nnoremap <leader>q :q<CR>
 
 " Easier keybindings to switch buffers
 nmap <leader>1 <Plug>AirlineSelectTab1
