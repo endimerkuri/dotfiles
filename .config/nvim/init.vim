@@ -14,6 +14,9 @@ if has('termguicolors')
 endif
 
 call plug#begin(stdpath('data') . '/plugged')
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
+    Plug 'mhinz/vim-startify'
     Plug 'morhetz/gruvbox'
     Plug 'vim-airline/vim-airline'
     Plug 'tpope/vim-commentary'
