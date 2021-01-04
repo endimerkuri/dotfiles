@@ -22,6 +22,7 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'tpope/vim-commentary'
     Plug 'jiangmiao/auto-pairs'
     Plug 'preservim/nerdtree'
+    Plug 'ryanoasis/vim-devicons'
     " LSP client
     Plug 'dense-analysis/ale'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
