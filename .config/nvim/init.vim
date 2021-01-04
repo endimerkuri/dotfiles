@@ -26,6 +26,8 @@ call plug#begin(stdpath('data') . '/plugged')
     " LSP client
     Plug 'dense-analysis/ale'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    " Git plugin
+    Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " Gruvbox color theme
@@ -66,6 +68,7 @@ inoremap <expr><CR> pumvisible() ? "\<C-y>" : "\<CR>"
 
 " Easier keybindings for switching panes
 let mapleader = " "
+nnoremap <leader>w <C-w>
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
@@ -99,3 +102,10 @@ nnoremap <leader>t :e<Space>
 " Create new split
 nnoremap <leader>s :sp<Space>
 nnoremap <leader>v :vsp<Space>
+
+" Vim Fugitive keybindings
+nmap <leader>gs :G<CR>
+
+" Terminal mode keybindings
+:tnoremap <Esc> <C-\><C-n>
+:nnoremap <leader>ot :10sp<CR>:term<CR>
