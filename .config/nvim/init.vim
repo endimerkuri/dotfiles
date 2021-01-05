@@ -14,15 +14,19 @@ if has('termguicolors')
 endif
 
 call plug#begin(stdpath('data') . '/plugged')
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'junegunn/fzf.vim'
+    "UI plugins
     Plug 'mhinz/vim-startify'
     Plug 'morhetz/gruvbox'
     Plug 'vim-airline/vim-airline'
+    Plug 'lambdalisue/fern-renderer-devicons.vim'
+    Plug 'ryanoasis/vim-devicons'
+    " Helpful
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
     Plug 'tpope/vim-commentary'
     Plug 'jiangmiao/auto-pairs'
-    Plug 'preservim/nerdtree'
-    Plug 'ryanoasis/vim-devicons'
+    " File tree drawer
+    Plug 'lambdalisue/fern.vim'
     " LSP client
     Plug 'dense-analysis/ale'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -89,12 +93,24 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 nmap <leader><Tab> <Plug>AirlineSelectNextTab
 nmap <leader><S-Tab> <Plug>AirlineSelectPrevTab
 
-" NERDTree config
-nnoremap <leader>f :NERDTreeToggle<CR>
+" Fern config
+let g:fern#renderer = "devicons"
+nnoremap <leader>f :Fern . -drawer -toggle<CR>
+" Similar keybindings to lf
+function! s:init_fern() abort
+  nmap <buffer> ov <Plug>(fern-action-open:vsplit)
+  nmap <buffer> os <Plug>(fern-action-open:split)
+  nmap <buffer> zh <Plug>(fern-action-hidden)
+  nmap <buffer> r <Plug>(fern-action-rename)
+  nmap <buffer> d <Plug>(fern-action-clipboard-move)
+  nmap <buffer> p <Plug>(fern-action-clipboard-paste)
+  nmap <buffer> y <Plug>(fern-action-clipboard-copy)
+endfunction
 
-" Exit Vim if NERDTree is the only window left.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
-    \ quit | endif
+augroup fern-custom
+  autocmd! *
+  autocmd FileType fern call s:init_fern()
+augroup END
 
 " Create new buffer
 nnoremap <leader>t :e<Space>

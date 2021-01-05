@@ -71,8 +71,8 @@ ZSH_THEME="robbyrussell"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-export EDITOR='vim'
-export VISUAL='vim'
+export EDITOR='nvim'
+export VISUAL='nvim'
 
 # User configuration
 
@@ -107,5 +107,5 @@ export PATH=$PATH:/home/endi/.local/bin
 # Dotfiles git bare repository
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
-alias vim="nvim"
+alias v="nvim"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
