@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/dash
 
-res=$(echo -e "lock\nlogout\nshutdown\nreboot\ncancel" | dmenu -l 5 -p "Logout")
+res=$(echo "lock\nlogout\nshutdown\nreboot\ncancel" | dmenu -l 5 -p "Logout")
 
 case $res in
     lock)
