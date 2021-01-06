@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/dash
 
 case $1 in
     0)
@@ -18,16 +18,16 @@ case $1 in
         ;;
     5)
         out=$(amixer sget Master)
-        mute=$(awk -F"[][]" '/Left:/ {print $4}' <(echo "$out"))
-        level=$(awk -F"[][]" '/Left:/ {print $2}' <(echo "$out"))
-        icon=$([ "$mute" == "off" ] && echo "ﱝ " || echo " ")
+        mute=$(echo "$out" | awk -F"[][]" '/Left:/ {print $4}')
+        level=$(echo "$out" | awk -F"[][]" '/Left:/ {print $2}')
+        icon=$([ "$mute" = "off" ] && echo "ﱝ " || echo " ")
         echo "$icon$level"
         ;;
     6)
         out=$(acpi)
-        charging=$(awk -F ' ' '{print $3}' <(echo "$out"))
-        level=$(awk -F ', ' '{print $2}' <(echo "$out"))
-        icon=$([ "$charging" == "Charging," ] && echo " " || echo " ")
+        charging=$(echo "$out" | awk -F ' ' '{print $3}')
+        level=$(echo "$out" | awk -F ', ' '{print $2}')
+        icon=$([ "$charging" = "Charging," ] && echo " " || echo " ")
         echo "$icon$level"
         ;;
     7)
