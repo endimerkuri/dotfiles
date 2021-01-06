@@ -78,6 +78,8 @@ export EDITOR='nvim'
 export VISUAL='nvim'
 
 # User configuration
+export KEYTIMEOUT=1
+bindkey -v
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
