@@ -129,6 +129,9 @@ nnoremap <leader>v :vsp<Space>
 " Vim Fugitive keybindings
 nmap <leader>gs :G<CR>
 
+" Compile latex keybinding
+nmap <leader>ls :w<CR>:!latexmk -pdf -f -silent<CR>
+
 " Terminal mode keybindings
 :tnoremap <Esc> <C-\><C-n>
 :nnoremap <leader>ot :10sp<CR>:term<CR>
