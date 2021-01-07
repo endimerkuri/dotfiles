@@ -25,6 +25,11 @@ export VISUAL='nvim'
 export KEYTIMEOUT=1
 bindkey -v
 
+# History in cache directory:
+HISTSIZE=10000000
+SAVEHIST=10000000
+HISTFILE=~/.cache/zsh/history
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
