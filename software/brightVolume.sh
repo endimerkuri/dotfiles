@@ -32,6 +32,6 @@ case $1 in
         ;;
     7)
         out=$(xbacklight -get)
-        echo "${out%.*}"
+        echo " ${out%.*}"
         ;;
 esac
