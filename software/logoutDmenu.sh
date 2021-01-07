@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/sh
 
 res=$(echo "lock\nlogout\nshutdown\nreboot\ncancel" | dmenu -l 5 -p "Logout")
 
