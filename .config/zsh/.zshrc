@@ -45,7 +45,6 @@ HISTFILE=~/.cache/zsh/history
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-export TERM=xterm-256color
 export PATH=$PATH:/home/endi/julia-1.5.3/bin
 export PATH=$PATH:/home/endi/.local/bin
 

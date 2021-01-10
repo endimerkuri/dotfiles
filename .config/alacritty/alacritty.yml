@@ -1,3 +1,6 @@
+env:
+    TERM: st-256color
+
 # Colors (Gruvbox dark)
 colors:
   # Default colors
