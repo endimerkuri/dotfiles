@@ -2,7 +2,6 @@ syntax on
 filetype indent on
 
 set nocompatible
-set t_Co=256
 set nu rnu
 set laststatus=2
 set ttimeoutlen=50
@@ -70,6 +69,10 @@ call plug#end()
 if has('termguicolors')
     set termguicolors
 endif
+
+" set Vim-specific sequences for RGB colors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 " Gruvbox color theme
 autocmd vimenter * colorscheme gruvbox
