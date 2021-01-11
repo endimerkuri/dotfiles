@@ -114,6 +114,18 @@ function! s:init_fern() abort
   nmap <buffer> d <Plug>(fern-action-clipboard-move)
   nmap <buffer> p <Plug>(fern-action-clipboard-paste)
   nmap <buffer> y <Plug>(fern-action-clipboard-copy)
+  " cd into the directory when pressing enter or backspace
+  nmap <buffer> <Plug>(fern-my-enter-and-tcd)
+        \ <Plug>(fern-action-enter)
+        \ <Plug>(fern-wait)
+        \ <Plug>(fern-action-tcd:root)
+
+  nmap <buffer> <Plug>(fern-my-leave-and-tcd)
+        \ <Plug>(fern-action-leave)
+        \ <Plug>(fern-wait)
+        \ <Plug>(fern-action-tcd:root)
+  nmap <buffer> <CR> <Plug>(fern-my-enter-and-tcd)
+  nmap <buffer> <BS> <Plug>(fern-my-leave-and-tcd)
 endfunction
 
 augroup fern-custom
