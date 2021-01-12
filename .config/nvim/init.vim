@@ -39,8 +39,8 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     " Git plugin
     Plug 'tpope/vim-fugitive'
-    " Cpp syntax highlighting
-    Plug 'bfrg/vim-cpp-modern'
+    " Better syntax highlighting
+    Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 " Gruvbox color theme
