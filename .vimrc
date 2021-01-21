@@ -40,6 +40,9 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 nmap <leader><Tab> <Plug>AirlineSelectNextTab
 nmap <leader><S-Tab> <Plug>AirlineSelectPrevTab
 
+" Escape in insert mode when pressing jk
+inoremap jk <Esc>
+
 " Create new buffer
 nnoremap <leader>t :e<Space>
 
