@@ -29,8 +29,8 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-	# //// 25 is polybar height
-    geometry = "300x5-0+25"
+	# //// 20 is bar height
+    geometry = "300x5-0+20"
 
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes

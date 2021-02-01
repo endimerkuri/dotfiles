@@ -149,6 +149,9 @@ nmap <leader>gs :G<CR>
 " Save and Compile latex keybinding
 nmap <leader>cl :w<CR>:!latexmk -pdf -f -silent<CR>
 
+" Save and make
+nmap <leader>cm :w<CR>:10sp<CR>:terminal make<CR>
+
 " Terminal mode keybindings
 :tnoremap <Esc> <C-\><C-n>
-:nnoremap <leader>ot :10sp<CR>:term<CR>
+:nnoremap <leader>ot :10sp<CR>:terminal<CR>
