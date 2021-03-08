@@ -15,32 +15,34 @@ set smartindent
 set nohlsearch
 set splitbelow splitright
 set nowrap
+set scrolloff=8
 
 if has('termguicolors')
     set termguicolors
 endif
 
 call plug#begin(stdpath('data') . '/plugged')
-    "UI plugins
-    Plug 'mhinz/vim-startify'
-    Plug 'morhetz/gruvbox'
-    Plug 'vim-airline/vim-airline'
-    Plug 'lambdalisue/fern-renderer-devicons.vim'
-    Plug 'ryanoasis/vim-devicons'
-    " Helpful
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'junegunn/fzf.vim'
-    Plug 'tpope/vim-commentary'
-    Plug 'jiangmiao/auto-pairs'
-    " File tree drawer
-    Plug 'lambdalisue/fern.vim'
-    " LSP client
-    Plug 'dense-analysis/ale'
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    " Git plugin
-    Plug 'tpope/vim-fugitive'
-    " Better syntax highlighting
-    Plug 'sheerun/vim-polyglot'
+"UI plugins
+Plug 'mhinz/vim-startify'
+Plug 'morhetz/gruvbox'
+Plug 'vim-airline/vim-airline'
+Plug 'lambdalisue/fern-renderer-devicons.vim'
+Plug 'ryanoasis/vim-devicons'
+" Helpful
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-commentary'
+Plug 'jiangmiao/auto-pairs'
+" File tree drawer
+Plug 'lambdalisue/fern.vim'
+" LSP client
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
+
+" Git plugin
+Plug 'tpope/vim-fugitive'
+
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 
 " Gruvbox color theme
@@ -64,20 +66,16 @@ let g:airline#extensions#tabline#buffer_idx_format = {
             \ '9': '9 '
             \}
 
-" ALE config
-" let g:ale_completion_enabled = 1
-nnoremap gd :ALEGoToDefinition<CR>
-
-" Deoplete config
-let g:deoplete#enable_at_startup=1
-call deoplete#custom#option('sources', {
-            \'_': ['ale', 'file', 'buffer'],
-            \})
-
 " Tab autocompletion
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 inoremap <expr><CR> pumvisible() ? "\<C-y>" : "\<CR>"
+
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing message extra message when using completion
+set shortmess+=c
 
 " Easier keybindings for switching panes
 let mapleader = " "
@@ -107,30 +105,30 @@ let g:fern#renderer = "devicons"
 nnoremap <leader>f :Fern . -drawer -toggle<CR>
 " Similar keybindings to lf
 function! s:init_fern() abort
-  nmap <buffer> ov <Plug>(fern-action-open:vsplit)
-  nmap <buffer> os <Plug>(fern-action-open:split)
-  nmap <buffer> zh <Plug>(fern-action-hidden)
-  nmap <buffer> r <Plug>(fern-action-rename)
-  nmap <buffer> d <Plug>(fern-action-clipboard-move)
-  nmap <buffer> p <Plug>(fern-action-clipboard-paste)
-  nmap <buffer> y <Plug>(fern-action-clipboard-copy)
-  " cd into the directory when pressing enter or backspace
-  nmap <buffer> <Plug>(fern-my-enter-and-tcd)
-        \ <Plug>(fern-action-enter)
-        \ <Plug>(fern-wait)
-        \ <Plug>(fern-action-tcd:root)
+    nmap <buffer> ov <Plug>(fern-action-open:vsplit)
+    nmap <buffer> os <Plug>(fern-action-open:split)
+    nmap <buffer> zh <Plug>(fern-action-hidden)
+    nmap <buffer> r <Plug>(fern-action-rename)
+    nmap <buffer> d <Plug>(fern-action-clipboard-move)
+    nmap <buffer> p <Plug>(fern-action-clipboard-paste)
+    nmap <buffer> y <Plug>(fern-action-clipboard-copy)
+    " cd into the directory when pressing enter or backspace
+    nmap <buffer> <Plug>(fern-my-enter-and-tcd)
+                \ <Plug>(fern-action-enter)
+                \ <Plug>(fern-wait)
+                \ <Plug>(fern-action-tcd:root)
 
-  nmap <buffer> <Plug>(fern-my-leave-and-tcd)
-        \ <Plug>(fern-action-leave)
-        \ <Plug>(fern-wait)
-        \ <Plug>(fern-action-tcd:root)
-  nmap <buffer> <CR> <Plug>(fern-my-enter-and-tcd)
-  nmap <buffer> <BS> <Plug>(fern-my-leave-and-tcd)
+    nmap <buffer> <Plug>(fern-my-leave-and-tcd)
+                \ <Plug>(fern-action-leave)
+                \ <Plug>(fern-wait)
+                \ <Plug>(fern-action-tcd:root)
+    nmap <buffer> <CR> <Plug>(fern-my-enter-and-tcd)
+    nmap <buffer> <BS> <Plug>(fern-my-leave-and-tcd)
 endfunction
 
 augroup fern-custom
-  autocmd! *
-  autocmd FileType fern call s:init_fern()
+    autocmd! *
+    autocmd FileType fern call s:init_fern()
 augroup END
 
 " Escape in insert mode when pressing jk
@@ -155,3 +153,23 @@ nmap <leader>cm :w<CR>:10sp<CR>:terminal make<CR>
 " Terminal mode keybindings
 :tnoremap <Esc> <C-\><C-n>
 :nnoremap <leader>ot :10sp<CR>:terminal<CR>
+
+" Use completion-nvim in every buffer
+autocmd BufEnter * lua require'completion'.on_attach()
+
+" Nvim-lsp
+nnoremap gd :lua vim.lsp.buf.declaration()<CR>
+nnoremap gi :lua vim.lsp.buf.definition()<CR>
+nnoremap grr :lua vim.lsp.buf.references()<CR>
+
+lua << EOF
+require'lspconfig'.clangd.setup{
+    on_attach = on_attach,
+}
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+      enable = true,              -- false will disable the whole extension
+  },
+}
+EOF
