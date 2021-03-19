@@ -42,6 +42,9 @@ Plug 'nvim-lua/completion-nvim'
 " Git plugin
 Plug 'tpope/vim-fugitive'
 
+" Maximizer
+Plug 'szw/vim-maximizer'
+
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 
@@ -141,11 +144,14 @@ nnoremap <leader>t :e<Space>
 nnoremap <leader>s :sp<Space>
 nnoremap <leader>v :vsp<Space>
 
+" Vim maximizer keybindings
+let g:maximizer_set_default_mapping = 0
+let g:maximizer_set_mapping_with_bang = 1
+nnoremap <leader>m :MaximizerToggle<CR>
+vnoremap <leader>m :MaximizerToggle<CR>
+
 " Vim Fugitive keybindings
 nmap <leader>gs :G<CR>
-
-" Save and Compile latex keybinding
-nmap <leader>cl :w<CR>:!latexmk -pdf -f -silent<CR>
 
 " Save and make
 nmap <leader>cm :w<CR>:10sp<CR>:terminal make<CR>
@@ -161,8 +167,37 @@ autocmd BufEnter * lua require'completion'.on_attach()
 nnoremap gd :lua vim.lsp.buf.declaration()<CR>
 nnoremap gi :lua vim.lsp.buf.definition()<CR>
 nnoremap grr :lua vim.lsp.buf.references()<CR>
+nnoremap K :lua vim.lsp.buf.hover()<CR>
 
 lua << EOF
+require'lspconfig'.pyls.setup{
+    on_attach = on_attach,
+    configurationSources = { "pycodestyle", "pyflakes" },
+}
+require'lspconfig'.texlab.setup{
+    on_attach = on_attach,
+    settings = {
+      bibtex = {
+        formatting = {
+          lineLength = 120
+        }
+      },
+      latex = {
+        build = {
+          args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
+          executable = "latexmk",
+          onSave = true
+        },
+        forwardSearch = {
+          args = {},
+          onSave = false
+        },
+        lint = {
+          onChange = false
+        }
+      }
+    }
+}
 require'lspconfig'.clangd.setup{
     on_attach = on_attach,
 }

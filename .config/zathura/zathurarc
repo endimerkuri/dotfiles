@@ -1,3 +1,4 @@
 # enable incremental search
 set incremental-search true
 set selection-clipboard clipboard
+set sandbox none
