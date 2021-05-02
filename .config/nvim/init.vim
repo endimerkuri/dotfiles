@@ -24,6 +24,7 @@ endif
 call plug#begin(stdpath('data') . '/plugged')
 "UI plugins
 Plug 'mhinz/vim-startify'
+Plug 'Yggdroot/indentLine'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'lambdalisue/fern-renderer-devicons.vim'
@@ -46,12 +47,19 @@ Plug 'tpope/vim-fugitive'
 Plug 'szw/vim-maximizer'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+" VimWiki
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 " Gruvbox color theme
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_termcolors=256
 colorscheme gruvbox
+
+" Startify configuration
+let g:startify_fortune_use_unicode = 1
+let g:startify_session_autoload = 1
 
 " Tabline with airline
 let g:airline#extensions#tabline#enabled = 1

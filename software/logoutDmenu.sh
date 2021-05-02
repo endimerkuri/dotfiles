@@ -1,10 +1,10 @@
 #!/bin/sh
 
-res=$(echo "lock\nlogout\nshutdown\nreboot\ncancel" | dmenu -l 5 -p "Logout")
+res=$(echo "lock\nlogout\nshutdown\nreboot\ncancel" | rofi -dmenu -l 5 -p "Logout")
 
 case $res in
     lock)
-        slock
+        i3lock -c 000000
         ;;
     logout)
         dwmc quit

@@ -1,8 +1,0 @@
-rofi.modi: combi
-rofi.combi-modi: window,drun,run
-rofi.theme: /usr/share/rofi/themes/gruvbox-dark.rasi
-rofi.show-icons: true
-rofi.lines: 10
-rofi.font: UbuntuMono Nerd Font Mono 18
-rofi.display-combi: 
-rofi.width: 45

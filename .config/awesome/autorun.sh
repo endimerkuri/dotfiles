@@ -7,7 +7,8 @@ function run {
   fi
 }
 
-run nm-applet &&
+run setxkbmap -option ctrl:nocaps &&
 run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &&
 run picom &&
-run blugon
+run dunst
+# run blugon
