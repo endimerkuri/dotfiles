@@ -57,6 +57,9 @@ let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_termcolors=256
 colorscheme gruvbox
 
+" Vimwiki configuration
+let g:vimwiki_folding='expr'
+
 " Startify configuration
 let g:startify_fortune_use_unicode = 1
 let g:startify_session_autoload = 1

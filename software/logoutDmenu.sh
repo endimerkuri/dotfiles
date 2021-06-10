@@ -7,7 +7,8 @@ case $res in
         i3lock -c 000000
         ;;
     logout)
-        dwmc quit
+        # dwmc quit
+        openbox --exit
         ;;
     shutdown)
         systemctl poweroff 
