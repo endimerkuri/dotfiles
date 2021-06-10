@@ -47,6 +47,7 @@ HISTFILE=~/.cache/zsh/history
 
 export PATH=$PATH:/home/endi/julia-1.5.3/bin
 export PATH=$PATH:/home/endi/.local/bin
+export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 
 # Dotfiles git bare repository
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'

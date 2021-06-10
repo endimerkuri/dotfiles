@@ -57,7 +57,6 @@ endif
 call plug#begin('~/.vim/plugged')
     Plug 'morhetz/gruvbox'
     Plug 'vim-airline/vim-airline'
-    Plug 'JuliaEditorSupport/julia-vim'
     Plug 'tpope/vim-commentary'
     Plug 'jiangmiao/auto-pairs'
     Plug 'mhinz/vim-startify'
