@@ -27,8 +27,8 @@ Plug 'mhinz/vim-startify'
 Plug 'Yggdroot/indentLine'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
-Plug 'lambdalisue/fern-renderer-devicons.vim'
-Plug 'ryanoasis/vim-devicons'
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+Plug 'lambdalisue/nerdfont.vim'
 " Helpful
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -50,6 +50,12 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " VimWiki
 Plug 'vimwiki/vimwiki'
+
+" Telescope
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
 call plug#end()
 
 " Gruvbox color theme
@@ -61,7 +67,6 @@ colorscheme gruvbox
 let g:vimwiki_folding='expr'
 
 " Startify configuration
-let g:startify_fortune_use_unicode = 1
 let g:startify_session_autoload = 1
 
 " Tabline with airline
@@ -115,7 +120,7 @@ nmap <leader><Tab> <Plug>AirlineSelectNextTab
 nmap <leader><S-Tab> <Plug>AirlineSelectPrevTab
 
 " Fern config
-let g:fern#renderer = "devicons"
+let g:fern#renderer = "nerdfont"
 nnoremap <leader>f :Fern . -drawer -toggle<CR>
 " Similar keybindings to lf
 function! s:init_fern() abort
@@ -209,6 +214,7 @@ require'lspconfig'.texlab.setup{
 require'lspconfig'.clangd.setup{
     on_attach = on_attach,
 }
+require'lspconfig'.tsserver.setup{}
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   highlight = {
