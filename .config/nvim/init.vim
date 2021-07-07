@@ -55,6 +55,11 @@ Plug 'vimwiki/vimwiki'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
+
+" Database
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
 
 call plug#end()
 
@@ -182,7 +187,43 @@ nnoremap gi :lua vim.lsp.buf.definition()<CR>
 nnoremap grr :lua vim.lsp.buf.references()<CR>
 nnoremap K :lua vim.lsp.buf.hover()<CR>
 
+" Telescope
+nnoremap <leader>pf :lua require('telescope.builtin').find_files()<CR>
+
+" DBUI
+let g:db_ui_win_position='right'
+let g:db_ui_use_nerd_fonts=1
+nnoremap <leader>od :DBUIToggle<CR>
+let g:db_ui_icons={
+            \ 'expanded': {
+                \     'db': '▾  ',
+                \     'buffers': '▾  ',
+                \     'saved_queries': '▾  ',
+                \     'schemas': '▾  ',
+                \     'schema': '▾ פּ ',
+                \     'tables': '▾ 藺 ',
+                \     'table': '▾  ',
+                \     },
+                \ 'collapsed': {
+                    \     'db': '▸  ',
+                    \     'buffers': '▸  ',
+                    \     'saved_queries': '▸  ',
+                    \     'schemas': '▸  ',
+                    \     'schema': '▸ פּ ',
+                    \     'tables': '▸ 藺 ',
+                    \     'table': '▸  ',
+                    \     },
+                    \ 'saved_query': ' ',
+                    \ 'new_query': '璘 ',
+                    \ 'tables': '離 ',
+                    \ 'buffers': '﬘ ',
+                    \ 'add_connection': ' ',
+                    \ 'connection_ok': '✓ ',
+                    \ 'connection_error': '✕ ',
+                    \ }
+
 lua << EOF
+require('telescope').load_extension('fzy_native')
 require'lspconfig'.pyls.setup{
     on_attach = on_attach,
     configurationSources = { "pycodestyle", "pyflakes" },
