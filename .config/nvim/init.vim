@@ -16,6 +16,7 @@ set nohlsearch
 set splitbelow splitright
 set nowrap
 set scrolloff=8
+set signcolumn=yes
 
 if has('termguicolors')
     set termguicolors
@@ -27,21 +28,26 @@ Plug 'mhinz/vim-startify'
 Plug 'Yggdroot/indentLine'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
-Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'lambdalisue/nerdfont.vim'
+
 " Helpful
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-rooter'
 Plug 'tpope/vim-commentary'
 Plug 'jiangmiao/auto-pairs'
-" File tree drawer
-Plug 'lambdalisue/fern.vim'
+
 " LSP client
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
+Plug 'hrsh7th/nvim-compe'
+
+" Debugger
+Plug 'puremourning/vimspector'
 
 " Git plugin
 Plug 'tpope/vim-fugitive'
+Plug 'idanarye/vim-merginal'
+Plug 'airblade/vim-gitgutter'
 
 " Maximizer
 Plug 'szw/vim-maximizer'
@@ -51,16 +57,15 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " VimWiki
 Plug 'vimwiki/vimwiki'
 
-" Telescope
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzy-native.nvim'
-
 " Database
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
 
+" Vim vinegar
+Plug 'tpope/vim-vinegar'
+
+" UndoTree
+Plug 'mbbill/undotree'
 call plug#end()
 
 " Gruvbox color theme
@@ -97,6 +102,27 @@ inoremap <expr><CR> pumvisible() ? "\<C-y>" : "\<CR>"
 
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
+let g:compe = {}
+let g:compe.enabled = v:true
+let g:compe.autocomplete = v:true
+let g:compe.debug = v:false
+let g:compe.min_length = 1
+let g:compe.preselect = 'enable'
+let g:compe.throttle_time = 80
+let g:compe.source_timeout = 200
+let g:compe.resolve_timeout = 800
+let g:compe.incomplete_delay = 400
+let g:compe.max_abbr_width = 100
+let g:compe.max_kind_width = 100
+let g:compe.max_menu_width = 100
+let g:compe.documentation = v:true
+
+let g:compe.source = {}
+let g:compe.source.path = v:true
+let g:compe.source.buffer = v:true
+let g:compe.source.calc = v:true
+let g:compe.source.nvim_lsp = v:true
+let g:compe.source.nvim_lua = v:true
 
 " Avoid showing message extra message when using completion
 set shortmess+=c
@@ -108,7 +134,7 @@ nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
-nnoremap <leader>d :bd<CR>
+nnoremap <leader>bd :bd<CR>
 nnoremap <leader>q :q<CR>
 
 " Easier keybindings to switch buffers
@@ -123,37 +149,6 @@ nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 nmap <leader><Tab> <Plug>AirlineSelectNextTab
 nmap <leader><S-Tab> <Plug>AirlineSelectPrevTab
-
-" Fern config
-let g:fern#renderer = "nerdfont"
-nnoremap <leader>f :Fern . -drawer -toggle<CR>
-" Similar keybindings to lf
-function! s:init_fern() abort
-    nmap <buffer> ov <Plug>(fern-action-open:vsplit)
-    nmap <buffer> os <Plug>(fern-action-open:split)
-    nmap <buffer> zh <Plug>(fern-action-hidden)
-    nmap <buffer> r <Plug>(fern-action-rename)
-    nmap <buffer> d <Plug>(fern-action-clipboard-move)
-    nmap <buffer> p <Plug>(fern-action-clipboard-paste)
-    nmap <buffer> y <Plug>(fern-action-clipboard-copy)
-    " cd into the directory when pressing enter or backspace
-    nmap <buffer> <Plug>(fern-my-enter-and-tcd)
-                \ <Plug>(fern-action-enter)
-                \ <Plug>(fern-wait)
-                \ <Plug>(fern-action-tcd:root)
-
-    nmap <buffer> <Plug>(fern-my-leave-and-tcd)
-                \ <Plug>(fern-action-leave)
-                \ <Plug>(fern-wait)
-                \ <Plug>(fern-action-tcd:root)
-    nmap <buffer> <CR> <Plug>(fern-my-enter-and-tcd)
-    nmap <buffer> <BS> <Plug>(fern-my-leave-and-tcd)
-endfunction
-
-augroup fern-custom
-    autocmd! *
-    autocmd FileType fern call s:init_fern()
-augroup END
 
 " Create new buffer
 nnoremap <leader>t :e<Space>
@@ -170,6 +165,8 @@ vnoremap <leader>m :MaximizerToggle<CR>
 
 " Vim Fugitive keybindings
 nmap <leader>gs :G<CR>
+nmap <leader>gb :MerginalToggle<CR>
+let g:gitgutter_enabled = 1
 
 " Save and make
 nmap <leader>cm :w<CR>:10sp<CR>:terminal make<CR>
@@ -178,21 +175,33 @@ nmap <leader>cm :w<CR>:10sp<CR>:terminal make<CR>
 :tnoremap <Esc> <C-\><C-n>
 :nnoremap <leader>ot :10sp<CR>:terminal<CR>
 
-" Use completion-nvim in every buffer
-autocmd BufEnter * lua require'completion'.on_attach()
-
 " Nvim-lsp
-nnoremap gd :lua vim.lsp.buf.declaration()<CR>
-nnoremap gi :lua vim.lsp.buf.definition()<CR>
+nnoremap gi :lua vim.lsp.buf.declaration()<CR>
+nnoremap gd :lua vim.lsp.buf.definition()<CR>
 nnoremap grr :lua vim.lsp.buf.references()<CR>
 nnoremap K :lua vim.lsp.buf.hover()<CR>
 
-" Telescope
-nnoremap <leader>pf :lua require('telescope.builtin').find_files()<CR>
+" Debugger
+nnoremap <leader>dd :call vimspector#Launch()<CR>
+nmap <leader>dl <Plug>VimspectorStepInto
+nmap <leader>dj <Plug>VimspectorStepOver
+nmap <leader>dk <Plug>VimspectorStepOut
+nmap <leader>d_ <Plug>VimspectorRestart
+nnoremap <leader>d<space> :call vimspector#Continue()<CR>
+nmap <leader>drc <Plug>VimspectorRunToCursor
+nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
+nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
+
+" Fuzzy finder
+nnoremap <leader>f :Files<CR>
+
+" UndoTree
+nnoremap <leader>u :UndotreeToggle<CR>
 
 " DBUI
 let g:db_ui_win_position='right'
 let g:db_ui_use_nerd_fonts=1
+let g:db_ui_auto_execute_table_helpers=1
 nnoremap <leader>od :DBUIToggle<CR>
 let g:db_ui_icons={
             \ 'expanded': {
@@ -223,8 +232,7 @@ let g:db_ui_icons={
                     \ }
 
 lua << EOF
-require('telescope').load_extension('fzy_native')
-require'lspconfig'.pyls.setup{
+require'lspconfig'.pylsp.setup{
     on_attach = on_attach,
     configurationSources = { "pycodestyle", "pyflakes" },
 }
