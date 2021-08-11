@@ -52,6 +52,7 @@ Plug 'airblade/vim-gitgutter'
 " Maximizer
 Plug 'szw/vim-maximizer'
 
+" Syntax highlighting
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " VimWiki
@@ -166,7 +167,13 @@ vnoremap <leader>m :MaximizerToggle<CR>
 " Vim Fugitive keybindings
 nmap <leader>gs :G<CR>
 nmap <leader>gb :MerginalToggle<CR>
+let g:gitgutter_map_keys = 0
 let g:gitgutter_enabled = 1
+nmap ghs <Plug>(GitGutterStageHunk)
+nmap ghu <Plug>(GitGutterUndoHunk)
+nmap ghp <Plug>(GitGutterPreviewHunk)
+nmap ]c <Plug>(GitGutterNextHunk)
+nmap [c <Plug>(GitGutterPrevHunk)
 
 " Save and make
 nmap <leader>cm :w<CR>:10sp<CR>:terminal make<CR>
@@ -194,6 +201,7 @@ nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
 
 " Fuzzy finder
 nnoremap <leader>f :Files<CR>
+let g:rooter_patterns = ['.git']
 
 " UndoTree
 nnoremap <leader>u :UndotreeToggle<CR>
