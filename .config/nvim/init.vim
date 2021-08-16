@@ -27,7 +27,8 @@ call plug#begin(stdpath('data') . '/plugged')
 Plug 'mhinz/vim-startify'
 Plug 'Yggdroot/indentLine'
 Plug 'morhetz/gruvbox'
-Plug 'vim-airline/vim-airline'
+Plug 'hoob3rt/lualine.nvim'
+Plug 'jose-elias-alvarez/buftabline.nvim'
 Plug 'lambdalisue/nerdfont.vim'
 
 " Helpful
@@ -47,7 +48,8 @@ Plug 'puremourning/vimspector'
 " Git plugin
 Plug 'tpope/vim-fugitive'
 Plug 'idanarye/vim-merginal'
-Plug 'airblade/vim-gitgutter'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'lewis6991/gitsigns.nvim'
 
 " Maximizer
 Plug 'szw/vim-maximizer'
@@ -79,22 +81,6 @@ let g:vimwiki_folding='expr'
 
 " Startify configuration
 let g:startify_session_autoload = 1
-
-" Tabline with airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline#extensions#tabline#buffer_idx_format = {
-            \ '0': '0 ',
-            \ '1': '1 ',
-            \ '2': '2 ',
-            \ '3': '3 ',
-            \ '4': '4 ',
-            \ '5': '5 ',
-            \ '6': '6 ',
-            \ '7': '7 ',
-            \ '8': '8 ',
-            \ '9': '9 '
-            \}
 
 " Tab autocompletion
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -139,24 +125,15 @@ nnoremap <leader>bd :bd<CR>
 nnoremap <leader>q :q<CR>
 
 " Easier keybindings to switch buffers
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
-nmap <leader><Tab> <Plug>AirlineSelectNextTab
-nmap <leader><S-Tab> <Plug>AirlineSelectPrevTab
+nmap <leader><Tab> :BufNext<CR>
+nmap <leader><S-Tab> :BufPrev<CR>
 
 " Create new buffer
 nnoremap <leader>t :e<Space>
 
 " Create new split
-nnoremap <leader>s :sp<Space>
-nnoremap <leader>v :vsp<Space>
+nnoremap <leader>s :sp<CR>
+nnoremap <leader>v :vsp<CR>
 
 " Vim maximizer keybindings
 let g:maximizer_set_default_mapping = 0
@@ -167,13 +144,6 @@ vnoremap <leader>m :MaximizerToggle<CR>
 " Vim Fugitive keybindings
 nmap <leader>gs :G<CR>
 nmap <leader>gb :MerginalToggle<CR>
-let g:gitgutter_map_keys = 0
-let g:gitgutter_enabled = 1
-nmap ghs <Plug>(GitGutterStageHunk)
-nmap ghu <Plug>(GitGutterUndoHunk)
-nmap ghp <Plug>(GitGutterPreviewHunk)
-nmap ]c <Plug>(GitGutterNextHunk)
-nmap [c <Plug>(GitGutterPrevHunk)
 
 " Save and make
 nmap <leader>cm :w<CR>:10sp<CR>:terminal make<CR>
@@ -201,6 +171,7 @@ nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
 
 " Fuzzy finder
 nnoremap <leader>f :Files<CR>
+nnoremap <leader>bb :Buffers<CR>
 let g:rooter_patterns = ['.git']
 
 " UndoTree
@@ -240,6 +211,29 @@ let g:db_ui_icons={
                     \ }
 
 lua << EOF
+require('lualine').setup{
+options = {
+    theme = 'gruvbox',
+    section_separators = '',
+    component_separators = '',
+    },
+}
+require('buftabline').setup{}
+require('gitsigns').setup{
+keymaps = {
+    noremap = true,
+    ['n ]c'] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'"},
+    ['n [c'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'"},
+    ['n ghs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
+    ['v ghs'] = '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
+    ['n ghu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
+    ['n ghr'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
+    ['v ghr'] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
+    ['n ghR'] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
+    ['n ghp'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
+    ['n ghb'] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
+    }
+}
 require'lspconfig'.pylsp.setup{
     on_attach = on_attach,
     configurationSources = { "pycodestyle", "pyflakes" },
