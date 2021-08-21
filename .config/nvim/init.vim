@@ -76,11 +76,9 @@ let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_termcolors=256
 colorscheme gruvbox
 
-" Vimwiki configuration
-let g:vimwiki_folding='expr'
-
 " Startify configuration
 let g:startify_session_autoload = 1
+let g:startify_change_to_vcs_root = 1
 
 " Tab autocompletion
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -150,7 +148,11 @@ nmap <leader>cm :w<CR>:10sp<CR>:terminal make<CR>
 
 " Terminal mode keybindings
 :tnoremap <Esc> <C-\><C-n>
-:nnoremap <leader>ot :10sp<CR>:terminal<CR>
+:nnoremap <leader>; :10sp<CR>:terminal<CR>
+augroup custom_term
+    autocmd!
+    autocmd TermOpen * setlocal bufhidden=hide
+augroup END
 
 " Nvim-lsp
 nnoremap gi :lua vim.lsp.buf.declaration()<CR>
@@ -241,25 +243,29 @@ require'lspconfig'.pylsp.setup{
 require'lspconfig'.texlab.setup{
     on_attach = on_attach,
     settings = {
-      bibtex = {
-        formatting = {
-          lineLength = 120
-        }
-      },
-      latex = {
+    texlab = {
+        auxDirectory = ".",
+        bibtexFormatter = "texlab",
         build = {
-          args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
-          executable = "latexmk",
-          onSave = true
-        },
+            args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
+            executable = "latexmk",
+            forwardSearchAfter = false,
+            onSave = true
+            },
+        chktex = {
+            onEdit = false,
+            onOpenAndSave = false
+            },
+        diagnosticsDelay = 300,
+        formatterLineLength = 80,
         forwardSearch = {
-          args = {},
-          onSave = false
-        },
-        lint = {
-          onChange = false
+            args = {}
+            },
+        latexFormatter = "latexindent",
+        latexindent = {
+            modifyLineBreaks = false
+            }
         }
-      }
     }
 }
 require'lspconfig'.clangd.setup{
