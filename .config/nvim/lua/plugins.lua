@@ -6,7 +6,7 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function()
 
     -- UI plugins
-    use 'morhetz/gruvbox'
+    use {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
     use 'mhinz/vim-startify'
     use 'Yggdroot/indentLine'
     use {
@@ -24,15 +24,12 @@ return require('packer').startup(function()
     -- Vim vinegar
     use 'tpope/vim-vinegar'
 
-    -- Helpful
+    -- Fuzzy finder
     use {
         'junegunn/fzf',
         run = vim.fn['fzf#install()']
     }
     use 'junegunn/fzf.vim'
-    use 'airblade/vim-rooter'
-    use 'tpope/vim-commentary'
-    use 'jiangmiao/auto-pairs'
 
     -- LSP client
     use 'neovim/nvim-lspconfig'
@@ -46,7 +43,7 @@ return require('packer').startup(function()
     -- Debugger
     use 'puremourning/vimspector'
 
-    -- Git plugin
+    -- Git plugins
     use 'tpope/vim-fugitive'
     use 'idanarye/vim-merginal'
     use 'nvim-lua/plenary.nvim'
@@ -70,5 +67,10 @@ return require('packer').startup(function()
 
     -- UndoTree
     use 'mbbill/undotree'
+
+    -- Misc
+    use 'airblade/vim-rooter'
+    use 'tpope/vim-commentary'
+    use 'jiangmiao/auto-pairs'
 end)
 

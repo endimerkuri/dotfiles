@@ -55,9 +55,10 @@ vim.api.nvim_set_keymap('n', '<leader>s', ':sp<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>v', ':vsp<CR>', { noremap = true })
 
 -- Gruvbox color theme
-vim.g.colors_name = 'gruvbox'
+vim.o.background = 'dark'
 vim.g.gruvbox_contrast_dark = 'hard'
 vim.g.gruvbox_termcolors = 256
+vim.cmd([[colorscheme gruvbox]])
 
 -- Startify configuration
 vim.g.startify_session_autoload = 1
