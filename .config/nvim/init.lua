@@ -46,6 +46,7 @@ vim.api.nvim_set_keymap('n', '<leader>q', ':q<CR>', { noremap = true })
 -- Easier keybindings to switch buffers
 vim.api.nvim_set_keymap('n', '<leader><Tab>', ':BufNext<CR>', {})
 vim.api.nvim_set_keymap('n', '<leader><S-Tab>', ':BufPrev<CR>', {})
+vim.api.nvim_set_keymap('n', '<leader><leader>', '<c-^>', { noremap = true })
 
 -- Create new buffer
 vim.api.nvim_set_keymap('n', '<leader>t', ':e<Space>', { noremap = true })
@@ -53,6 +54,12 @@ vim.api.nvim_set_keymap('n', '<leader>t', ':e<Space>', { noremap = true })
 -- Create new split
 vim.api.nvim_set_keymap('n', '<leader>s', ':sp<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>v', ':vsp<CR>', { noremap = true })
+
+-- Copy paste from system clipboard
+vim.api.nvim_set_keymap('n', '<leader>y', '\"+y', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>p', '\"+p', { noremap = true })
+vim.api.nvim_set_keymap('v', '<leader>y', '\"+y', { noremap = true })
+vim.api.nvim_set_keymap('v', '<leader>p', '\"+p', { noremap = true })
 
 -- Gruvbox color theme
 vim.o.background = 'dark'
