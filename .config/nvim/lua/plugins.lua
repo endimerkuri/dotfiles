@@ -72,5 +72,10 @@ return require('packer').startup(function()
     use 'airblade/vim-rooter'
     use 'tpope/vim-commentary'
     use 'jiangmiao/auto-pairs'
+        
+    use 'vim-test/vim-test'
+    use 'mfussenegger/nvim-dap'
+    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+    use 'tpope/vim-dotenv'
 end)
 
