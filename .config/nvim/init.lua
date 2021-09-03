@@ -190,7 +190,6 @@ sources = {
 -- ]],
 -- false)
 
--- " " Debugger
 -- " nnoremap <leader>dd :call vimspector#Launch()<CR>
 -- " nmap <leader>dl <Plug>VimspectorStepInto
 -- " nmap <leader>dj <Plug>VimspectorStepOver
@@ -200,6 +199,13 @@ sources = {
 -- " nmap <leader>drc <Plug>VimspectorRunToCursor
 -- " nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
 -- " nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
+
+-- Tests
+vim.g['test#strategy'] = 'neovim'
+vim.api.nvim_set_keymap('n', '<leader>tf', ':TestFile<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>ts', ':TestSuite<CR>', { noremap = true })
+
+-- Debugger
 vim.api.nvim_set_keymap('n', '<leader>dc', ':Dotenv config/.env.development<CR>:lua require\'dap\'.continue()<CR>', { noremap = true } )
 vim.api.nvim_set_keymap('n', '<leader>db', ':lua require\'dap\'.toggle_breakpoint()<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>dl', ':lua require\'dap\'.step_into()<CR>', { noremap = true })
@@ -299,7 +305,7 @@ local dap = require'dap'
 dap.adapters.node2 = {
   type = 'executable',
   command = 'node',
-  args = {os.getenv('HOME') .. '/vscode-node-debug2/out/src/nodeDebug.js'},
+  args = {os.getenv('HOME') .. '/software/vscode-node-debug2/out/src/nodeDebug.js'},
 }
 dap.configurations.javascript = {
   {
