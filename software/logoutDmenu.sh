@@ -9,6 +9,7 @@ case $res in
     logout)
         dwmc quit
         # openbox --exit
+        qtile cmd-obj -o cmd -f shutdown
         ;;
     shutdown)
         systemctl poweroff 

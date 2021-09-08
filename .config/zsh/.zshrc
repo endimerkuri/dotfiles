@@ -57,6 +57,7 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 alias ls='ls -CF --color=auto'
 alias v="nvim"
+alias n="nnn"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Taken from Luke Smith's dotfiles
