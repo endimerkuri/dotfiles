@@ -40,6 +40,7 @@ def autostart():
     subprocess.call([home])
 
 
+ubuntufont = "UbuntuMonoNerdFont"
 mod = "mod4"
 # terminal = guess_terminal()
 terminal = "st"
@@ -153,16 +154,16 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.CurrentLayout(),
-                widget.GroupBox(),
+                widget.CurrentLayout(font=ubuntufont),
+                widget.GroupBox(font=ubuntufont),
                 widget.Prompt(),
-                widget.WindowName(),
-                widget.Backlight(backlight_name="intel_backlight"),
-                widget.Volume(),
+                widget.WindowName(font=ubuntufont),
+                widget.Backlight(backlight_name="intel_backlight", font=ubuntufont),
+                widget.Volume(font=ubuntufont),
                 widget.Systray(),
-                widget.Clock(format='%b %d (%a) %H: %M'),
-                widget.Battery(format='{char} {percent:2.0%} {hour:d}:{min:02d}'),
-                widget.QuickExit(),
+                widget.Clock(format='%b %d (%a) %H: %M', font=ubuntufont),
+                widget.Battery(format='{char} {percent:2.0%} {hour:d}:{min:02d}', font=ubuntufont),
+                widget.QuickExit(font=ubuntufont),
             ],
             24,
         ),
