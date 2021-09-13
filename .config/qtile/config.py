@@ -46,6 +46,7 @@ mod = "mod4"
 terminal = "st"
 rofi = "rofi -show drun"
 logout = "logoutDmenu"
+theme_path = "/usr/share/icons/Papirus-Dark/"
 
 keys = [
     # Switch between windows
@@ -91,6 +92,7 @@ keys = [
     Key([mod], "space", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "Tab", lazy.screen.togglegroup(), desc="Move to last visited group"),
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
+    Key([mod, "shift"], "space", lazy.window.toggle_floating(), desc="Toggle floating state of current window"),
 
     Key([mod, "shift"], "r", lazy.restart(), desc="Restart Qtile"),
     # Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
@@ -101,18 +103,17 @@ keys = [
 
     Key([mod], "bracketleft", lazy.screen.prev_group(), desc="Move to previous group"),
     Key([mod], "bracketright", lazy.screen.next_group(), desc="Move to previous group"),
-    Key([mod, "shift"], "bracketleft", lazy.window.togroup(lazy.screen.prev_group()), desc="Move to previous group"),
-    Key([mod, "shift"], "bracketright", lazy.window.togroup(lazy.screen.next_group()), desc="Move to previous group"),
     Key([], "XF86AudioMute", lazy.spawn("brightVolume 4")),
     Key([], "XF86AudioLowerVolume", lazy.spawn("brightVolume 3")),
     Key([], "XF86AudioRaiseVolume", lazy.spawn("brightVolume 2")),
     Key([], "XF86MonBrightnessUp", lazy.spawn("brightVolume 0")),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightVolume 1")),
+    Key([mod], "b", lazy.hide_show_bar("top")),
 ]
 
 groups = [Group(i) for i in "1234"]
 
-for i in groups:
+for j, i in enumerate(groups):
     keys.extend([
         # mod1 + letter of group = switch to group
         Key([mod], i.name, lazy.group[i.name].toscreen(),
@@ -159,7 +160,7 @@ screens = [
                 widget.Prompt(),
                 widget.WindowName(font=ubuntufont),
                 widget.Backlight(backlight_name="intel_backlight", font=ubuntufont),
-                widget.Volume(font=ubuntufont),
+                widget.Volume(font=ubuntufont, theme_path=theme_path, padding=0),
                 widget.Systray(),
                 widget.Clock(format='%b %d (%a) %H: %M', font=ubuntufont),
                 widget.Battery(format='{char} {percent:2.0%} {hour:d}:{min:02d}', font=ubuntufont),

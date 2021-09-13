@@ -13,6 +13,7 @@ vim.o.wrap = false
 vim.o.scrolloff = 8
 vim.o.signcolumn = 'yes'
 vim.o.termguicolors = true
+vim.o.cursorline = true
 
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
