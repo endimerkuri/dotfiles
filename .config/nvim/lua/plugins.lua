@@ -39,6 +39,11 @@ return require('packer').startup(function()
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-path'
+    use 'quangnguyen30192/cmp-nvim-ultisnips'
+
+    -- Snippets
+    use 'SirVer/ultisnips'
+    use 'honza/vim-snippets'
 
     -- Debugger
     use 'puremourning/vimspector'
@@ -82,5 +87,8 @@ return require('packer').startup(function()
     use 'airblade/vim-rooter'
     use 'tpope/vim-commentary'
     use 'jiangmiao/auto-pairs'
+
+    -- Formatting
+    use 'sbdchd/neoformat'
 end)
 

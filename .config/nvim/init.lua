@@ -124,6 +124,10 @@ vim.o.completeopt = 'menuone,noinsert,noselect'
 -- Avoid showing message extra message when using completion
 vim.o.shortmess = vim.o.shortmess .. 'c'
 
+vim.g.UltiSnipsExpandTrigger = '<c-l>'
+vim.g.UltiSnipsForwardTrigger = '<c-j>'
+vim.g.UltiSnipsBackwardTrigger = '<c-k>'
+
 local cmp = require('cmp')
 local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -133,6 +137,11 @@ local check_back_space = function()
     return col == 0 or vim.fn.getline('.'):sub(col, col):match '%s' ~= nil
 end
 cmp.setup {
+    snippet = {
+        expand = function(args)
+            vim.fn['UltiSnips#Anon'](args.body)
+        end,
+    },
     mapping = {
         ['<C-p>'] = cmp.mapping.select_prev_item(),
         ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -176,8 +185,13 @@ cmp.setup {
 sources = {
     { name = 'buffer' },
     { name = 'nvim-lsp' },
+    { name = 'ultisnips' },
     { name = 'path' },
 },
+
+require('lspconfig')['tsserver'].setup {
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+}
 }
 
 -- Setup buffer configuration (nvim-lua source only enables in Lua filetype).
@@ -320,4 +334,6 @@ dap.configurations.javascript = {
   },
 }
 require'dapui'.setup()
+
+vim.api.nvim_exec([[ autocmd BufWritePre *.ts Neoformat ]], false)
 
