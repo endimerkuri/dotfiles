@@ -128,93 +128,6 @@ vim.g.UltiSnipsExpandTrigger = '<c-l>'
 vim.g.UltiSnipsForwardTrigger = '<c-j>'
 vim.g.UltiSnipsBackwardTrigger = '<c-k>'
 
-local cmp = require('cmp')
-local t = function(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-local check_back_space = function()
-    local col = vim.fn.col '.' - 1
-    return col == 0 or vim.fn.getline('.'):sub(col, col):match '%s' ~= nil
-end
-cmp.setup {
-    snippet = {
-        expand = function(args)
-            vim.fn['UltiSnips#Anon'](args.body)
-        end,
-    },
-    mapping = {
-        ['<C-p>'] = cmp.mapping.select_prev_item(),
-        ['<C-n>'] = cmp.mapping.select_next_item(),
-        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.close(),
-        ['<CR>'] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Insert,
-            select = true,
-        })
-    },
-
-    -- supertab-like mapping
-    mapping = {
-        ["<tab>"] = cmp.mapping(function(fallback)
-            if vim.fn.pumvisible() == 1 then
-                vim.fn.feedkeys(t("<C-n>"), "n")
-            elseif check_back_space() then
-                vim.fn.feedkeys(t("<tab>"), "n")
-            else
-                fallback()
-            end
-        end, {
-        "i",
-        "s",
-    }),
-    ["<S-tab>"] = cmp.mapping(function(fallback)
-        if vim.fn.pumvisible() == 1 then
-            vim.fn.feedkeys(t("<C-p>"), "n")
-        else
-            fallback()
-        end
-    end, {
-    "i",
-    "s",
-}),
-},
-
--- You should specify your *installed* sources.
-sources = {
-    { name = 'buffer' },
-    { name = 'nvim-lsp' },
-    { name = 'ultisnips' },
-    { name = 'path' },
-},
-
-require('lspconfig')['tsserver'].setup {
-    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-}
-}
-
--- Setup buffer configuration (nvim-lua source only enables in Lua filetype).
--- vim.api.nvim_exec([[
--- autocmd FileType lua lua require'cmp'.setup.buffer {
---     sources = {
---         { name = 'buffer' },
---         { name = 'nvim_lua' },
---     },
--- }
--- ]],
--- false)
-
--- " nnoremap <leader>dd :call vimspector#Launch()<CR>
--- " nmap <leader>dl <Plug>VimspectorStepInto
--- " nmap <leader>dj <Plug>VimspectorStepOver
--- " nmap <leader>dk <Plug>VimspectorStepOut
--- " nmap <leader>d_ <Plug>VimspectorRestart
--- " nnoremap <leader>d<space> :call vimspector#Continue()<CR>
--- " nmap <leader>drc <Plug>VimspectorRunToCursor
--- " nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
--- " nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
-
 -- Tests
 vim.g['test#strategy'] = 'neovim'
 vim.api.nvim_set_keymap('n', '<leader>tf', ':Dotenv config/.env.test<CR>:TestFile<CR>', { noremap = true })
@@ -318,22 +231,87 @@ require'nvim-treesitter.configs'.setup {
 }
 local dap = require'dap'
 dap.adapters.node2 = {
-  type = 'executable',
-  command = 'node',
-  args = {os.getenv('HOME') .. '/software/vscode-node-debug2/out/src/nodeDebug.js'},
+    type = 'executable',
+    command = 'node',
+    args = {os.getenv('HOME') .. '/software/vscode-node-debug2/out/src/nodeDebug.js'},
 }
 dap.configurations.javascript = {
-  {
-    type = 'node2',
-    request = 'launch',
-    program = '${workspaceFolder}/index.js',
-    cwd = vim.fn.getcwd(),
-    sourceMaps = true,
-    protocol = 'inspector',
-    console = 'integratedTerminal',
-  },
+    {
+        type = 'node2',
+        request = 'launch',
+        program = '${workspaceFolder}/index.js',
+        cwd = vim.fn.getcwd(),
+        sourceMaps = true,
+        protocol = 'inspector',
+        console = 'integratedTerminal',
+    },
 }
 require'dapui'.setup()
 
 vim.api.nvim_exec([[ autocmd BufWritePre *.ts Neoformat ]], false)
 
+local cmp = require('cmp')
+local t = function(str)
+    return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+local check_back_space = function()
+    local col = vim.fn.col '.' - 1
+    return col == 0 or vim.fn.getline('.'):sub(col, col):match '%s' ~= nil
+end
+cmp.setup {
+    snippet = {
+        expand = function(args)
+            vim.fn['UltiSnips#Anon'](args.body)
+        end,
+    },
+    mapping = {
+        ['<C-p>'] = cmp.mapping.select_prev_item(),
+        ['<C-n>'] = cmp.mapping.select_next_item(),
+        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.close(),
+        ['<CR>'] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Insert,
+            select = true,
+        })
+    },
+
+    -- supertab-like mapping
+    mapping = {
+        ["<tab>"] = cmp.mapping(function(fallback)
+            if vim.fn.pumvisible() == 1 then
+                vim.fn.feedkeys(t("<C-n>"), "n")
+            elseif check_back_space() then
+                vim.fn.feedkeys(t("<tab>"), "n")
+            else
+                fallback()
+            end
+        end, {
+        "i",
+        "s",
+    }),
+    ["<S-tab>"] = cmp.mapping(function(fallback)
+        if vim.fn.pumvisible() == 1 then
+            vim.fn.feedkeys(t("<C-p>"), "n")
+        else
+            fallback()
+        end
+    end, {
+    "i",
+    "s",
+}),
+    },
+
+    -- You should specify your *installed* sources.
+    sources = {
+        { name = 'buffer' },
+        { name = 'nvim-lsp' },
+        { name = 'ultisnips' },
+        { name = 'path' },
+    },
+
+    require('lspconfig')['tsserver'].setup {
+        capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    }
+}
