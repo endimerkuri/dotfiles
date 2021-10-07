@@ -5,12 +5,12 @@ res=$(echo "lock\nlogout\nshutdown\nreboot\ncancel" | dmenu -p "Logout")
 
 case $res in
     lock)
-        i3lock -c 000000
+        slock
         ;;
     logout)
         dwmc quit
         # openbox --exit
-        qtile cmd-obj -o cmd -f shutdown
+        # qtile cmd-obj -o cmd -f shutdown
         ;;
     shutdown)
         systemctl poweroff 
