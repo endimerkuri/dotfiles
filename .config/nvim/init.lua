@@ -88,6 +88,7 @@ vim.api.nvim_set_keymap('v', '<leader>m', ':MaximizerToggle<CR>', {})
 
 -- Vim Fugitive keybindings
 vim.api.nvim_set_keymap('n', '<leader>gs', ':G<CR>', {})
+vim.api.nvim_set_keymap('n', '<leader>gu', ':G pull<CR>', {})
 vim.api.nvim_set_keymap('n', '<leader>gb', ':MerginalToggle<CR>', {})
 
 -- " " Save and make
