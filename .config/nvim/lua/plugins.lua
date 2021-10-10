@@ -33,6 +33,7 @@ return require('packer').startup(function()
 
     -- LSP client
     use 'neovim/nvim-lspconfig'
+    use 'onsails/lspkind-nvim'
 
     -- Completion
     use 'hrsh7th/nvim-cmp'

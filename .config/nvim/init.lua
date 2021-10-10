@@ -1,20 +1,3 @@
-vim.o.nu = true
-vim.o.rnu = true
-vim.o.expandtab = true
-vim.o.tabstop = 4
-vim.o.softtabstop = 4
-vim.o.shiftwidth = 4
-vim.o.shiftround = true
-vim.o.smartindent = true
-vim.o.hlsearch = false
-vim.o.splitbelow = true
-vim.o.splitright = true
-vim.o.wrap = false
-vim.o.scrolloff = 8
-vim.o.signcolumn = 'yes'
-vim.o.termguicolors = true
-vim.o.cursorline = true
-
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -31,6 +14,23 @@ augroup end
 ]],
 false
 )
+
+vim.o.nu = true
+vim.o.rnu = true
+vim.o.expandtab = true
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
+vim.o.shiftround = true
+vim.o.smartindent = true
+vim.o.hlsearch = false
+vim.o.splitbelow = true
+vim.o.splitright = true
+vim.o.wrap = false
+vim.o.scrolloff = 8
+vim.o.signcolumn = 'yes'
+vim.o.termguicolors = true
+vim.o.cursorline = true
 
 local plugins = require('plugins')
 
@@ -71,6 +71,7 @@ vim.cmd([[colorscheme gruvbox]])
 -- Startify configuration
 vim.g.startify_session_autoload = 1
 vim.g.startify_change_to_vcs_root = 1
+vim.g.startify_fortune_use_unicode = 1
 
 require('lualine').setup{
     options = {
@@ -104,12 +105,6 @@ autocmd TermOpen * setlocal bufhidden=hide
 augroup END
 ]],
 false)
-
--- Nvim-lsp
-vim.api.nvim_set_keymap('n', 'gi', ':lua vim.lsp.buf.declaration()<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', 'grr', ':lua vim.lsp.buf.references()<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', 'K', ':lua vim.lsp.buf.hover()<CR>', { noremap = true })
 
 -- Fuzzy finder
 vim.g.rooter_patterns = { '.git' }
@@ -188,12 +183,30 @@ require('gitsigns').setup{
         ['n ghb'] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
     }
 }
+
+-- Nvim-lsp
+local on_attach = function(_, bufnr)
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+  local opts = { noremap = true, silent = true }
+
+  vim.api.nvim_set_keymap('n', 'gi', ':lua vim.lsp.buf.declaration()<CR>', opts)
+  vim.api.nvim_set_keymap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts)
+  vim.api.nvim_set_keymap('n', 'grr', ':lua vim.lsp.buf.references()<CR>', opts)
+  vim.api.nvim_set_keymap('n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
+end
+
+-- nvim-cmp supports additional completion capabilities
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
 require'lspconfig'.pylsp.setup{
     on_attach = on_attach,
     configurationSources = { "pycodestyle", "pyflakes" },
+    capabilities = capabilities,
 }
 require'lspconfig'.texlab.setup{
     on_attach = on_attach,
+    capabilities = capabilities,
     settings = {
         texlab = {
             auxDirectory = ".",
@@ -222,6 +235,7 @@ require'lspconfig'.texlab.setup{
 }
 require'lspconfig'.clangd.setup{
     on_attach = on_attach,
+    capabilities = capabilities,
 }
 require'lspconfig'.tsserver.setup{}
 require'nvim-treesitter.configs'.setup {
@@ -252,6 +266,7 @@ require'dapui'.setup()
 vim.api.nvim_exec([[ autocmd BufWritePre *.ts Neoformat ]], false)
 
 local cmp = require('cmp')
+local lspkind = require('lspkind')
 local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
@@ -265,6 +280,17 @@ cmp.setup {
             vim.fn['UltiSnips#Anon'](args.body)
         end,
     },
+
+    formatting = {
+        format = require("lspkind").cmp_format({with_text = true, menu = ({
+            buffer = "[Buffer]",
+            nvim_lsp = "[LSP]",
+            luasnip = "[LuaSnip]",
+            nvim_lua = "[Lua]",
+            latex_symbols = "[Latex]",
+        })}),
+    },
+
     mapping = {
         ['<C-p>'] = cmp.mapping.select_prev_item(),
         ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -278,41 +304,33 @@ cmp.setup {
         })
     },
 
-    -- supertab-like mapping
     mapping = {
-        ["<tab>"] = cmp.mapping(function(fallback)
-            if vim.fn.pumvisible() == 1 then
-                vim.fn.feedkeys(t("<C-n>"), "n")
-            elseif check_back_space() then
-                vim.fn.feedkeys(t("<tab>"), "n")
-            else
-                fallback()
+        ['<Tab>'] = function(fallback)
+            if not cmp.select_next_item() then
+                if vim.bo.buftype ~= 'prompt' and has_words_before() then
+                    cmp.complete()
+                else
+                    fallback()
+                end
             end
-        end, {
-        "i",
-        "s",
-    }),
-    ["<S-tab>"] = cmp.mapping(function(fallback)
-        if vim.fn.pumvisible() == 1 then
-            vim.fn.feedkeys(t("<C-p>"), "n")
-        else
-            fallback()
-        end
-    end, {
-    "i",
-    "s",
-}),
+        end,
+
+        ['<S-Tab>'] = function(fallback)
+            if not cmp.select_prev_item() then
+                if vim.bo.buftype ~= 'prompt' and has_words_before() then
+                    cmp.complete()
+                else
+                    fallback()
+                end
+            end
+        end,
     },
 
     -- You should specify your *installed* sources.
     sources = {
+        { name = 'nvim_lsp' },
         { name = 'buffer' },
-        { name = 'nvim-lsp' },
         { name = 'ultisnips' },
         { name = 'path' },
     },
-
-    require('lspconfig')['tsserver'].setup {
-        capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-    }
 }
