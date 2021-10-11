@@ -49,6 +49,7 @@ export PATH=$PATH:/home/endi/julia-1.5.3/bin
 export PATH=$PATH:/home/endi/.local/bin
 export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+export ipuhome="scp://endim@dnat.simula.no/~/"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 
@@ -57,7 +58,7 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 alias ls='ls -CF --color=auto'
 alias v="nvim"
-alias n="nnn"
+alias n="nnn -d"
 alias m="neomutt"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
