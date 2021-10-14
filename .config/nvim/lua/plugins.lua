@@ -46,9 +46,6 @@ return require('packer').startup(function()
     use 'SirVer/ultisnips'
     use 'honza/vim-snippets'
 
-    -- Debugger
-    use 'puremourning/vimspector'
-
     -- Git plugins
     use 'tpope/vim-fugitive'
     use 'idanarye/vim-merginal'
@@ -91,5 +88,7 @@ return require('packer').startup(function()
 
     -- Formatting
     use 'sbdchd/neoformat'
+
+    use 'dstein64/vim-startuptime'
 end)
 

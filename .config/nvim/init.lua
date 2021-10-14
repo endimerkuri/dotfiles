@@ -74,8 +74,10 @@ vim.g.startify_change_to_vcs_root = 1
 vim.g.startify_fortune_use_unicode = 1
 vim.g.startify_enable_unsafe = 1
 vim.g.startify_bookmarks = {
-    {i = 'scp://endim@dnat.simula.no/~/'},
     {r = '/home/endi/rpay/backend'},
+    {s = '/home/endi/rpay/php-sdk'},
+    {i = 'scp://endim@dnat.simula.no/~/'},
+    {a = 'scp://emerkuri20@login.kuacc.ku.edu.tr/~/'},
 }
 
 require('lualine').setup{
@@ -99,6 +101,9 @@ vim.api.nvim_set_keymap('n', '<leader>gb', ':MerginalToggle<CR>', {})
 
 -- " " Save and make
 -- " nmap <leader>cm :w<CR>:10sp<CR>:terminal make<CR>
+
+-- Save and submit slurm job via tmux
+vim.api.nvim_set_keymap('n', '<leader>sr', ':w<CR>:silent !trun<CR>:redraw!<CR>', {})
 
 -- Terminal mode keybindings
 vim.api.nvim_set_keymap('n', '<leader>;', ':10sp<CR>:terminal<CR>', { noremap = true })
@@ -252,7 +257,8 @@ require'nvim-treesitter.configs'.setup {
         enable = true,              -- false will disable the whole extension
     },
 }
-local dap = require'dap'
+local dap, dapui = require('dap'), require('dapui')
+dapui.setup()
 dap.adapters.node2 = {
     type = 'executable',
     command = 'node',
@@ -269,7 +275,9 @@ dap.configurations.javascript = {
         console = 'integratedTerminal',
     },
 }
-require'dapui'.setup()
+dap.listeners.after.event_initialized['dapui_config'] = function() dapui.open() end
+dap.listeners.before.event_terminated['dapui_config'] = function() dapui.close() end
+dap.listeners.before.event_exited['dapui_config'] = function() dapui.close() end
 
 vim.api.nvim_exec([[ autocmd BufWritePre *.ts Neoformat ]], false)
 
