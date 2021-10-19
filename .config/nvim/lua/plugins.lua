@@ -70,7 +70,7 @@ return require('packer').startup(function()
 
     -- UndoTree
     use 'mbbill/undotree'
-        
+
     -- Tests
     use 'vim-test/vim-test'
 
@@ -85,6 +85,7 @@ return require('packer').startup(function()
     use 'airblade/vim-rooter'
     use 'tpope/vim-commentary'
     use 'jiangmiao/auto-pairs'
+    use 'tpope/vim-surround'
 
     -- Formatting
     use 'sbdchd/neoformat'
