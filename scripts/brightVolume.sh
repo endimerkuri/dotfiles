@@ -39,22 +39,4 @@ case $1 in
         msgId="991049"
         dunstify -a "changeVolume" -i none -t 1000 -u low -r "$msgId" "$msg"
         ;;
-    5)
-        out=$(amixer sget Master)
-        mute=$(echo "$out" | awk -F"[][]" '/Left:/ {print $4}')
-        level=$(echo "$out" | awk -F"[][]" '/Left:/ {print $2}')
-        icon=$([ "$mute" = "off" ] && echo "  " || echo "  ")
-        echo "$icon$level"
-        ;;
-    6)
-        out=$(acpi)
-        charging=$(echo "$out" | awk -F ' ' '{print $3}')
-        level=$(echo "$out" | awk -F ', ' '{print $2, $3}')
-        icon=$([ "$charging" = "Charging," ] && echo " " || echo " ")
-        echo "$icon$level"
-        ;;
-    7)
-        out=$(xbacklight -get)
-        echo "  ${out%.*}%"
-        ;;
 esac

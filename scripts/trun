@@ -1,0 +1,9 @@
+#!/usr/bin/bash
+
+target="0"
+if ! tmux has-session -t $target 2> /dev/null; then
+    tmux neww
+fi
+
+tmux send-keys -t $target "sbatch /home/endim/scripts/run.sh" Enter
+# tmux send-keys -t $target "sbatch /home/endim/pardnn/test/run.sh" Enter
