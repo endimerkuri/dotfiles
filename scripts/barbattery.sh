@@ -14,4 +14,4 @@ out=$(acpi)
 charging=$(echo "$out" | awk -F ' ' '{print $3}')
 level=$(echo "$out" | awk -F ', ' '{print $2, $3}')
 icon=$([ "$charging" = "Charging," ] && echo " " || echo " ")
-echo "$blacktext^c$cyan^ $icon$level ^d^"
+echo "$blacktext^b$cyan^ $icon$level ^d^"
