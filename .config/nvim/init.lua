@@ -31,6 +31,7 @@ vim.o.scrolloff = 8
 vim.o.signcolumn = 'yes'
 vim.o.termguicolors = true
 vim.o.cursorline = true
+vim.o.hidden = true
 
 local plugins = require('plugins')
 
@@ -99,9 +100,6 @@ vim.api.nvim_set_keymap('n', '<leader>gs', ':G<CR>', {})
 vim.api.nvim_set_keymap('n', '<leader>gu', ':G pull<CR>', {})
 vim.api.nvim_set_keymap('n', '<leader>gb', ':MerginalToggle<CR>', {})
 
--- " " Save and make
--- " nmap <leader>cm :w<CR>:10sp<CR>:terminal make<CR>
-
 -- Save and submit slurm job via tmux
 vim.api.nvim_set_keymap('n', '<leader>sr', ':w<CR>:silent !trun<CR>:redraw!<CR>', {})
 
@@ -118,6 +116,7 @@ false)
 
 -- Fuzzy finder
 vim.g.rooter_patterns = { '.git' }
+vim.g.fzf_layout = { window = { width = 0.9, height = 0.9 } }
 vim.api.nvim_set_keymap('n', '<leader>f', ':Files<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>bb', ':Buffers<CR>', { noremap = true })
 
@@ -209,6 +208,10 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
+require'lspconfig'.phpactor.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
 require'lspconfig'.pylsp.setup{
     on_attach = on_attach,
     configurationSources = { "pycodestyle", "pyflakes" },
