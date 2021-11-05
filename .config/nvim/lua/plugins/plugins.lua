@@ -1,9 +1,4 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
-
--- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
-
-return require('packer').startup(function()
+require('packer').startup(function()
 
     -- UI plugins
     use {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
@@ -13,10 +8,15 @@ return require('packer').startup(function()
         'hoob3rt/lualine.nvim',
         requires = {'kyazdani42/nvim-web-devicons', opt = true}
     }
+
     use {
-        "jose-elias-alvarez/buftabline.nvim",
-        requires = {"kyazdani42/nvim-web-devicons"}, -- optional!
-        config = function() require("buftabline").setup {} end
+        'romgrk/barbar.nvim',
+        requires = {'kyazdani42/nvim-web-devicons'}
+    }
+
+    use {
+        'nvim-telescope/telescope.nvim',
+        requires = { {'nvim-lua/plenary.nvim'} }
     }
 
     use 'lambdalisue/nerdfont.vim'
@@ -34,6 +34,7 @@ return require('packer').startup(function()
     -- LSP client
     use 'neovim/nvim-lspconfig'
     use 'onsails/lspkind-nvim'
+    use 'simrat39/symbols-outline.nvim'
 
     -- Completion
     use 'hrsh7th/nvim-cmp'
