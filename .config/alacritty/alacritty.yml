@@ -1,5 +1,5 @@
 env:
-    TERM: st-256color
+    TERM: xterm-256color
 
 # Colors (Gruvbox dark)
 colors:
