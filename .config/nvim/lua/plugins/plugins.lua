@@ -26,10 +26,6 @@ require('packer').startup(function()
     use 'tpope/vim-vinegar'
 
     -- Fuzzy finder
-    use {
-        'junegunn/fzf',
-        run = vim.fn['fzf#install()']
-    }
     use 'junegunn/fzf.vim'
 
     -- LSP client
@@ -93,5 +89,6 @@ require('packer').startup(function()
     use 'sbdchd/neoformat'
 
     use 'dstein64/vim-startuptime'
+    use 'junegunn/goyo.vim'
 end)
 

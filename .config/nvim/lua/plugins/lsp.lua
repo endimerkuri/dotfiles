@@ -8,12 +8,18 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_set_keymap('n', 'grr', ':lua vim.lsp.buf.references()<CR>', opts)
   vim.api.nvim_set_keymap('n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
   vim.api.nvim_set_keymap('n', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>', opts)
+  vim.api.nvim_set_keymap('v', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>', opts)
+  vim.api.nvim_set_keymap('n', '<leader>r', ':lua vim.lsp.buf.rename()<CR>', opts)
 end
 
 -- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
+require'lspconfig'.jdtls.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
 require'lspconfig'.phpactor.setup{
     on_attach = on_attach,
     capabilities = capabilities,

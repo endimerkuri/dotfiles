@@ -27,9 +27,14 @@ vim.api.nvim_set_keymap('v', '<leader>p', '\"+p', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>wr', ':w<CR>:silent !trun<CR>:redraw!<CR>', {})
 
 -- Terminal mode keybindings
-vim.api.nvim_set_keymap('n', '<leader>;', ':10sp<CR>:terminal<CR>', { noremap = true })
-vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true })
+-- vim.api.nvim_set_keymap('n', '<leader>;', ':10sp<CR>:terminal<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>;', ':vsp<CR>:terminal<CR>', { noremap = true })
+-- vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true })
 
 -- Keep visual mode after changing indentation
 vim.api.nvim_set_keymap('v', '<', '<gv', { noremap = true })
 vim.api.nvim_set_keymap('v', '>', '>gv', { noremap = true })
+
+-- Move line in visual mode
+vim.api.nvim_set_keymap('v', 'J', ':m \'>+1<CR>gv=gv', { noremap = true })
+vim.api.nvim_set_keymap('v', 'K', ':m \'<-2<CR>gv=gv', { noremap = true })

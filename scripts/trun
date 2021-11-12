@@ -7,3 +7,5 @@ fi
 
 tmux send-keys -t $target "sbatch /home/endim/scripts/run.sh" Enter
 # tmux send-keys -t $target "sbatch /home/endim/pardnn/test/run.sh" Enter
+# tmux send-keys -t $target "make" Enter
+# tmux send-keys -t $target "python3 parse.py" Enter
