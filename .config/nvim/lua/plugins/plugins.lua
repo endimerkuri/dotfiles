@@ -15,18 +15,17 @@ require('packer').startup(function()
         requires = {'kyazdani42/nvim-web-devicons'}
     }
 
-    use {
-        'nvim-telescope/telescope.nvim',
-        requires = { {'nvim-lua/plenary.nvim'} }
-    }
-
     use 'lambdalisue/nerdfont.vim'
 
     -- Vim vinegar
     use 'tpope/vim-vinegar'
 
     -- Fuzzy finder
-    use 'junegunn/fzf.vim'
+    use {
+        'nvim-telescope/telescope.nvim',
+        requires = { {'nvim-lua/plenary.nvim'} }
+    }
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
     -- LSP client
     use 'neovim/nvim-lspconfig'

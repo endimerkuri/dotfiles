@@ -1,6 +1,15 @@
 -- Fuzzy finder
 vim.g.rooter_patterns = { '.git' }
-vim.g.fzf_layout = { window = { width = 0.9, height = 0.9 } }
-vim.api.nvim_set_keymap('n', '<leader>f', ':Files<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>bb', ':Buffers<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<c-p>', ':Rg<CR>', { noremap = true })
+
+require('telescope').setup{
+    defaults = {
+        preview = {
+            treesitter = false
+        }
+    }
+}
+require('telescope').load_extension('fzf')
+
+vim.api.nvim_set_keymap('n', '<leader>f', ':Telescope find_files<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>bb', ':Telescope buffers<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<c-p>', ':Telescope live_grep<CR>', { noremap = true })
