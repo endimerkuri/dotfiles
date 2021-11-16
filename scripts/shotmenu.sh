@@ -1,6 +1,6 @@
 #!/bin/sh
 
-res=$(echo "full\nregion\nwindow\ncancel" | dmenu -p "Screenshot" -z 200 -y 18 -g 1 -x 200)
+res=$(echo "full\nregion\nwindow\ncancel" | dmenu -p "Screenshot" -b -z 200 -y 24 -g 1 -x 0)
 filename=~/Pictures/screenshot-$(date +%F-%M-%S).png
 command="maim -d 1 -u $filename"
 

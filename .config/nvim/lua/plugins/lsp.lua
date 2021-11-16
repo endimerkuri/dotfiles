@@ -19,6 +19,7 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 require'lspconfig'.jdtls.setup{
     on_attach = on_attach,
     capabilities = capabilities,
+    root_dir = function () return vim.loop.cwd() end
 }
 require'lspconfig'.phpactor.setup{
     on_attach = on_attach,
