@@ -11,7 +11,7 @@ vim.api.nvim_set_keymap('n', '<leader>q', ':q<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader><leader>', '<c-^>', { noremap = true })
 
 -- Create new buffer
-vim.api.nvim_set_keymap('n', '<leader>t', ':e<Space>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>ot', ':e<Space>', { noremap = true })
 
 -- Create new split
 vim.api.nvim_set_keymap('n', '<leader>s', ':sp<CR>', { noremap = true })
