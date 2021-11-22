@@ -134,4 +134,3 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^ ' autosuggest-accept
 
 export TERM=xterm-256color
-export JDTLS_HOME=$HOME/software/jdt-language-server-latest

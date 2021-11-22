@@ -8,7 +8,8 @@ case $res in
         slock
         ;;
     logout)
-        dwmc quit
+        # dwmc quit
+        i3-msg exit
         # openbox --exit
         # qtile cmd-obj -o cmd -f shutdown
         ;;
