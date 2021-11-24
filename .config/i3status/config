@@ -11,7 +11,7 @@ general {
         interval = 5
 }
 
-order += "volume master"
+# order += "volume master"
 order += "battery 0"
 order += "tztime local"
 
@@ -38,11 +38,11 @@ order += "tztime local"
 #         format = "%status %percentage %remaining"
 # }
 
-volume master {
-        format = "♪: %volume"
-        format_muted = "♪: muted (%volume)"
-        device = "pulse"
-}
+# volume master {
+#         format = "♪: %volume"
+#         format_muted = "♪: muted (%volume)"
+#         device = "pulse"
+# }
 
 battery 0 {
         format = "%status %percentage %remaining %emptytime"

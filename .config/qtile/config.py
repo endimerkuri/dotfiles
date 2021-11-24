@@ -44,7 +44,8 @@ ubuntufont = "UbuntuMonoNerdFont"
 mod = "mod4"
 # terminal = guess_terminal()
 terminal = "st"
-rofi = "rofi -show drun"
+# rofi = "rofi -show drun"
+dmenu = "dmenu_run_history -c"
 logout = "logoutDmenu"
 theme_path = "/usr/share/icons/Papirus-Dark/"
 
@@ -99,7 +100,7 @@ keys = [
     Key([mod, "shift"], "q", lazy.spawn(logout), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(),
         desc="Spawn a command using a prompt widget"),
-    Key([mod], "p", lazy.spawn(rofi), desc="Rofi"),
+    Key([mod], "p", lazy.spawn(dmenu), desc="dmenu"),
 
     Key([mod], "bracketleft", lazy.screen.prev_group(), desc="Move to previous group"),
     Key([mod], "bracketright", lazy.screen.next_group(), desc="Move to previous group"),
@@ -108,10 +109,10 @@ keys = [
     Key([], "XF86AudioRaiseVolume", lazy.spawn("brightVolume 2")),
     Key([], "XF86MonBrightnessUp", lazy.spawn("brightVolume 0")),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightVolume 1")),
-    Key([mod], "b", lazy.hide_show_bar("top")),
+    Key([mod], "b", lazy.hide_show_bar("bottom")),
 ]
 
-groups = [Group(i) for i in "1234"]
+groups = [Group(i) for i in "123456789"]
 
 for j, i in enumerate(groups):
     keys.extend([
@@ -153,7 +154,7 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        top=bar.Bar(
+        bottom=bar.Bar(
             [
                 widget.CurrentLayout(font=ubuntufont),
                 widget.GroupBox(font=ubuntufont),
