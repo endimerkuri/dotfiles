@@ -80,7 +80,13 @@ require('packer').startup(function()
 
     -- Misc
     use 'airblade/vim-rooter'
-    use 'tpope/vim-commentary'
+    -- use 'tpope/vim-commentary'
+    use {
+    'numToStr/Comment.nvim',
+    config = function()
+        require('Comment').setup()
+    end
+}
     use 'jiangmiao/auto-pairs'
     use 'tpope/vim-surround'
 
