@@ -203,6 +203,7 @@ bar {
 }
 
 for_window [class=Lxappearance|Gnome-disks|Thunar|File-roller|zoom|Klavaro|Pavucontrol|Volctl|Gufw.py|Blueman-manager|obs|Spotify] floating enable
+assign [class=Ferdi] $ws9
 
 exec setxkbmap -option ctrl:nocaps
 exec lxsession
