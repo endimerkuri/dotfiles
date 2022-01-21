@@ -82,11 +82,11 @@ require('packer').startup(function()
     use 'airblade/vim-rooter'
     -- use 'tpope/vim-commentary'
     use {
-    'numToStr/Comment.nvim',
-    config = function()
-        require('Comment').setup()
-    end
-}
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
+    }
     use 'jiangmiao/auto-pairs'
     use 'tpope/vim-surround'
 
@@ -106,5 +106,6 @@ require('packer').startup(function()
             }
         end
     }
+    use 'chriskempson/base16-vim'
 end)
 
