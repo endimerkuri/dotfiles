@@ -15,4 +15,4 @@ case $BUTTON in
         ;;
 esac
 
-echo "   ${out%.*}% "
+echo "  ${out%.*}% "

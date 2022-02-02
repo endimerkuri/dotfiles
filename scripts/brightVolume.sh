@@ -16,30 +16,36 @@ case $1 in
         dunstify -h int:value:$level -a "changeBrightness" -i $icon -t 1000 -u low -r "$msgId" "Brightness: $level"
         ;;
     2)
-        amixer sset Master 5%+; pkill -RTMIN+1 dwmblocks
-        out=$(amixer sget Master)
-        mute=$(echo "$out" | awk -F"[][]" '/Left:/ {print $4}')
-        level=$(echo "$out" | awk -F"[][]" '/Left:/ {print $2}')
-        icon=$([ "$mute" = "off" ] && echo "audio-volume-muted" || echo "audio-volume-high")
-        msgId="991049"
-        dunstify -h int:value:"$level" -a "changeVolume" -i $icon -t 1000 -u low -r "$msgId" "Volume: $level"
+        # amixer sset Master 5%+; pkill -RTMIN+1 dwmblocks
+        # out=$(amixer sget Master)
+        # mute=$(echo "$out" | awk -F"[][]" '/Left:/ {print $4}')
+        # level=$(echo "$out" | awk -F"[][]" '/Left:/ {print $2}')
+        # icon=$([ "$mute" = "off" ] && echo "audio-volume-muted" || echo "audio-volume-high")
+        # msgId="991049"
+        # dunstify -h int:value:"$level" -a "changeVolume" -i $icon -t 1000 -u low -r "$msgId" "Volume: $level"
+        pactl set-sink-volume @DEFAULT_SINK@ +5%
         ;;
     3)
-        amixer sset Master 5%-; pkill -RTMIN+1 dwmblocks
-        out=$(amixer sget Master)
-        mute=$(echo "$out" | awk -F"[][]" '/Left:/ {print $4}')
-        level=$(echo "$out" | awk -F"[][]" '/Left:/ {print $2}')
-        icon=$([ "$mute" = "off" ] && echo "audio-volume-muted" || echo "audio-volume-high")
-        msgId="991049"
-        dunstify -h int:value:"$level" -a "changeVolume" -i $icon -t 1000 -u low -r "$msgId" "Volume: $level"
+        # amixer sset Master 5%-; pkill -RTMIN+1 dwmblocks
+        # out=$(amixer sget Master)
+        # mute=$(echo "$out" | awk -F"[][]" '/Left:/ {print $4}')
+        # level=$(echo "$out" | awk -F"[][]" '/Left:/ {print $2}')
+        # icon=$([ "$mute" = "off" ] && echo "audio-volume-muted" || echo "audio-volume-high")
+        # msgId="991049"
+        # dunstify -h int:value:"$level" -a "changeVolume" -i $icon -t 1000 -u low -r "$msgId" "Volume: $level"
+        pactl set-sink-volume @DEFAULT_SINK@ -5%
         ;;
     4)
-        amixer sset Master toggle; pkill -RTMIN+1 dwmblocks
-        out=$(amixer sget Master)
-        mute=$(echo "$out" | awk -F"[][]" '/Left:/ {print $4}')
-        msg=$([ "$mute" = "off" ] && echo "Audio Muted" || echo "Audio Unmuted")
-        icon=$([ "$mute" = "off" ] && echo "audio-volume-muted" || echo "audio-volume-high")
-        msgId="991049"
-        dunstify -a "changeVolume" -i $icon -t 1000 -u low -r "$msgId" "$msg"
+        # amixer sset Master toggle; pkill -RTMIN+1 dwmblocks
+        # out=$(amixer sget Master)
+        # mute=$(echo "$out" | awk -F"[][]" '/Left:/ {print $4}')
+        # msg=$([ "$mute" = "off" ] && echo "Audio Muted" || echo "Audio Unmuted")
+        # icon=$([ "$mute" = "off" ] && echo "audio-volume-muted" || echo "audio-volume-high")
+        # msgId="991049"
+        # dunstify -a "changeVolume" -i $icon -t 1000 -u low -r "$msgId" "$msg"
+        pactl set-sink-mute @DEFAULT_SINK@ toggle
+        ;;
+    5)
+        pactl set-source-mute @DEFAULT_SOURCE@ toggle
         ;;
 esac
