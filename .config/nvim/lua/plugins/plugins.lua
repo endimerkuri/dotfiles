@@ -80,7 +80,6 @@ require('packer').startup(function()
 
     -- Misc
     use 'airblade/vim-rooter'
-    -- use 'tpope/vim-commentary'
     use {
         'numToStr/Comment.nvim',
         config = function()
@@ -95,14 +94,7 @@ require('packer').startup(function()
 
     use 'dstein64/vim-startuptime'
     use 'junegunn/goyo.vim'
-
-    use {
-        "folke/zen-mode.nvim",
-        config = function()
-            require("zen-mode").setup {
-            }
-        end
-    }
-    use 'chriskempson/base16-vim'
+    
+    use 'navarasu/onedark.nvim'
 end)
 
