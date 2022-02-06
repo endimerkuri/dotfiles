@@ -25,7 +25,7 @@ require('packer').startup(function()
         'nvim-telescope/telescope.nvim',
         requires = { {'nvim-lua/plenary.nvim'} }
     }
-    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
     -- LSP client
     use 'neovim/nvim-lspconfig'
@@ -94,7 +94,5 @@ require('packer').startup(function()
 
     use 'dstein64/vim-startuptime'
     use 'junegunn/goyo.vim'
-    
-    use 'navarasu/onedark.nvim'
 end)
 
