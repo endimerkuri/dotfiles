@@ -7,3 +7,5 @@ vim.api.nvim_set_keymap('n', '<leader>os', ':SymbolsOutline<CR>', { noremap = tr
 vim.g.UltiSnipsExpandTrigger = '<c-l>'
 vim.g.UltiSnipsForwardTrigger = '<c-j>'
 vim.g.UltiSnipsBackwardTrigger = '<c-k>'
+
+vim.api.nvim_set_keymap('n', '<leader>br', ':lua require("rest-nvim").run()<CR>', { noremap = true })

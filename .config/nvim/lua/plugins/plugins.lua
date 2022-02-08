@@ -15,8 +15,6 @@ require('packer').startup(function()
         requires = {'kyazdani42/nvim-web-devicons'}
     }
 
-    use 'lambdalisue/nerdfont.vim'
-
     -- Vim vinegar
     use 'tpope/vim-vinegar'
 
@@ -37,11 +35,11 @@ require('packer').startup(function()
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-path'
-    use 'quangnguyen30192/cmp-nvim-ultisnips'
 
     -- Snippets
     use 'SirVer/ultisnips'
     use 'honza/vim-snippets'
+    use 'quangnguyen30192/cmp-nvim-ultisnips'
 
     -- Git plugins
     use 'tpope/vim-fugitive'
@@ -94,5 +92,33 @@ require('packer').startup(function()
 
     use 'dstein64/vim-startuptime'
     use 'junegunn/goyo.vim'
+    use {
+        "NTBBloodbath/rest.nvim",
+        requires = { "nvim-lua/plenary.nvim" },
+        config = function()
+            require("rest-nvim").setup({
+                -- Open request results in a horizontal split
+                result_split_horizontal = false,
+                -- Skip SSL verification, useful for unknown certificates
+                skip_ssl_verification = false,
+                -- Highlight request on run
+                highlight = {
+                    enabled = true,
+                    timeout = 150,
+                },
+                result = {
+                    -- toggle showing URL, HTTP info, headers at top the of result window
+                    show_url = true,
+                    show_http_info = true,
+                    show_headers = true,
+                },
+                -- Jump to request line on run
+                jump_to_request = false,
+                env_file = '.env',
+                custom_dynamic_variables = {},
+                yank_dry_run = true,
+            })
+        end
+    }
 end)
 
