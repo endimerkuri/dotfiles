@@ -84,7 +84,7 @@ require('packer').startup(function()
             require('Comment').setup()
         end
     }
-    use 'jiangmiao/auto-pairs'
+    use 'windwp/nvim-autopairs'
     use 'tpope/vim-surround'
 
     -- Formatting

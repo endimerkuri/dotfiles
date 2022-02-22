@@ -8,4 +8,5 @@ vim.g.UltiSnipsExpandTrigger = '<c-l>'
 vim.g.UltiSnipsForwardTrigger = '<c-j>'
 vim.g.UltiSnipsBackwardTrigger = '<c-k>'
 
+-- Rest requests
 vim.api.nvim_set_keymap('n', '<leader>br', ':lua require("rest-nvim").run()<CR>', { noremap = true })
