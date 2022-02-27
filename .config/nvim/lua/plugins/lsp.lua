@@ -10,6 +10,7 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_set_keymap('n', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>', opts)
   vim.api.nvim_set_keymap('v', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>', opts)
   vim.api.nvim_set_keymap('n', '<leader>r', ':lua vim.lsp.buf.rename()<CR>', opts)
+  vim.api.nvim_set_keymap('n', '<leader>gt', ':Trouble<CR>', opts)
 end
 
 -- nvim-cmp supports additional completion capabilities
@@ -77,3 +78,8 @@ require'nvim-treesitter.configs'.setup {
         enable = true,              -- false will disable the whole extension
     },
 }
+require("null-ls").setup({
+    sources = {
+        require("null-ls").builtins.diagnostics.eslint,
+    },
+})

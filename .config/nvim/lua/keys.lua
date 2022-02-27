@@ -27,7 +27,6 @@ vim.api.nvim_set_keymap('v', '<leader>p', '\"+p', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>wr', ':w<CR>:silent !trun<CR>:redraw!<CR>', {})
 
 -- Terminal mode keybindings
--- vim.api.nvim_set_keymap('n', '<leader>;', ':10sp<CR>:terminal<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>;', ':vsp<CR>:terminal<CR>', { noremap = true })
 -- vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true })
 

@@ -29,6 +29,14 @@ require('packer').startup(function()
     use 'neovim/nvim-lspconfig'
     use 'onsails/lspkind-nvim'
     use 'simrat39/symbols-outline.nvim'
+    use 'jose-elias-alvarez/null-ls.nvim'
+    use {
+        "folke/trouble.nvim",
+        requires = "kyazdani42/nvim-web-devicons",
+        config = function()
+            require("trouble").setup {}
+        end
+    }
 
     -- Completion
     use 'hrsh7th/nvim-cmp'
