@@ -2,14 +2,12 @@ require('packer').startup(function()
 
     -- UI plugins
     use {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
-
     use 'mhinz/vim-startify'
     use 'Yggdroot/indentLine'
     use {
         'hoob3rt/lualine.nvim',
         requires = {'kyazdani42/nvim-web-devicons', opt = true}
     }
-
     use {
         'romgrk/barbar.nvim',
         requires = {'kyazdani42/nvim-web-devicons'}
@@ -30,6 +28,7 @@ require('packer').startup(function()
     use 'onsails/lspkind-nvim'
     use 'simrat39/symbols-outline.nvim'
     use 'jose-elias-alvarez/null-ls.nvim'
+    use { 'glepnir/lspsaga.nvim' }
     use {
         "folke/trouble.nvim",
         requires = "kyazdani42/nvim-web-devicons",
@@ -128,5 +127,6 @@ require('packer').startup(function()
             })
         end
     }
+    use 'monaqa/dial.nvim'
 end)
 
