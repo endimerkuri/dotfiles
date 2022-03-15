@@ -40,4 +40,5 @@ require('plugins.debug')
 require('plugins.completion')
 require('plugins.misc')
 
+vim.cmd[[set wildignore+=*node_modules*]]
 vim.api.nvim_exec([[ autocmd BufWritePre *.ts Neoformat ]], false)

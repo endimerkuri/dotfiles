@@ -36,6 +36,7 @@ require('packer').startup(function()
             require("trouble").setup {}
         end
     }
+    use { 'ludovicchabant/vim-gutentags' }
 
     -- Completion
     use 'hrsh7th/nvim-cmp'
