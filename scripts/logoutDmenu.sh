@@ -8,6 +8,7 @@ case $res in
         ;;
     logout)
         dwmc quit
+        awesome-client 'return awesome.quit()'
         # i3-msg exit
         # openbox --exit
         # qtile cmd-obj -o cmd -f shutdown
