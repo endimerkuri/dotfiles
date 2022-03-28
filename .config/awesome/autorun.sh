@@ -7,7 +7,7 @@ function run {
   fi
 }
 
-run setxkbmap -option ctrl:nocaps
+run setxkbmap -option ctrl:nocaps -option compose:menu -option lv3:ralt_alt -variant colemak
 run lxsession
 run picom
 run nitrogen --restore
