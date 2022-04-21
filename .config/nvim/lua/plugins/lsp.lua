@@ -73,13 +73,16 @@ require'lspconfig'.tsserver.setup{
     capabilities = capabilities,
 }
 require'nvim-treesitter.configs'.setup {
-    ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     highlight = {
         enable = true,              -- false will disable the whole extension
     },
 }
+local null_ls = require("null-ls")
 require("null-ls").setup({
     sources = {
-        require("null-ls").builtins.diagnostics.eslint,
+        null_ls.builtins.diagnostics.eslint,
+        null_ls.builtins.code_actions.eslint,
+        null_ls.builtins.formatting.prettier
     },
 })
