@@ -1,7 +1,7 @@
 -- Vim Fugitive keybindings
 vim.api.nvim_set_keymap('n', '<leader>gs', ':G<CR>', {})
 vim.api.nvim_set_keymap('n', '<leader>gu', ':G pull<CR>', {})
-vim.api.nvim_set_keymap('n', '<leader>gb', ':MerginalToggle<CR>', {})
+vim.api.nvim_set_keymap('n', '<leader>gb', ':G blame<CR>', {})
 
 require('gitsigns').setup{
     keymaps = {

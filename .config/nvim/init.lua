@@ -15,7 +15,7 @@ vim.o.signcolumn = 'yes:2'
 vim.o.termguicolors = true
 vim.o.cursorline = true
 vim.o.hidden = true
-vim.o.background = 'dark'
+vim.opt.background = 'dark'
 
 vim.g.mapleader = ' '
 

@@ -3,5 +3,6 @@ require('lualine').setup{
         theme = 'gruvbox',
         section_separators = '',
         component_separators = '',
+        globalstatus = true,
     },
 }

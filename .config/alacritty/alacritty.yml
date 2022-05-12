@@ -38,19 +38,19 @@ font:
 
   # The normal (roman) font face to use.
   normal:
-    family: 'jetbrainsmono'
+    family: 'dejavusansmono'
     # Style can be specified to pick a specific face.
     style: Regular
 
   # The bold font face
   bold:
-    family: 'jetbrainsmono'
+    family: 'dejavusansmono'
     # Style can be specified to pick a specific face.
     style: Bold
 
   # The italic font face
   italic:
-    family: 'jetbrainsmono'
+    family: 'dejavusansmono'
     # Style can be specified to pick a specific face.
     style: Italic
 
