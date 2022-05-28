@@ -49,7 +49,8 @@ floating_modifier $mod
 
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec st
+# bindsym $mod+Return exec st
+bindsym $mod+Return exec gnome-terminal
 
 # screenshot
 bindsym $mod+Shift+s exec shotmenu

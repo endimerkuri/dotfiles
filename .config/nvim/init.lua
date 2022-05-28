@@ -18,6 +18,7 @@ vim.o.hidden = true
 vim.opt.background = 'dark'
 
 vim.g.mapleader = ' '
+vim.cmd[[set winbar=%=%m\ %f]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noinsert,noselect'

@@ -13,6 +13,10 @@ require('packer').startup(function()
         requires = {'kyazdani42/nvim-web-devicons'}
     }
     use 'ggandor/lightspeed.nvim'
+    use {
+        "SmiteshP/nvim-gps",
+        requires = "nvim-treesitter/nvim-treesitter"
+    }
 
     -- Vim vinegar
     use 'tpope/vim-vinegar'
