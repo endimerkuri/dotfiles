@@ -1,18 +1,17 @@
 require('packer').startup(function()
 
     -- UI plugins
-    use {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
+    use { "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } }
     use 'mhinz/vim-startify'
     use 'Yggdroot/indentLine'
     use {
         'hoob3rt/lualine.nvim',
-        requires = {'kyazdani42/nvim-web-devicons', opt = true}
+        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
     use {
         'romgrk/barbar.nvim',
-        requires = {'kyazdani42/nvim-web-devicons'}
+        requires = { 'kyazdani42/nvim-web-devicons' }
     }
-    use 'ggandor/lightspeed.nvim'
     use {
         "SmiteshP/nvim-gps",
         requires = "nvim-treesitter/nvim-treesitter"
@@ -20,6 +19,9 @@ require('packer').startup(function()
 
     -- Vim vinegar
     use 'tpope/vim-vinegar'
+
+    -- Alternate files
+    use 'tpope/vim-projectionist'
 
     -- Fuzzy finder
     use {
@@ -84,7 +86,7 @@ require('packer').startup(function()
 
     -- Debugger
     use 'mfussenegger/nvim-dap'
-    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+    use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
 
     -- .env files support
     use 'tpope/vim-dotenv'
@@ -105,6 +107,8 @@ require('packer').startup(function()
 
     use 'dstein64/vim-startuptime'
     use 'junegunn/goyo.vim'
+
+    -- REST client
     use {
         "NTBBloodbath/rest.nvim",
         requires = { "nvim-lua/plenary.nvim" },

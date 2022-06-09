@@ -9,7 +9,7 @@ vim.g.UltiSnipsForwardTrigger = '<c-j>'
 vim.g.UltiSnipsBackwardTrigger = '<c-k>'
 
 -- Rest requests
-vim.api.nvim_set_keymap('n', '<leader>br', ':lua require("rest-nvim").run()<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>cr', ':lua require("rest-nvim").run()<CR>', { noremap = true })
 
 -- Dial Nvim
 local dial = require'dial.map'
@@ -35,3 +35,6 @@ vim.api.nvim_set_keymap("v", "<C-a>", dial.inc_visual(), { noremap = true })
 vim.api.nvim_set_keymap("v", "<C-x>", dial.dec_visual(), { noremap = true })
 vim.api.nvim_set_keymap("v", "g<C-a>", dial.inc_gvisual(), { noremap = true })
 vim.api.nvim_set_keymap("v", "g<C-x>", dial.dec_gvisual(), { noremap = true })
+
+-- Projectionist
+vim.api.nvim_set_keymap("n", "]r", ":A<CR>", { noremap = true })

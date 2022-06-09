@@ -4,7 +4,7 @@ vim.api.nvim_set_keymap('n', '<leader>h', ':wincmd h<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>j', ':wincmd j<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>l', ':wincmd l<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>k', ':wincmd k<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>bd', ':bd<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>wd', ':bd<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>q', ':q<CR>', { noremap = true })
 
 -- Switch to previous buffer
