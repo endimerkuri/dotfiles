@@ -18,4 +18,3 @@ require('gitsigns').setup{
         ['n ghb'] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
     }
 }
-

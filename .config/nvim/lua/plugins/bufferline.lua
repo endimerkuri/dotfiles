@@ -22,7 +22,7 @@ map('n', '<leader>8', ':BufferGoto 8<CR>', opts)
 map('n', '<leader>9', ':BufferGoto 9<CR>', opts)
 map('n', '<leader>0', ':BufferLast<CR>', opts)
 -- Close buffer
--- map('n', '<leader>wd', ':BufferClose<CR>', opts)
+map('n', '<leader>wd', ':BufferClose<CR>', opts)
 -- Wipeout buffer
 --                 :BufferWipeout<CR>
 -- Close commands

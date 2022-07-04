@@ -3,7 +3,11 @@ require('packer').startup(function()
     -- UI plugins
     use { "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } }
     use 'mhinz/vim-startify'
-    use 'Yggdroot/indentLine'
+
+    -- Show indent lines
+    use 'lukas-reineke/indent-blankline.nvim'
+
+    -- Statusline
     use {
         'hoob3rt/lualine.nvim',
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
@@ -58,7 +62,6 @@ require('packer').startup(function()
 
     -- Git plugins
     use 'tpope/vim-fugitive'
-    use 'idanarye/vim-merginal'
     use 'nvim-lua/plenary.nvim'
     use 'lewis6991/gitsigns.nvim'
 
