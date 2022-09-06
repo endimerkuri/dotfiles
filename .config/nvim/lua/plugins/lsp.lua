@@ -1,16 +1,18 @@
 -- Nvim-lsp
-local on_attach = function(_, bufnr)
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-  local opts = { noremap = true, silent = true }
+local navic = require('nvim-navic')
+local on_attach = function(client, bufnr)
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    local opts = { noremap = true, silent = true }
 
-  vim.api.nvim_set_keymap('n', 'gi', ':lua vim.lsp.buf.declaration()<CR>', opts)
-  vim.api.nvim_set_keymap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts)
-  vim.api.nvim_set_keymap('n', 'grr', ':lua vim.lsp.buf.references()<CR>', opts)
-  vim.api.nvim_set_keymap('n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
-  vim.api.nvim_set_keymap('n', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>', opts)
-  vim.api.nvim_set_keymap('v', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>', opts)
-  vim.api.nvim_set_keymap('n', '<leader>r', ':Lspsaga rename<CR>', opts)
-  vim.api.nvim_set_keymap('n', '<leader>gt', ':TroubleToggle document_diagnostics<CR>', opts)
+    vim.api.nvim_set_keymap('n', 'gi', ':lua vim.lsp.buf.declaration()<CR>', opts)
+    vim.api.nvim_set_keymap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts)
+    vim.api.nvim_set_keymap('n', 'grr', ':lua vim.lsp.buf.references()<CR>', opts)
+    vim.api.nvim_set_keymap('n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
+    vim.api.nvim_set_keymap('n', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>', opts)
+    vim.api.nvim_set_keymap('v', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>', opts)
+    vim.api.nvim_set_keymap('n', '<leader>r', ':Lspsaga rename<CR>', opts)
+    vim.api.nvim_set_keymap('n', '<leader>gt', ':TroubleToggle document_diagnostics<CR>', opts)
+    navic.attach(client, bufnr)
 end
 
 -- nvim-cmp supports additional completion capabilities

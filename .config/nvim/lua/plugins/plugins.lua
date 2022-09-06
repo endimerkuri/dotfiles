@@ -17,15 +17,28 @@ require('packer').startup(function()
         requires = { 'kyazdani42/nvim-web-devicons' }
     }
     use {
-        "SmiteshP/nvim-gps",
-        requires = "nvim-treesitter/nvim-treesitter"
+        "SmiteshP/nvim-navic",
+        requires = "neovim/nvim-lspconfig"
     }
+
+    -- Context
+    use 'nvim-treesitter/nvim-treesitter-context'
 
     -- Vim vinegar
     use 'tpope/vim-vinegar'
 
     -- Alternate files
     use 'tpope/vim-projectionist'
+
+    -- Projects
+    use {
+        "ahmedkhalf/project.nvim",
+        config = function()
+            require("project_nvim").setup {
+                patterns = { ".git" }
+            }
+        end
+    }
 
     -- Fuzzy finder
     use {

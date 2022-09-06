@@ -7,5 +7,5 @@ vim.g.startify_bookmarks = {
     { r = '/home/endi/rpay/backend' },
     { s = '/home/endi/rpay/php-sdk' },
     { i = 'scp://endim@dnat.simula.no/~/' },
-    { a = 'scp://emerkuri20@login.kuacc.ku.edu.tr/~/' },
+    { a = '/home/endi/rpay/agora' },
 }

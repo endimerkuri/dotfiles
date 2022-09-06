@@ -1,5 +1,5 @@
-local gps = require('nvim-gps')
-gps.setup()
+local navic = require('nvim-navic')
+navic.setup()
 
 require('lualine').setup{
     options = {
@@ -10,7 +10,7 @@ require('lualine').setup{
     },
     sections = {
         lualine_c = {
-            { gps.get_location, cond = gps.is_available }
+            { navic.get_location, cond = navic.is_available }
         }
     },
 }
