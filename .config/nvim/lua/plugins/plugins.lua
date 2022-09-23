@@ -20,6 +20,7 @@ require('packer').startup(function()
         "SmiteshP/nvim-navic",
         requires = "neovim/nvim-lspconfig"
     }
+    use 'kyazdani42/nvim-web-devicons'
 
     -- Context
     use 'nvim-treesitter/nvim-treesitter-context'

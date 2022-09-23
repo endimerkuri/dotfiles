@@ -1,4 +1,6 @@
 -- Gruvbox color theme
-vim.g.gruvbox_contrast_dark = 'hard'
+require('gruvbox').setup({
+    contrast = 'hard'
+})
 vim.g.gruvbox_termcolors = 256
 vim.cmd([[colorscheme gruvbox]])
