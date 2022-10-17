@@ -20,3 +20,4 @@ vim.api.nvim_set_keymap('n', '<leader>b', ':Telescope buffers<CR>', { noremap = 
 vim.api.nvim_set_keymap('n', '<leader>ts', ':Telescope grep_string<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<c-p>', ':Telescope live_grep<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>op', ':Telescope projects<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>os', ':Telescope lsp_document_symbols<CR>', { noremap = true })

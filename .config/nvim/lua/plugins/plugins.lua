@@ -76,6 +76,7 @@ require('packer').startup(function()
 
     -- Git plugins
     use 'tpope/vim-fugitive'
+    use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
     use 'nvim-lua/plenary.nvim'
     use 'lewis6991/gitsigns.nvim'
 
