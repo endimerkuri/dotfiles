@@ -1,8 +1,22 @@
 -- Vim Fugitive keybindings
-vim.api.nvim_set_keymap('n', '<leader>gs', ':G<CR>', {})
-vim.api.nvim_set_keymap('n', '<leader>gg', ':Neogit kind=split<CR>', {})
+-- vim.api.nvim_set_keymap('n', '<leader>gs', ':G<CR>', {})
 vim.api.nvim_set_keymap('n', '<leader>gu', ':G pull<CR>', {})
 vim.api.nvim_set_keymap('n', '<leader>gb', ':G blame<CR>', {})
+
+-- ToggleTerm
+require'toggleterm'.setup{}
+local Terminal  = require('toggleterm.terminal').Terminal
+local lazygit = Terminal:new({
+    cmd = "lazygit",
+    hidden = true,
+    direction = "tab"
+})
+
+function _lazygit_toggle()
+  lazygit:toggle()
+end
+
+vim.api.nvim_set_keymap("n", "<leader>gs", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
 
 require('gitsigns').setup{
     keymaps = {
@@ -19,5 +33,3 @@ require('gitsigns').setup{
         ['n ghb'] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
     }
 }
-
-require('neogit').setup{}

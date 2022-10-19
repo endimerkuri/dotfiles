@@ -3,6 +3,7 @@ require('packer').startup(function()
     -- UI plugins
     use { "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } }
     use 'mhinz/vim-startify'
+    use { "akinsho/toggleterm.nvim", tag = '*' }
 
     -- Show indent lines
     use 'lukas-reineke/indent-blankline.nvim'
@@ -76,7 +77,6 @@ require('packer').startup(function()
 
     -- Git plugins
     use 'tpope/vim-fugitive'
-    use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
     use 'nvim-lua/plenary.nvim'
     use 'lewis6991/gitsigns.nvim'
 

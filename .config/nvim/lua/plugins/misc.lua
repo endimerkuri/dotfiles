@@ -38,3 +38,6 @@ vim.api.nvim_set_keymap("v", "g<C-x>", dial.dec_gvisual(), { noremap = true })
 
 -- Projectionist
 vim.api.nvim_set_keymap("n", "]r", ":A<CR>", { noremap = true })
+
+-- Open env
+vim.api.nvim_set_keymap("n", "<leader>oe", ":e ./config/.env.development<CR>", { noremap = true })
