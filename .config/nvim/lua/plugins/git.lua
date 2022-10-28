@@ -30,6 +30,6 @@ require('gitsigns').setup{
         ['v ghr'] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
         ['n ghR'] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
         ['n ghp'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
-        ['n ghb'] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
+        ['n ghb'] = '<cmd>lua require"gitsigns".blame_line{full=true}<CR>',
     }
 }

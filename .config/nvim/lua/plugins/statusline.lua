@@ -10,7 +10,10 @@ require('lualine').setup{
     },
     sections = {
         lualine_c = {
-            { navic.get_location, cond = navic.is_available }
+            {
+                navic.get_location,
+                cond = navic.is_available
+            }
         }
     },
 }
