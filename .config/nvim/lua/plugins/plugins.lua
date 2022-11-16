@@ -37,6 +37,7 @@ require('packer').startup(function()
         "ahmedkhalf/project.nvim",
         config = function()
             require("project_nvim").setup {
+                detection_methods = { "pattern" },
                 patterns = { ".git" }
             }
         end
@@ -77,7 +78,6 @@ require('packer').startup(function()
 
     -- Git plugins
     use 'tpope/vim-fugitive'
-    use 'nvim-lua/plenary.nvim'
     use 'lewis6991/gitsigns.nvim'
 
     -- Maximizer
@@ -110,6 +110,7 @@ require('packer').startup(function()
     use 'tpope/vim-dotenv'
 
     -- Misc
+    use 'nvim-lua/plenary.nvim'
     use 'airblade/vim-rooter'
     use {
         'numToStr/Comment.nvim',

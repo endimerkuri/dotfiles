@@ -6,6 +6,5 @@ vim.g.startify_enable_unsafe = 1
 vim.g.startify_bookmarks = {
     { r = '/home/endi/rpay/backend' },
     { s = '/home/endi/rpay/php-sdk' },
-    { i = 'scp://endim@dnat.simula.no/~/' },
-    { a = '/home/endi/rpay/agora' },
+    { i = 'scp://endim@dnat.simula.no/~/' }
 }
