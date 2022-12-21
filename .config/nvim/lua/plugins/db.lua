@@ -1,5 +1,5 @@
 -- DBUI
-vim.api.nvim_set_keymap('n', '<leader>od', ':DBUIToggle<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>od', ':DBUIToggle<CR>', { noremap = true })
 vim.g.db_ui_win_position = 'right'
 vim.g.db_ui_use_nerd_fonts = true
 vim.g.db_ui_auto_execute_table_helpers = true

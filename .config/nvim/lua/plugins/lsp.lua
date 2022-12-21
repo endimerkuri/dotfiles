@@ -4,14 +4,14 @@ local on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
     local opts = { noremap = true, silent = true }
 
-    vim.api.nvim_set_keymap('n', 'gi', ':lua vim.lsp.buf.declaration()<CR>', opts)
-    vim.api.nvim_set_keymap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts)
-    vim.api.nvim_set_keymap('n', 'grr', ':lua vim.lsp.buf.references()<CR>', opts)
-    vim.api.nvim_set_keymap('n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
-    vim.api.nvim_set_keymap('n', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>', opts)
-    vim.api.nvim_set_keymap('v', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>', opts)
-    vim.api.nvim_set_keymap('n', '<leader>r', ':Lspsaga rename<CR>', opts)
-    vim.api.nvim_set_keymap('n', '<leader>gt', ':TroubleToggle document_diagnostics<CR>', opts)
+    vim.keymap.set('n', 'gi', ':lua vim.lsp.buf.declaration()<CR>', opts)
+    vim.keymap.set('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts)
+    vim.keymap.set('n', 'grr', ':lua vim.lsp.buf.references()<CR>', opts)
+    vim.keymap.set('n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
+    vim.keymap.set('n', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>', opts)
+    vim.keymap.set('v', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>', opts)
+    vim.keymap.set('n', '<leader>r', ':Lspsaga rename<CR>', opts)
+    vim.keymap.set('n', '<leader>gt', ':TroubleToggle document_diagnostics<CR>', opts)
     navic.attach(client, bufnr)
 end
 

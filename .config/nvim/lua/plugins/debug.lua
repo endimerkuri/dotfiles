@@ -1,7 +1,7 @@
 -- Debugger
-vim.api.nvim_set_keymap('n', '<leader>dc', ':Dotenv config/.env.development<CR>:lua require\'dap\'.continue()<CR>', { noremap = true } )
-vim.api.nvim_set_keymap('n', '<leader>db', ':lua require\'dap\'.toggle_breakpoint()<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>dl', ':lua require\'dap\'.step_into()<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>dc', ':Dotenv config/.env.development<CR>:lua require\'dap\'.continue()<CR>', { noremap = true } )
+vim.keymap.set('n', '<leader>db', ':lua require\'dap\'.toggle_breakpoint()<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>dl', ':lua require\'dap\'.step_into()<CR>', { noremap = true })
 
 local dap, dapui = require('dap'), require('dapui')
 dapui.setup()

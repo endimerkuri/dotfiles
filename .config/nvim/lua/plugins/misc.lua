@@ -1,15 +1,15 @@
 -- UndoTree
-vim.api.nvim_set_keymap('n', '<leader>u', ':UndotreeToggle<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>', { noremap = true })
 
 -- Symbols outline
--- vim.api.nvim_set_keymap('n', '<leader>os', ':SymbolsOutline<CR>', { noremap = true })
+-- vim.keymap.set('n', '<leader>os', ':SymbolsOutline<CR>', { noremap = true })
 
 vim.g.UltiSnipsExpandTrigger = '<c-l>'
 vim.g.UltiSnipsForwardTrigger = '<c-j>'
 vim.g.UltiSnipsBackwardTrigger = '<c-k>'
 
 -- Rest requests
-vim.api.nvim_set_keymap('n', '<leader>cr', ':lua require("rest-nvim").run()<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>cr', ':lua require("rest-nvim").run()<CR>', { noremap = true })
 
 -- Dial Nvim
 local dial = require'dial.map'
@@ -29,15 +29,15 @@ require'dial.config'.augends:register_group{
     }
 }
 
-vim.api.nvim_set_keymap("n", "<C-a>", dial.inc_normal(), { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-x>", dial.dec_normal(), { noremap = true })
-vim.api.nvim_set_keymap("v", "<C-a>", dial.inc_visual(), { noremap = true })
-vim.api.nvim_set_keymap("v", "<C-x>", dial.dec_visual(), { noremap = true })
-vim.api.nvim_set_keymap("v", "g<C-a>", dial.inc_gvisual(), { noremap = true })
-vim.api.nvim_set_keymap("v", "g<C-x>", dial.dec_gvisual(), { noremap = true })
+vim.keymap.set("n", "<C-a>", dial.inc_normal(), { noremap = true })
+vim.keymap.set("n", "<C-x>", dial.dec_normal(), { noremap = true })
+vim.keymap.set("v", "<C-a>", dial.inc_visual(), { noremap = true })
+vim.keymap.set("v", "<C-x>", dial.dec_visual(), { noremap = true })
+vim.keymap.set("v", "g<C-a>", dial.inc_gvisual(), { noremap = true })
+vim.keymap.set("v", "g<C-x>", dial.dec_gvisual(), { noremap = true })
 
 -- Projectionist
-vim.api.nvim_set_keymap("n", "]r", ":A<CR>", { noremap = true })
+vim.keymap.set("n", "]r", ":A<CR>", { noremap = true })
 
 -- Open env
-vim.api.nvim_set_keymap("n", "<leader>oe", ":e ./config/.env.development<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>oe", ":e ./config/.env.development<CR>", { noremap = true })

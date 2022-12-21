@@ -2,6 +2,7 @@ require('packer').startup(function()
 
     -- UI plugins
     use { "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } }
+    use 'navarasu/onedark.nvim'
     use 'mhinz/vim-startify'
     use { "akinsho/toggleterm.nvim", tag = '*' }
 

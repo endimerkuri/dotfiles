@@ -1,7 +1,7 @@
 -- Vim Fugitive keybindings
--- vim.api.nvim_set_keymap('n', '<leader>gs', ':G<CR>', {})
-vim.api.nvim_set_keymap('n', '<leader>gu', ':G pull<CR>', {})
-vim.api.nvim_set_keymap('n', '<leader>gb', ':G blame<CR>', {})
+-- vim.keymap.set('n', '<leader>gs', ':G<CR>', {})
+vim.keymap.set('n', '<leader>gu', ':G pull<CR>', {})
+vim.keymap.set('n', '<leader>gb', ':G blame<CR>', {})
 
 -- ToggleTerm
 require'toggleterm'.setup{}
@@ -16,7 +16,7 @@ function _lazygit_toggle()
   lazygit:toggle()
 end
 
-vim.api.nvim_set_keymap("n", "<leader>gs", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>gs", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
 
 require('gitsigns').setup{
     keymaps = {
