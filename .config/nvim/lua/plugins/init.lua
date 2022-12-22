@@ -26,6 +26,7 @@ augroup END
 false)
 
 require('plugins.plugins')
+require('plugins.treesitter')
 require('plugins.bufferline')
 require('plugins.color')
 require('plugins.startify')
