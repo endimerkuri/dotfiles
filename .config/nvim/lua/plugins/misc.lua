@@ -9,7 +9,7 @@ vim.g.UltiSnipsForwardTrigger = '<c-j>'
 vim.g.UltiSnipsBackwardTrigger = '<c-k>'
 
 -- Rest requests
-vim.keymap.set('n', '<leader>cr', ':lua require("rest-nvim").run()<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>cr', '<Plug>RestNvim<CR>', { noremap = true })
 
 -- Dial Nvim
 local dial = require'dial.map'
