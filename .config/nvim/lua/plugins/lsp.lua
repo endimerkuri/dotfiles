@@ -34,7 +34,7 @@ require'lspconfig'.phpactor.setup{
 }
 require'lspconfig'.pylsp.setup{
     on_attach = on_attach,
-    configurationSources = { "pycodestyle", "pyflakes" },
+    configurationSources = { 'pycodestyle', 'pyflakes' },
     capabilities = capabilities,
 }
 require'lspconfig'.texlab.setup{
@@ -42,11 +42,11 @@ require'lspconfig'.texlab.setup{
     capabilities = capabilities,
     settings = {
         texlab = {
-            auxDirectory = ".",
-            bibtexFormatter = "texlab",
+            auxDirectory = '.',
+            bibtexFormatter = 'texlab',
             build = {
-                args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
-                executable = "latexmk",
+                args = { '-pdf', '-interaction=nonstopmode', '-synctex=1', '%f' },
+                executable = 'latexmk',
                 forwardSearchAfter = false,
                 onSave = true
             },
@@ -59,7 +59,7 @@ require'lspconfig'.texlab.setup{
             forwardSearch = {
                 args = {}
             },
-            latexFormatter = "latexindent",
+            latexFormatter = 'latexindent',
             latexindent = {
                 modifyLineBreaks = false
             }
@@ -75,13 +75,13 @@ require'lspconfig'.tsserver.setup{
     capabilities = capabilities,
 }
 require'nvim-treesitter.configs'.setup {
-    ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    ensure_installed = 'all', -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     highlight = {
         enable = true,              -- false will disable the whole extension
     },
 }
-local null_ls = require("null-ls")
-require("null-ls").setup({
+local null_ls = require('null-ls')
+require('null-ls').setup({
     sources = {
         null_ls.builtins.diagnostics.eslint,
         null_ls.builtins.code_actions.eslint,

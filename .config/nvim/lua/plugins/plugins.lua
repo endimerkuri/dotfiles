@@ -1,10 +1,9 @@
 require('packer').startup(function()
 
     -- UI plugins
-    use { "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } }
+    use { 'ellisonleao/gruvbox.nvim', requires = { 'rktjmp/lush.nvim' } }
     use 'navarasu/onedark.nvim'
     use 'mhinz/vim-startify'
-    use { "akinsho/toggleterm.nvim", tag = '*' }
 
     -- Show indent lines
     use 'lukas-reineke/indent-blankline.nvim'
@@ -19,8 +18,8 @@ require('packer').startup(function()
         requires = { 'kyazdani42/nvim-web-devicons' }
     }
     use {
-        "SmiteshP/nvim-navic",
-        requires = "neovim/nvim-lspconfig"
+        'SmiteshP/nvim-navic',
+        requires = 'neovim/nvim-lspconfig'
     }
     use 'kyazdani42/nvim-web-devicons'
 
@@ -35,11 +34,11 @@ require('packer').startup(function()
 
     -- Projects
     use {
-        "ahmedkhalf/project.nvim",
+        'ahmedkhalf/project.nvim',
         config = function()
-            require("project_nvim").setup {
-                detection_methods = { "pattern" },
-                patterns = { ".git" }
+            require('project_nvim').setup {
+                detection_methods = { 'pattern' },
+                patterns = { '.git' }
             }
         end
     }
@@ -56,12 +55,18 @@ require('packer').startup(function()
     use 'onsails/lspkind-nvim'
     use 'simrat39/symbols-outline.nvim'
     use 'jose-elias-alvarez/null-ls.nvim'
-    use { 'glepnir/lspsaga.nvim' }
-    use {
-        "folke/trouble.nvim",
-        requires = "kyazdani42/nvim-web-devicons",
+    use({
+        'glepnir/lspsaga.nvim',
+        branch = "main",
         config = function()
-            require("trouble").setup {}
+            require('lspsaga').setup({})
+        end,
+    })
+    use {
+        'folke/trouble.nvim',
+        requires = 'kyazdani42/nvim-web-devicons',
+        config = function()
+            require('trouble').setup {}
         end
     }
     use { 'ludovicchabant/vim-gutentags' }
@@ -105,7 +110,7 @@ require('packer').startup(function()
 
     -- Debugger
     use 'mfussenegger/nvim-dap'
-    use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
+    use { 'rcarriga/nvim-dap-ui', requires = { 'mfussenegger/nvim-dap' } }
 
     -- .env files support
     use 'tpope/vim-dotenv'
@@ -130,10 +135,10 @@ require('packer').startup(function()
 
     -- REST client
     use {
-        "rest-nvim/rest.nvim",
-        requires = { "nvim-lua/plenary.nvim" },
+        'rest-nvim/rest.nvim',
+        requires = { 'nvim-lua/plenary.nvim' },
         config = function()
-            require("rest-nvim").setup({
+            require('rest-nvim').setup({
                 -- Open request results in a horizontal split
                 result_split_horizontal = false,
                 -- Keep the http file buffer above|left when split horizontal|vertical
@@ -155,9 +160,9 @@ require('packer').startup(function()
                     -- executables or functions for formatting response body [optional]
                     -- set them to nil if you want to disable them
                     formatters = {
-                        json = "jq",
+                        json = 'jq',
                         html = function(body)
-                            return vim.fn.system({"tidy", "-i", "-q", "-"}, body)
+                            return vim.fn.system({ 'tidy', '-i', '-q', '-' }, body)
                         end
                     },
                 },

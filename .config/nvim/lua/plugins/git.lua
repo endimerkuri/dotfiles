@@ -1,22 +1,7 @@
 -- Vim Fugitive keybindings
--- vim.keymap.set('n', '<leader>gs', ':G<CR>', {})
+vim.keymap.set('n', '<leader>gs', ':G<CR>', {})
 vim.keymap.set('n', '<leader>gu', ':G pull<CR>', {})
 vim.keymap.set('n', '<leader>gb', ':G blame<CR>', {})
-
--- ToggleTerm
-require'toggleterm'.setup{}
-local Terminal  = require('toggleterm.terminal').Terminal
-local lazygit = Terminal:new({
-    cmd = "lazygit",
-    hidden = true,
-    direction = "tab"
-})
-
-function _lazygit_toggle()
-  lazygit:toggle()
-end
-
-vim.keymap.set("n", "<leader>gs", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
 
 require('gitsigns').setup{
     keymaps = {
