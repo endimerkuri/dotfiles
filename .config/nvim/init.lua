@@ -16,7 +16,7 @@ vim.o.termguicolors = true
 vim.o.cursorline = true
 vim.o.hidden = true
 -- vim.o.cmdheight = 0
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
 vim.opt.undofile = true
 vim.o.background = 'dark'
 
