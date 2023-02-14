@@ -1,10 +1,11 @@
 -- Debugger
-vim.keymap.set('n', '<leader>dc', ':Dotenv config/.env.development<CR>:lua require\'dap\'.continue()<CR>', { noremap = true } )
-vim.keymap.set('n', '<leader>db', ':lua require\'dap\'.toggle_breakpoint()<CR>', { noremap = true })
-vim.keymap.set('n', '<leader>dl', ':lua require\'dap\'.step_into()<CR>', { noremap = true })
+-- vim.keymap.set('n', '<leader>dc', ':Dotenv config/.env.development<CR>:lua require\'dap\'.continue()<CR>', { noremap = true } )
+-- vim.keymap.set('n', '<leader>db', ':lua require\'dap\'.toggle_breakpoint()<CR>', { noremap = true })
+-- vim.keymap.set('n', '<leader>dl', ':lua require\'dap\'.step_into()<CR>', { noremap = true })
 
-local dap, dapui = require('dap'), require('dapui')
-dapui.setup()
+-- local dap, dapui = require('dap'), require('dapui')
+local dap = require('dap')
+-- dapui.setup()
 dap.adapters.node2 = {
     type = 'executable',
     command = 'node',
@@ -39,6 +40,6 @@ dap.configurations.javascript = {
         processId = require'dap.utils'.pick_process,
     },
 }
-dap.listeners.after.event_initialized['dapui_config'] = function() dapui.open() end
-dap.listeners.before.event_terminated['dapui_config'] = function() dapui.close() end
-dap.listeners.before.event_exited['dapui_config'] = function() dapui.close() end
+-- dap.listeners.after.event_initialized['dapui_config'] = function() dapui.open() end
+-- dap.listeners.before.event_terminated['dapui_config'] = function() dapui.close() end
+-- dap.listeners.before.event_exited['dapui_config'] = function() dapui.close() end

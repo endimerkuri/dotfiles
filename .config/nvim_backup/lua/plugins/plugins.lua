@@ -110,7 +110,7 @@ require('packer').startup(function()
 
     -- Debugger
     use 'mfussenegger/nvim-dap'
-    use { 'rcarriga/nvim-dap-ui', requires = { 'mfussenegger/nvim-dap' } }
+    -- use { 'rcarriga/nvim-dap-ui', requires = { 'mfussenegger/nvim-dap' } }
 
     -- .env files support
     use 'tpope/vim-dotenv'
