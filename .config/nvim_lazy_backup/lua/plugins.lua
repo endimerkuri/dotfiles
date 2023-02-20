@@ -1,12 +1,8 @@
 return {
-    -- UI plugins
-    'mhinz/vim-startify',
-
     -- Show indent lines
     'lukas-reineke/indent-blankline.nvim',
 
     -- Statusline
-    'romgrk/barbar.nvim',
     'SmiteshP/nvim-navic',
     'kyazdani42/nvim-web-devicons',
 
@@ -23,7 +19,6 @@ return {
     'ahmedkhalf/project.nvim',
 
     -- Fuzzy finder
-    'nvim-telescope/telescope.nvim',
     'nvim-telescope/telescope-fzf-native.nvim',
 
     -- LSP client
@@ -48,23 +43,15 @@ return {
 
     -- Git plugins
     'tpope/vim-fugitive',
-    'lewis6991/gitsigns.nvim',
-
-    -- Maximizer
-    'szw/vim-maximizer',
 
     -- VimWiki
     'vimwiki/vimwiki',
 
     -- Database
     'tpope/vim-dadbod',
-    'kristijanhusak/vim-dadbod-ui',
 
     -- UndoTree
     'mbbill/undotree',
-
-    -- Tests
-    'vim-test/vim-test',
 
     -- Debugger
     'mfussenegger/nvim-dap',
