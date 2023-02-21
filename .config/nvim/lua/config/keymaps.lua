@@ -30,3 +30,23 @@ vim.keymap.set("v", "<leader>p", '"+p', { noremap = true, desc = "Paste from sys
 -- Move in the quickfix list
 vim.keymap.set('n', ']q', ':cnext<CR>', { noremap = true, desc = "Next in quickfix list" })
 vim.keymap.set('n', '[q', ':cprevious<CR>', { noremap = true, desc = "Previous in quickfix list" })
+
+-- Git
+vim.keymap.set('n', '<leader>gs', ':Gedit :<CR>', { desc = 'Vim fugitive status'})
+vim.keymap.set('n', '<leader>gu', ':G pull<CR>', { desc = 'Git pull' })
+vim.keymap.set('n', '<leader>gb', ':G blame<CR>', { desc = 'Open git blame' })
+
+-- Projectionist
+vim.keymap.set("n", "]r", ":A<CR>", { noremap = true, desc = 'Projectionist open related file' })
+
+-- Open env
+vim.keymap.set("n", "<leader>oe", ":e ./config/.env.development<CR>", { noremap = true, desc = 'Open .env.development' })
+
+-- Rest requests
+vim.keymap.set('n', '<leader>or', '<Plug>RestNvim<CR>', { noremap = true, desc = 'Send rest request' })
+
+-- UndoTree
+vim.keymap.set('n', '<leader>ou', ':UndotreeToggle<CR>', { noremap = true, desc = 'Toggle undo tree' })
+
+-- Open terminal
+vim.keymap.set('n', '<leader>;', ':vsp<CR>:terminal<CR>', { noremap = true, desc = 'Open terminal' })
