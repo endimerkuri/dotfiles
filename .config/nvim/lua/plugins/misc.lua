@@ -1,4 +1,5 @@
 return {
+    { "nvim-lua/plenary.nvim", lazy = true },
     "tpope/vim-vinegar",
     "tpope/vim-projectionist",
     {
@@ -33,7 +34,7 @@ return {
     "ludovicchabant/vim-gutentags",
     {
         'rest-nvim/rest.nvim',
-        requires = { 'nvim-lua/plenary.nvim' },
+        dependencies = { 'nvim-lua/plenary.nvim' },
         config = function()
             require('rest-nvim').setup({
                 -- Open request results in a horizontal split
@@ -70,5 +71,15 @@ return {
                 yank_dry_run = true,
             })
         end
-    }
+    },
+    'hudclark/grpc-nvim',
+    'airblade/vim-rooter',
+    'lukas-reineke/indent-blankline.nvim',
+    {    
+        'windwp/nvim-autopairs',
+        config = function ()
+            require('nvim-autopairs').setup {}
+        end
+    },
+    'tpope/vim-surround',
 }

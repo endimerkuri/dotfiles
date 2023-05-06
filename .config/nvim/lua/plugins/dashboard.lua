@@ -4,17 +4,17 @@ return {
     opts = function()
         local dashboard = require("alpha.themes.dashboard")
         local logo = [[
-    ██╗      █████╗ ███████╗██╗   ██╗██╗   ██╗██╗███╗   ███╗          Z
-    ██║     ██╔══██╗╚══███╔╝╚██╗ ██╔╝██║   ██║██║████╗ ████║      Z    
-    ██║     ███████║  ███╔╝  ╚████╔╝ ██║   ██║██║██╔████╔██║   z       
-    ██║     ██╔══██║ ███╔╝    ╚██╔╝  ╚██╗ ██╔╝██║██║╚██╔╝██║ z         
-    ███████╗██║  ██║███████╗   ██║    ╚████╔╝ ██║██║ ╚═╝ ██║
-    ╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝     ╚═══╝  ╚═╝╚═╝     ╚═╝
+	 ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
+	 ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
+	 ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
+	 ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
+	 ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
+	 ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
     ]]
 
         dashboard.section.header.val = vim.split(logo, "\n")
         dashboard.section.buttons.val = {
-            dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
+            dashboard.button("f", " " .. " Find file", ":Telescope git_files <CR>"),
             dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
             dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles <CR>"),
             dashboard.button("p", " " .. " Projects", ":Telescope project <CR>"),
