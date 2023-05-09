@@ -3,6 +3,7 @@ return {
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
     'onsails/lspkind-nvim',
+    'saadparwaiz1/cmp_luasnip',
     {
         'hrsh7th/nvim-cmp',
         dependencies = {
@@ -10,6 +11,7 @@ return {
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
             'onsails/lspkind-nvim',
+            'saadparwaiz1/cmp_luasnip',
         },
         config = function()
             local cmp = require('cmp')
@@ -46,8 +48,8 @@ return {
                     })}),
                 },
                 mapping = {
-                    ['<C-p>'] = cmp.mapping.select_prev_item(),
-                    ['<C-n>'] = cmp.mapping.select_next_item(),
+                    ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+                    ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
                     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
                     ['<C-f>'] = cmp.mapping.scroll_docs(4),
                     ['<C-Space>'] = cmp.mapping.complete(),
@@ -57,28 +59,27 @@ return {
                         select = true,
                     })
                 },
-
-                mapping = {
-                    ['<Tab>'] = function(fallback)
-                        if not cmp.select_next_item() then
-                            if vim.bo.buftype ~= 'prompt' and has_words_before() then
-                                cmp.complete()
-                            else
-                                fallback()
-                            end
-                        end
-                    end,
-
-                    ['<S-Tab>'] = function(fallback)
-                        if not cmp.select_prev_item() then
-                            if vim.bo.buftype ~= 'prompt' and has_words_before() then
-                                cmp.complete()
-                            else
-                                fallback()
-                            end
-                        end
-                    end,
-                },
+                -- mapping = {
+                --     ['<Tab>'] = function(fallback)
+                --         if not cmp.select_next_item() then
+                --             if vim.bo.buftype ~= 'prompt' and has_words_before() then
+                --                 cmp.complete()
+                --             else
+                --                 fallback()
+                --             end
+                --         end
+                --     end,
+                --
+                --     ['<S-Tab>'] = function(fallback)
+                --         if not cmp.select_prev_item() then
+                --             if vim.bo.buftype ~= 'prompt' and has_words_before() then
+                --                 cmp.complete()
+                --             else
+                --                 fallback()
+                --             end
+                --         end
+                --     end,
+                -- },
 
                 -- You should specify your *installed* sources.
                 sources = {
@@ -95,7 +96,7 @@ return {
                             end
                         }
                     },
-                    { name = 'ultisnips' },
+                    { name = 'luasnip' },
                     { name = 'path' },
                 },
             }

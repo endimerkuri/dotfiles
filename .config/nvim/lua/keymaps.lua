@@ -14,8 +14,8 @@ vim.keymap.set('n', '<leader><leader>', '<c-^>', { noremap = true })
 vim.keymap.set('n', '<leader>ot', ':e<Space>', { noremap = true })
 
 -- Create new split
-vim.keymap.set('n', '<leader>s', ':sp<CR>', { noremap = true })
-vim.keymap.set('n', '<leader>v', ':vsp<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>-', ':sp<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>\\', ':vsp<CR>', { noremap = true })
 
 -- Copy paste from system clipboard
 vim.keymap.set('n', '<leader>y', '\"+y', { noremap = true })
