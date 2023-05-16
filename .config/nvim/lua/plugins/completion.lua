@@ -32,12 +32,6 @@ return {
             local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 
             cmp.setup {
-                -- snippet = {
-                --     expand = function(args)
-                --         vim.fn['UltiSnips#Anon'](args.body)
-                --     end,
-                -- },
-
                 formatting = {
                     format = require("lspkind").cmp_format({with_text = true, menu = ({
                         buffer = "[Buffer]",
@@ -59,27 +53,6 @@ return {
                         select = true,
                     })
                 },
-                -- mapping = {
-                --     ['<Tab>'] = function(fallback)
-                --         if not cmp.select_next_item() then
-                --             if vim.bo.buftype ~= 'prompt' and has_words_before() then
-                --                 cmp.complete()
-                --             else
-                --                 fallback()
-                --             end
-                --         end
-                --     end,
-                --
-                --     ['<S-Tab>'] = function(fallback)
-                --         if not cmp.select_prev_item() then
-                --             if vim.bo.buftype ~= 'prompt' and has_words_before() then
-                --                 cmp.complete()
-                --             else
-                --                 fallback()
-                --             end
-                --         end
-                --     end,
-                -- },
 
                 -- You should specify your *installed* sources.
                 sources = {
@@ -98,6 +71,7 @@ return {
                     },
                     { name = 'luasnip' },
                     { name = 'path' },
+                    { name = 'copilot' },
                 },
             }
             cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))

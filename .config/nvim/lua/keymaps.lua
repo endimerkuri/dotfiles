@@ -58,3 +58,6 @@ vim.keymap.set('n', '<leader>ou', ':UndotreeToggle<CR>', { noremap = true })
 
 -- Rest requests
 vim.keymap.set('n', '<leader>or', '<Plug>RestNvim<CR>', { noremap = true })
+
+-- Grpc requests
+vim.keymap.set('n', '<leader>og', ':Grpc<CR>', { noremap = true })

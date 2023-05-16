@@ -82,4 +82,5 @@ return {
         end
     },
     'tpope/vim-surround',
+    'github/copilot.vim',
 }
