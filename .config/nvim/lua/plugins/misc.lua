@@ -74,7 +74,7 @@ return {
     },
     'hudclark/grpc-nvim',
     'airblade/vim-rooter',
-    'lukas-reineke/indent-blankline.nvim',
+    { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
     {    
         'windwp/nvim-autopairs',
         config = function ()
