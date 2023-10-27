@@ -1,22 +1,9 @@
 return {
     {
-        "williamboman/mason.nvim",
-        build = ":MasonUpdate",
+        'williamboman/mason.nvim',
+        build = ':MasonUpdate',
         config = function ()
             require('mason').setup()
-        end
-    },
-    {
-        'jose-elias-alvarez/null-ls.nvim',
-        config = function ()
-            local null_ls = require('null-ls')
-            require('null-ls').setup({
-                sources = {
-                    null_ls.builtins.diagnostics.eslint,
-                    null_ls.builtins.code_actions.eslint,
-                    null_ls.builtins.formatting.prettier
-                },
-            })
         end
     },
     {
@@ -94,12 +81,19 @@ return {
             require'lspconfig'.tsserver.setup{
                 on_attach = on_attach,
                 capabilities = capabilities,
+                root_dir = function(fname)
+                    return require'lspconfig'.util.root_pattern('.git')(fname) or vim.fn.getcwd()
+                end
             }
             require'nvim-treesitter.configs'.setup {
                 ensure_installed = 'all', -- one of "all", "maintained" (parsers with maintainers), or a list of languages
                 highlight = {
                     enable = true,              -- false will disable the whole extension
                 },
+            }
+            require'lspconfig'.csharp_ls.setup{
+                on_attach = on_attach,
+                capabilities = capabilities,
             }
         end
     }
