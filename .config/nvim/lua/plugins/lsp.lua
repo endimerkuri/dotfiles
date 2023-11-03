@@ -94,6 +94,9 @@ return {
             require'lspconfig'.csharp_ls.setup{
                 on_attach = on_attach,
                 capabilities = capabilities,
+                root_dir = function(fname)
+                    return require'lspconfig'.util.root_pattern('*.sln')(fname) or vim.fn.getcwd()
+                end
             }
         end
     }
