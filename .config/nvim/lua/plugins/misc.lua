@@ -1,6 +1,10 @@
 return {
     { "nvim-lua/plenary.nvim", lazy = true },
-    "tpope/vim-vinegar",
+    {
+        "gennaro-tedesco/nvim-jqx",
+        ft = { "json", "yaml" },
+    },
+    { "tpope/vim-vinegar" },
     "tpope/vim-projectionist",
     {
         "monaqa/dial.nvim",
@@ -42,7 +46,7 @@ return {
                 -- Keep the http file buffer above|left when split horizontal|vertical
                 result_split_in_place = false,
                 -- Skip SSL verification, useful for unknown certificates
-                skip_ssl_verification = false,
+                skip_ssl_verification = true,
                 -- Encode URL before making request
                 encode_url = true,
                 -- Highlight request on run
