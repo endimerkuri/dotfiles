@@ -15,10 +15,12 @@ vim.o.signcolumn = 'yes:2'
 vim.o.termguicolors = true
 vim.o.cursorline = true
 vim.o.hidden = true
--- vim.o.cmdheight = 0
+vim.o.cmdheight = 0
 vim.opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
 vim.opt.undofile = true
 vim.o.background = 'dark'
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
 vim.g.mapleader = ' '
 vim.cmd[[set winbar=%=%m\ %f]]
