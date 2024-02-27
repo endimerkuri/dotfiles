@@ -7,9 +7,9 @@ return {
     {
         'hrsh7th/nvim-cmp',
         dependencies = {
-            "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-path",
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
             'onsails/lspkind-nvim',
             'saadparwaiz1/cmp_luasnip',
         },
@@ -33,12 +33,12 @@ return {
 
             cmp.setup {
                 formatting = {
-                    format = require("lspkind").cmp_format({with_text = true, menu = ({
-                        buffer = "[Buffer]",
-                        nvim_lsp = "[LSP]",
-                        luasnip = "[LuaSnip]",
-                        nvim_lua = "[Lua]",
-                        latex_symbols = "[Latex]",
+                    format = require('lspkind').cmp_format({with_text = true, menu = ({
+                        buffer = '[Buffer]',
+                        nvim_lsp = '[LSP]',
+                        luasnip = '[LuaSnip]',
+                        nvim_lua = '[Lua]',
+                        latex_symbols = '[Latex]',
                     })}),
                 },
                 mapping = {

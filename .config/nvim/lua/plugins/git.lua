@@ -1,18 +1,29 @@
 return {
     {
-        "tpope/vim-fugitive",
+        'tpope/vim-fugitive',
     },
     {
-        "lewis6991/gitsigns.nvim",
-        event = { "BufReadPre", "BufNewFile" },
+        'NeogitOrg/neogit',
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope.nvim',
+        },
+        config = true,
+        opts = {
+            kind = 'replace'
+        }
+    },
+    {
+        'lewis6991/gitsigns.nvim',
+        event = { 'BufReadPre', 'BufNewFile' },
         opts = {
             signs = {
-                add = { text = "▎" },
-                change = { text = "▎" },
-                delete = { text = "契" },
-                topdelete = { text = "契" },
-                changedelete = { text = "▎" },
-                untracked = { text = "▎" },
+                add          = { text = '│' },
+                change       = { text = '│' },
+                delete       = { text = '_' },
+                topdelete    = { text = '‾' },
+                changedelete = { text = '~' },
+                untracked    = { text = '┆' },
             },
             on_attach = function(buffer)
                 local gs = package.loaded.gitsigns
@@ -21,19 +32,18 @@ return {
                     vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
                 end
 
-                -- stylua: ignore start
-                map("n", "]h", gs.next_hunk, "Next Hunk")
-                map("n", "[h", gs.prev_hunk, "Prev Hunk")
-                map({ "n", "v" }, "ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
-                map({ "n", "v" }, "ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
-                map("n", "ghS", gs.stage_buffer, "Stage Buffer")
-                map("n", "ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
-                map("n", "ghR", gs.reset_buffer, "Reset Buffer")
-                map("n", "ghp", gs.preview_hunk, "Preview Hunk")
-                map("n", "ghb", function() gs.blame_line({ full = true }) end, "Blame Line")
-                map("n", "ghd", gs.diffthis, "Diff This")
-                map("n", "ghD", function() gs.diffthis("~") end, "Diff This ~")
-                map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
+                map('n', ']h', gs.next_hunk, 'Next Hunk')
+                map('n', '[h', gs.prev_hunk, 'Prev Hunk')
+                map({ 'n', 'v' }, 'ghs', ':Gitsigns stage_hunk<CR>', 'Stage Hunk')
+                map({ 'n', 'v' }, 'ghr', ':Gitsigns reset_hunk<CR>', 'Reset Hunk')
+                map('n', 'ghS', gs.stage_buffer, 'Stage Buffer')
+                map('n', 'ghu', gs.undo_stage_hunk, 'Undo Stage Hunk')
+                map('n', 'ghR', gs.reset_buffer, 'Reset Buffer')
+                map('n', 'ghp', gs.preview_hunk, 'Preview Hunk')
+                map('n', 'ghb', function() gs.blame_line({ full = true }) end, 'Blame Line')
+                map('n', 'ghd', gs.diffthis, 'Diff This')
+                map('n', 'ghD', function() gs.diffthis('~') end, 'Diff This ~')
+                map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', 'GitSigns Select Hunk')
             end,
         },
     }

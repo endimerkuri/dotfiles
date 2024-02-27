@@ -8,7 +8,7 @@ return {
     },
     {
         'neovim/nvim-lspconfig',
-        event = { "BufReadPre", "BufNewFile" },
+        event = { 'BufReadPre', "BufNewFile" },
         config = function()
             local on_attach = function(client, bufnr)
                 vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -37,14 +37,6 @@ return {
                 end
 
             }
-            -- require'lspconfig'.phpactor.setup{
-            --     on_attach = on_attach,
-            --     capabilities = capabilities,
-            --     init_options = {
-            --         ["language_server_phpstan.enabled"] = false,
-            --         ["language_server_psalm.enabled"] = false,
-            --     }
-            -- }
             require'lspconfig'.intelephense.setup{
                 on_attach = on_attach,
                 capabilities = capabilities,
@@ -113,11 +105,11 @@ return {
         'folke/trouble.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons' },
         config = function ()
-            vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
-            vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
-            vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end)
-            vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
-            vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
+            vim.keymap.set('n', '<leader>xx', function() require('trouble').toggle() end)
+            vim.keymap.set('n', '<leader>xw', function() require('trouble').toggle('workspace_diagnostics') end)
+            vim.keymap.set('n', '<leader>xd', function() require('trouble').toggle('document_diagnostics') end)
+            vim.keymap.set('n', '<leader>xq', function() require('trouble').toggle('quickfix') end)
+            vim.keymap.set('n', '<leader>xl', function() require('trouble').toggle('loclist') end)
         end
     }
 }
