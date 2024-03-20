@@ -51,13 +51,10 @@ vim.keymap.set('n', '<leader>gb', ':G blame<CR>', { noremap = true })
 vim.keymap.set("n", "]r", ":A<CR>", { noremap = true })
 
 -- Open env
-vim.keymap.set("n", "<leader>oe", ":e ./config/.env.development<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>oe", ':e ./config/.env.development<CR>', { noremap = true })
 
 -- UndoTree
 vim.keymap.set('n', '<leader>ou', ':UndotreeToggle<CR>', { noremap = true })
-
--- Rest requests
-vim.keymap.set('n', '<leader>or', '<Plug>RestNvim<CR>', { noremap = true })
 
 -- Grpc requests
 vim.keymap.set('n', '<leader>og', ':Grpc<CR>', { noremap = true })

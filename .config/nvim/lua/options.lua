@@ -16,11 +16,31 @@ vim.o.termguicolors = true
 vim.o.cursorline = true
 vim.o.hidden = true
 -- vim.o.cmdheight = 0
-vim.opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
-vim.opt.undofile = true
+vim.o.undodir = os.getenv('HOME') .. '/.vim/undodir'
+vim.o.undofile = true
 vim.o.background = 'dark'
 vim.o.ignorecase = true
 vim.o.smartcase = true
+
+local function augroup(name)
+    return vim.api.nvim_create_augroup('my_lazyvim_' .. name, { clear = true })
+end
+
+local is_stable_version = true
+if vim.fn.has('nvim-0.10.0') == 1 then
+    is_stable_version = false
+end
+
+if is_stable_version then
+    -- Set filetype for .hurl files
+    vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+        group = augroup('env_filetype'),
+        pattern = { '*.hurl' },
+        callback = function()
+            vim.opt_local.filetype = 'sh'
+        end,
+    })
+end
 
 vim.g.mapleader = ' '
 vim.cmd[[set winbar=%=%m\ %f]]

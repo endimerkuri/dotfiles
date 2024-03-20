@@ -1,6 +1,6 @@
 return {
     { 'nvim-lua/plenary.nvim', lazy = true },
-    'vimpostor/vim-tpipeline',
+    'tpope/vim-sleuth',
     {
         'gennaro-tedesco/nvim-jqx',
         ft = { 'json', 'yaml' },
@@ -34,49 +34,54 @@ return {
             vim.keymap.set('v', 'g<C-x>', dial.dec_gvisual(), { noremap = true })
         end
     },
+    {
+        "jellydn/hurl.nvim",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "nvim-treesitter/nvim-treesitter"
+        },
+        ft = "hurl",
+        opts = {
+            auto_close = false,
+            -- Show debugging info
+            debug = false,
+            -- Show notification on run
+            show_notification = false,
+            -- Show response in popup or split
+            mode = "split",
+            -- Default formatter
+            formatters = {
+                json = { 'jq' }, -- Make sure you have install jq in your system, e.g: brew install jq
+                html = {
+                    'prettier', -- Make sure you have install prettier in your system, e.g: npm install -g prettier
+                    '--parser',
+                    'html',
+                },
+            },
+        },
+        keys = {
+            -- Run API request
+            { "<leader>or", "<cmd>HurlRunner<CR>", desc = "Run All requests" },
+            -- { "<leader>a", "<cmd>HurlRunnerAt<CR>", desc = "Run Api request" },
+            -- { "<leader>te", "<cmd>HurlRunnerToEntry<CR>", desc = "Run Api request to entry" },
+            -- { "<leader>tm", "<cmd>HurlToggleMode<CR>", desc = "Hurl Toggle Mode" },
+            -- { "<leader>or", "<cmd>HurlVerbose<CR>", desc = "Run Api in verbose mode" },
+            -- -- Run Hurl request in visual mode
+            -- { "<leader>h", ":HurlRunner<CR>", desc = "Hurl Runner", mode = "v" },
+        },
+    },
+    {
+        "folke/edgy.nvim",
+        event = "VeryLazy",
+        opts = {
+            right = {
+                { title = "Hurl Nvim", size = { width = 0.5 }, ft = "hurl-nvim" },
+            }
+        }
+    },
     'tpope/vim-dotenv',
     'mbbill/undotree',
     'ludovicchabant/vim-gutentags',
-    {
-        'rest-nvim/rest.nvim',
-        dependencies = { 'nvim-lua/plenary.nvim' },
-        config = function()
-            require('rest-nvim').setup({
-                -- Open request results in a horizontal split
-                result_split_horizontal = false,
-                -- Keep the http file buffer above|left when split horizontal|vertical
-                result_split_in_place = false,
-                -- Skip SSL verification, useful for unknown certificates
-                skip_ssl_verification = true,
-                -- Encode URL before making request
-                encode_url = true,
-                -- Highlight request on run
-                highlight = {
-                    enabled = true,
-                    timeout = 150,
-                },
-                result = {
-                    -- toggle showing URL, HTTP info, headers at top the of result window
-                    show_url = true,
-                    show_http_info = true,
-                    show_headers = true,
-                    -- executables or functions for formatting response body [optional]
-                    -- set them to nil if you want to disable them
-                    formatters = {
-                        json = 'jq',
-                        html = function(body)
-                            return vim.fn.system({ 'tidy', '-i', '-q', '-' }, body)
-                        end
-                    },
-                },
-                -- Jump to request line on run
-                jump_to_request = false,
-                env_file = '.env',
-                custom_dynamic_variables = {},
-                yank_dry_run = true,
-            })
-        end
-    },
     'hudclark/grpc-nvim',
     'airblade/vim-rooter',
     { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {} },
