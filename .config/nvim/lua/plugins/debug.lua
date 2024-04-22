@@ -5,19 +5,20 @@ return {
         lazy = true
     },
     {
-        'mxsdev/nvim-dap-vscode-js',
-        lazy = true,
-        config = function()
-            require('dap-vscode-js').setup({
-                debugger_path = vim.fn.stdpath 'data' .. '/lazy/vscode-js-debug',
-                adapters = { 'pwa-node' },
-            })
-        end
-    },
-    {
         'mfussenegger/nvim-dap',
         dependencies = {
             -- fancy UI for the debugger
+            'nvim-neotest/nvim-nio',
+            {
+                'mxsdev/nvim-dap-vscode-js',
+                lazy = true,
+                config = function()
+                    require('dap-vscode-js').setup({
+                        debugger_path = vim.fn.stdpath 'data' .. '/lazy/vscode-js-debug',
+                        adapters = { 'pwa-node' },
+                    })
+                end
+            },
             {
                 'rcarriga/nvim-dap-ui',
                 -- stylua: ignore
