@@ -6,6 +6,8 @@ vim.keymap.set('n', '<leader>l', ':wincmd l<CR>', { noremap = true })
 vim.keymap.set('n', '<leader>k', ':wincmd k<CR>', { noremap = true })
 vim.keymap.set('n', '<leader>wd', ':bd<CR>', { noremap = true })
 vim.keymap.set('n', '<leader>q', ':q<CR>', { noremap = true })
+vim.keymap.set('n', '[b', ':bp<CR>', { noremap = true })
+vim.keymap.set('n', ']b', ':bn<CR>', { noremap = true })
 
 -- Switch to previous buffer
 vim.keymap.set('n', '<leader><leader>', '<c-^>', { noremap = true })
