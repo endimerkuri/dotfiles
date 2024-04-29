@@ -6,9 +6,6 @@ return {
                 section_separators = '',
                 component_separators = '',
                 globalstatus = true,
-            },
-            sections = {
-                lualine_c = { 'buffers' }
             }
         }
     end
