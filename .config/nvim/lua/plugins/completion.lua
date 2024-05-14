@@ -12,6 +12,7 @@ return {
             'hrsh7th/cmp-path',
             'onsails/lspkind-nvim',
             'saadparwaiz1/cmp_luasnip',
+            'kristijanhusak/vim-dadbod-completion',
         },
         config = function()
             local cmp = require('cmp')
@@ -33,13 +34,17 @@ return {
 
             cmp.setup {
                 formatting = {
-                    format = require('lspkind').cmp_format({with_text = true, menu = ({
-                        buffer = '[Buffer]',
-                        nvim_lsp = '[LSP]',
-                        luasnip = '[LuaSnip]',
-                        nvim_lua = '[Lua]',
-                        latex_symbols = '[Latex]',
-                    })}),
+                    format = require('lspkind').cmp_format({
+                        with_text = true,
+                        menu = ({
+                            buffer = '[Buffer]',
+                            nvim_lsp = '[LSP]',
+                            luasnip = '[LuaSnip]',
+                            nvim_lua = '[Lua]',
+                            latex_symbols = '[Latex]',
+                            ['vim-dadbod-completion'] = '[DB]',
+                        })
+                    }),
                 },
                 mapping = {
                     ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -71,7 +76,7 @@ return {
                     },
                     { name = 'luasnip' },
                     { name = 'path' },
-                    { name = 'copilot' },
+                    { name = 'copilot' }
                 },
                 snippet = {
                     -- REQUIRED - you must specify a snippet engine
@@ -84,6 +89,19 @@ return {
                     end,
                 },
             }
+            local autocomplete_group = vim.api.nvim_create_augroup('vimrc_autocompletion', { clear = true })
+            vim.api.nvim_create_autocmd('FileType', {
+                pattern = { 'sql', 'mysql', 'plsql' },
+                callback = function()
+                    cmp.setup.buffer({
+                        sources = {
+                            { name = 'vim-dadbod-completion' },
+                            { name = 'buffer' }
+                        }
+                    })
+                end,
+                group = autocomplete_group,
+            })
             cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
         end
     }
