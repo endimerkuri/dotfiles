@@ -1,15 +1,9 @@
-# Enable colors and change prompt:
-autoload -U colors && colors	# Load colors
-
-# Load version control information
-autoload -Uz vcs_info
-precmd() { vcs_info }
-
-zstyle ':vcs_info:git*' formats "%{$fg[red]%}[%{$fg[yellow]%}%b%{$fg[red]%}]"
-setopt prompt_subst
-PS1='%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@\
-%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]\
-${vcs_info_msg_0_}%{$reset_color%}$%b '
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 # Basic auto/tab complete:
 autoload -U compinit
@@ -23,7 +17,6 @@ export VISUAL='nvim'
 
 # User configuration
 export KEYTIMEOUT=1
-bindkey -v
 
 # History in cache directory:
 HISTSIZE=10000000
@@ -42,9 +35,6 @@ HISTFILE=~/.cache/zsh/history
 #   export EDITOR='mvim'
 # fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
 export PATH=$PATH:/home/endi/julia-1.5.3/bin
 export PATH=$PATH:/home/endi/.local/bin
 export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
@@ -61,7 +51,7 @@ alias v="nvim"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # NNN config
-export NNN_TRASH=2
+export NNN_TRASH=1
 n ()
 {
     # Block nesting of nnn in subshells
@@ -98,8 +88,8 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
-
-# Change cursor shape for different vi modes.
+#
+# # Change cursor shape for different vi modes.
 function zle-keymap-select () {
     case $KEYMAP in
         vicmd) echo -ne '\e[1 q';;      # block
@@ -115,6 +105,23 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Plugins
+source /Users/endimerkuri/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /Users/endimerkuri/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+
 bindkey '^ ' autosuggest-accept
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export M2_HOME="/Users/endimerkuri/Downloads/apache-maven-3.9.0"
+PATH="${M2_HOME}/bin:${PATH}"
+export PATH
+export "JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home"
+export PATH="/usr/local/opt/php@7.4/bin:$PATH"
+export PATH="/usr/local/opt/php@7.4/sbin:$PATH"
+export PATH="/usr/local/mysql/bin:$PATH"
+export PATH="$PATH:/Users/endimerkuri/.dotnet/tools"
+export PATH="/Users/endimerkuri/.local/bin:$PATH"
+
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
