@@ -17,7 +17,7 @@ return {
             dashboard.button('f', ' ' .. ' Find file', ':Telescope git_files <CR>'),
             dashboard.button('n', ' ' .. ' New file', ':ene <BAR> startinsert <CR>'),
             dashboard.button('r', '󰄉 ' .. ' Recent files', ':Telescope oldfiles <CR>'),
-            dashboard.button('p', ' ' .. ' Projects', ':Telescope project <CR>'),
+            dashboard.button('p', ' ' .. ' Projects', ":lua require'telescope'.extensions.project.project{ display_type = 'full' }<CR>"),
             dashboard.button('d', ' ' .. ' Database', ':ene<CR>:DBUIToggle <CR>'),
             dashboard.button('g', ' ' .. ' Find text', ':Telescope live_grep <CR>'),
             dashboard.button('c', ' ' .. ' Config', ':e $MYVIMRC <CR>'),

@@ -9,6 +9,8 @@ return {
         config = function()
             vim.g.rooter_patterns = { '.git' }
 
+            local telescope = require'telescope'
+
             require('telescope').setup{
                 defaults = {
                     layout_config = {
@@ -29,8 +31,8 @@ return {
                     }
                 }
             }
-            require('telescope').load_extension('fzf')
-            require('telescope').load_extension('project')
+            telescope.load_extension('fzf')
+            telescope.load_extension('project')
 
             vim.keymap.set('n', '<leader>f', ':Telescope find_files<CR>', { noremap = true })
             vim.keymap.set('n', '<leader>,', ':Telescope buffers<CR>', { noremap = true })
