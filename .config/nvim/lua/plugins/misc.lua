@@ -37,36 +37,27 @@ return {
         end
     },
     {
-        "jellydn/hurl.nvim",
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-            "nvim-treesitter/nvim-treesitter"
-        },
-        ft = "hurl",
-        config = function ()
-            local hurl = require'hurl'
-            hurl.setup{
-                auto_close = false,
-                -- Show debugging info
-                debug = false,
-                -- Show notification on run
-                show_notification = false,
-                -- Show response in popup or split
-                mode = "split",
-                -- Default formatter
-                formatters = {
-                    json = { 'jq' }, -- Make sure you have install jq in your system, e.g: brew install jq
-                    html = {
-                        'prettier', -- Make sure you have install prettier in your system, e.g: npm install -g prettier
-                        '--parser',
-                        'html',
-                    },
-                },
+        "vhyrro/luarocks.nvim",
+        priority = 1000,
+        config = true,
+        opts = {
+            rocks = { "lua-curl", "nvim-nio", "mimetypes", "xml2lua" }
+        }
+    },
+    {
+        "rest-nvim/rest.nvim",
+        ft = "http",
+        dependencies = { "luarocks.nvim" },
+        config = function()
+            require("rest-nvim").setup{
+                env_file = 'vars.env',
+                keybinds = {
+                    {
+                        '<leader>or', '<cmd>Rest run<CR>', 'Run request under the cursor'
+                    }
+                }
             }
         end,
-        keys = {
-            { "<leader>or", ":HurlRunner<CR>:silent !sh extractToken.sh<CR>", desc = "Run All requests" },
-        }
     },
     {
         "folke/edgy.nvim",
