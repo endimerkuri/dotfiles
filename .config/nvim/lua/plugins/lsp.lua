@@ -90,18 +90,18 @@ return {
                     return require'lspconfig'.util.root_pattern('.git')(fname) or vim.fn.getcwd()
                 end
             }
-            require'nvim-treesitter.configs'.setup {
-                ensure_installed = 'all', -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-                highlight = {
-                    enable = true,              -- false will disable the whole extension
-                },
-            }
             require'lspconfig'.csharp_ls.setup{
                 on_attach = on_attach,
                 capabilities = capabilities,
                 root_dir = function(fname)
                     return require'lspconfig'.util.root_pattern('*.sln')(fname) or vim.fn.getcwd()
                 end
+            }
+            require'nvim-treesitter.configs'.setup {
+                ensure_installed = 'all', -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+                highlight = {
+                    enable = true,              -- false will disable the whole extension
+                },
             }
         end
     },

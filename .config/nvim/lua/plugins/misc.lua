@@ -45,19 +45,15 @@ return {
         }
     },
     {
-        "rest-nvim/rest.nvim",
-        ft = "http",
-        dependencies = { "luarocks.nvim" },
-        config = function()
-            require("rest-nvim").setup{
-                env_file = 'vars.env',
-                keybinds = {
-                    {
-                        '<leader>or', '<cmd>Rest run<CR>', 'Run request under the cursor'
-                    }
-                }
-            }
-        end,
+        {
+            'mistweaverco/kulala.nvim',
+            config = function()
+                require('kulala').setup({
+                    default_view = 'headers_body'
+                })
+                vim.api.nvim_set_keymap("n", "<leader>or", ":lua require('kulala').run()<CR>", { noremap = true, silent = true })
+            end
+        },
     },
     {
         "folke/edgy.nvim",
