@@ -34,3 +34,9 @@ vim.o.completeopt = 'menuone,noinsert,noselect'
 
 -- Avoid showing message extra message when using completion
 vim.o.shortmess = vim.o.shortmess .. 'c'
+
+vim.filetype.add({
+  extension = {
+    ['http'] = 'http',
+  },
+})
