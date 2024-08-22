@@ -18,7 +18,7 @@ vim.o.hidden = true
 -- vim.o.cmdheight = 0
 vim.o.undodir = os.getenv('HOME') .. '/.vim/undodir'
 vim.o.undofile = true
-vim.o.background = 'dark'
+-- vim.o.background = 'dark'
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
