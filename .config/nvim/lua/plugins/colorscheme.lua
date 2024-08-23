@@ -7,10 +7,5 @@ return {
             require('catppuccin').setup{}
             vim.cmd([[colorscheme catppuccin]])
         end
-    },
-    {
-        'EdenEast/nightfox.nvim',
-        lazy = false,
-        priority = 1000,
     }
 }
