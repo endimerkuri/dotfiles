@@ -30,7 +30,6 @@ vim.keymap.set('n', '<leader>wr', ':w<CR>:silent !trun<CR>:redraw!<CR>', {})
 
 -- Terminal mode keybindings
 vim.keymap.set('n', '<leader>;', ':vsp<CR>:terminal<CR>', { noremap = true })
--- vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true })
 
 -- Keep visual mode after changing indentation
 vim.keymap.set('v', '<', '<gv', { noremap = true })

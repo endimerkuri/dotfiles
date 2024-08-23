@@ -37,14 +37,6 @@ return {
         end
     },
     {
-        "vhyrro/luarocks.nvim",
-        priority = 1000,
-        config = true,
-        opts = {
-            rocks = { "lua-curl", "nvim-nio", "mimetypes", "xml2lua" }
-        }
-    },
-    {
         {
             'mistweaverco/kulala.nvim',
             config = function()
@@ -54,15 +46,6 @@ return {
                 vim.api.nvim_set_keymap("n", "<leader>or", ":lua require('kulala').run()<CR>", { noremap = true, silent = true })
             end
         },
-    },
-    {
-        "folke/edgy.nvim",
-        event = "VeryLazy",
-        opts = {
-            right = {
-                { title = "Hurl Nvim", size = { width = 0.5 }, ft = "hurl-nvim" },
-            }
-        }
     },
     'tpope/vim-dotenv',
     'mbbill/undotree',
