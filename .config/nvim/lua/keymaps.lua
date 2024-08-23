@@ -46,7 +46,7 @@ vim.keymap.set('n', '<c-k>', ':cprevious<CR>', { noremap = true })
 -- Git
 vim.keymap.set('n', '<leader>gs', ':Gedit :<CR>', { noremap = true })
 vim.keymap.set('n', '<leader>gu', ':G pull<CR>', { noremap = true })
-vim.keymap.set('n', '<leader>gb', ':G blame<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>gb', ':Gitsigns blame<CR>', { noremap = true })
 
 -- Projectionist
 vim.keymap.set("n", "]r", ":A<CR>", { noremap = true })
