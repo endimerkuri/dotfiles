@@ -34,7 +34,6 @@ return {
                         section = 'Actions',
                         action = 'Mason'
                     },
-                    starter.sections.recent_files(10, true),
                     starter.sections.builtin_actions(),
                 }
             })
