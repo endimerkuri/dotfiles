@@ -53,7 +53,7 @@ return {
     'hudclark/grpc-nvim',
     'airblade/vim-rooter',
     { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {} },
-    {    
+    {
         'windwp/nvim-autopairs',
         config = function ()
             require('nvim-autopairs').setup{}
@@ -76,5 +76,10 @@ return {
             vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end)
             vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end)
         end
-    }
+    },
+    {
+        "m4xshen/hardtime.nvim",
+        dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+        opts = {}
+    },
 }
