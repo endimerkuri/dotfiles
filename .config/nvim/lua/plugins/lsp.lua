@@ -83,7 +83,7 @@ return {
                 on_attach = on_attach,
                 capabilities = capabilities,
             }
-            require'lspconfig'.tsserver.setup{
+            require'lspconfig'.ts_ls.setup{
                 on_attach = on_attach,
                 capabilities = capabilities,
                 root_dir = function(fname)
