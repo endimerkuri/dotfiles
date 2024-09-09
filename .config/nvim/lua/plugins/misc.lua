@@ -39,12 +39,16 @@ return {
     {
         {
             'mistweaverco/kulala.nvim',
-            config = function()
-                require('kulala').setup({
-                    default_view = 'headers_body'
-                })
-                vim.api.nvim_set_keymap("n", "<leader>or", ":lua require('kulala').run()<CR>", { noremap = true, silent = true })
-            end
+            ft = 'http',
+            opts = {
+                default_view = 'headers_body',
+                load = {
+                    ["core.defaults"] = {},
+                },
+            },
+            keys = {
+                { '<leader>or', function() require('kulala').run() end, desc = 'Send request' }
+            }
         },
     },
     'tpope/vim-dotenv',
