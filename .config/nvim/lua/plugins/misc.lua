@@ -81,9 +81,4 @@ return {
             vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end)
         end
     },
-    {
-        "m4xshen/hardtime.nvim",
-        dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-        opts = {}
-    },
 }
