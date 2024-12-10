@@ -12,6 +12,7 @@ return {
             local telescope = require'telescope'
 
             require('telescope').setup{
+                file_ignore_patterns = { "tags*" },
                 defaults = {
                     layout_config = {
                         width = 0.9,

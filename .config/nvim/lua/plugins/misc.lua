@@ -41,7 +41,8 @@ return {
             'mistweaverco/kulala.nvim',
             ft = 'http',
             opts = {
-                default_view = 'headers_body',
+                default_winbar_panes = { "body", "headers", "script_output" },
+                winbar = true,
                 load = {
                     ["core.defaults"] = {},
                 },

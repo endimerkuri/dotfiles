@@ -17,10 +17,10 @@ return {
                 vim.keymap.set('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', opts)
                 vim.keymap.set('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts)
                 vim.keymap.set('n', 'grr', ':lua vim.lsp.buf.references()<CR>', opts)
+                vim.keymap.set('n', 'grn', ':lua vim.lsp.buf.rename()<CR>', opts)
                 vim.keymap.set('n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
                 vim.keymap.set('n', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>', opts)
                 vim.keymap.set('v', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>', opts)
-                vim.keymap.set('n', '<leader>r', ':Lspsaga rename<CR>', opts)
                 vim.keymap.set('n', '<leader>gt', ':TroubleToggle document_diagnostics<CR>', opts)
             end
 
