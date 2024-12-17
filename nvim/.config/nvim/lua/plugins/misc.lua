@@ -54,7 +54,6 @@ return {
     },
     'tpope/vim-dotenv',
     'mbbill/undotree',
-    'ludovicchabant/vim-gutentags',
     'hudclark/grpc-nvim',
     'airblade/vim-rooter',
     { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {} },
