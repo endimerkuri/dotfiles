@@ -1,6 +1,10 @@
 return {
     {
         'tpope/vim-fugitive',
+        config = function ()
+            vim.keymap.set('n', '<leader>gs', ':Gedit :<CR>', { noremap = true })
+            vim.keymap.set('n', '<leader>gu', ':G pull<CR>', { noremap = true })
+        end
     },
     {
         'NeogitOrg/neogit',
@@ -44,6 +48,7 @@ return {
                 map('n', 'ghd', gs.diffthis, 'Diff This')
                 map('n', 'ghD', function() gs.diffthis('~') end, 'Diff This ~')
                 map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', 'GitSigns Select Hunk')
+                map('n', '<leader>gb', ':Gitsigns blame<CR>', 'Git Blame')
             end,
         },
     }

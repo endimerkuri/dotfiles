@@ -7,8 +7,12 @@ return {
         'gennaro-tedesco/nvim-jqx',
         ft = { 'json', 'yaml' },
     },
-    { 'tpope/vim-vinegar' },
-    'tpope/vim-projectionist',
+    {
+        'tpope/vim-projectionist',
+        config = function ()
+            vim.keymap.set("n", "]r", ":A<CR>", { noremap = true })
+        end
+    },
     {
         'monaqa/dial.nvim',
         config = function ()
@@ -36,25 +40,13 @@ return {
             vim.keymap.set('v', 'g<C-x>', dial.dec_gvisual(), { noremap = true })
         end
     },
-    {
-        {
-            'mistweaverco/kulala.nvim',
-            ft = 'http',
-            opts = {
-                default_winbar_panes = { "body", "headers", "script_output" },
-                winbar = true,
-                load = {
-                    ["core.defaults"] = {},
-                },
-            },
-            keys = {
-                { '<leader>or', function() require('kulala').run() end, desc = 'Send request' }
-            }
-        },
-    },
     'tpope/vim-dotenv',
-    'mbbill/undotree',
-    'hudclark/grpc-nvim',
+    {
+        'mbbill/undotree',
+        config = function ()
+            vim.keymap.set('n', '<leader>ou', ':UndotreeToggle<CR>', { noremap = true })
+        end
+    },
     'airblade/vim-rooter',
     { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {} },
     {
@@ -65,20 +57,4 @@ return {
     },
     'tpope/vim-surround',
     'github/copilot.vim',
-    {
-        "ThePrimeagen/harpoon",
-        branch = "harpoon2",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        config = function ()
-            local harpoon = require('harpoon')
-            harpoon.setup()
-
-            vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
-            vim.keymap.set("n", "<leader>.", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
-            vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end)
-            vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end)
-            vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end)
-            vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end)
-        end
-    },
 }

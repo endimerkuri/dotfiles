@@ -25,9 +25,6 @@ vim.keymap.set('n', '<leader>p', '\"+p', { noremap = true })
 vim.keymap.set('v', '<leader>y', '\"+y', { noremap = true })
 vim.keymap.set('v', '<leader>p', '\"+p', { noremap = true })
 
--- Save and submit slurm job via tmux
-vim.keymap.set('n', '<leader>wr', ':w<CR>:silent !trun<CR>:redraw!<CR>', {})
-
 -- Terminal mode keybindings
 vim.keymap.set('n', '<leader>;', ':vsp<CR>:terminal<CR>', { noremap = true })
 
@@ -42,20 +39,3 @@ vim.keymap.set('v', 'K', ':m \'<-2<CR>gv=gv', { noremap = true })
 -- Move in the quickfix list
 vim.keymap.set('n', '<c-j>', ':cnext<CR>', { noremap = true })
 vim.keymap.set('n', '<c-k>', ':cprevious<CR>', { noremap = true })
-
--- Git
-vim.keymap.set('n', '<leader>gs', ':Gedit :<CR>', { noremap = true })
-vim.keymap.set('n', '<leader>gu', ':G pull<CR>', { noremap = true })
-vim.keymap.set('n', '<leader>gb', ':Gitsigns blame<CR>', { noremap = true })
-
--- Projectionist
-vim.keymap.set("n", "]r", ":A<CR>", { noremap = true })
-
--- Open env
-vim.keymap.set("n", "<leader>oe", ':e ./config/.env.development<CR>', { noremap = true })
-
--- UndoTree
-vim.keymap.set('n', '<leader>ou', ':UndotreeToggle<CR>', { noremap = true })
-
--- Grpc requests
-vim.keymap.set('n', '<leader>og', ':Grpc<CR>', { noremap = true })

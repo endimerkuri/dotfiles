@@ -1,108 +1,50 @@
 return {
-    'hrsh7th/cmp-buffer',
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-path',
-    'onsails/lspkind-nvim',
-    'saadparwaiz1/cmp_luasnip',
     {
-        'hrsh7th/nvim-cmp',
-        dependencies = {
-            'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-path',
-            'onsails/lspkind-nvim',
-            'saadparwaiz1/cmp_luasnip',
-            'kristijanhusak/vim-dadbod-completion',
+        'saghen/blink.cmp',
+        lazy = false, -- lazy loading handled internally
+        -- optional: provides snippets for the snippet source
+        dependencies = 'rafamadriz/friendly-snippets',
+
+        -- use a release tag to download pre-built binaries
+        version = 'v0.*',
+        -- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
+        -- build = 'cargo build --release',
+        -- If you use nix, you can build from source using latest nightly rust with:
+        -- build = 'nix run .#build-plugin',
+
+        ---@module 'blink.cmp'
+        ---@type blink.cmp.Config
+        opts = {
+            -- 'default' for mappings similar to built-in completion
+            -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
+            -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
+            -- see the "default configuration" section below for full documentation on how to define
+            -- your own keymap.
+            keymap = { preset = 'default' },
+
+            appearance = {
+                -- Sets the fallback highlight groups to nvim-cmp's highlight groups
+                -- Useful for when your theme doesn't support blink.cmp
+                -- will be removed in a future release
+                use_nvim_cmp_as_default = true,
+                -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+                -- Adjusts spacing to ensure icons are aligned
+                nerd_font_variant = 'mono'
+            },
+
+            -- default list of enabled providers defined so that you can extend it
+            -- elsewhere in your config, without redefining it, via `opts_extend`
+            sources = {
+                default = { 'lsp', 'path', 'snippets', 'buffer' },
+                -- optionally disable cmdline completions
+                -- cmdline = {},
+            },
+
+            -- experimental signature help support
+            -- signature = { enabled = true }
         },
-        config = function()
-            local cmp = require('cmp')
-            local lspkind = require('lspkind')
-            local t = function(str)
-                return vim.api.nvim_replace_termcodes(str, true, true, true)
-            end
-            local check_back_space = function()
-                local col = vim.fn.col '.' - 1
-                return col == 0 or vim.fn.getline('.'):sub(col, col):match '%s' ~= nil
-            end
-            local has_words_before = function()
-                local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-                return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
-            end
-
-            require('nvim-autopairs').setup{}
-            local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-
-            cmp.setup {
-                formatting = {
-                    format = require('lspkind').cmp_format({
-                        with_text = true,
-                        menu = ({
-                            buffer = '[Buffer]',
-                            nvim_lsp = '[LSP]',
-                            luasnip = '[LuaSnip]',
-                            nvim_lua = '[Lua]',
-                            latex_symbols = '[Latex]',
-                            ['vim-dadbod-completion'] = '[DB]',
-                        })
-                    }),
-                },
-                mapping = {
-                    ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-                    ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-                    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-                    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-                    ['<C-Space>'] = cmp.mapping.complete(),
-                    ['<C-e>'] = cmp.mapping.close(),
-                    ['<CR>'] = cmp.mapping.confirm({
-                        behavior = cmp.ConfirmBehavior.Insert,
-                        select = true,
-                    })
-                },
-
-                -- You should specify your *installed* sources.
-                sources = {
-                    { name = 'nvim_lsp' },
-                    {
-                        name = 'buffer',
-                        option = {
-                            get_bufnrs = function()
-                                local bufs = {}
-                                for _, win in ipairs(vim.api.nvim_list_wins()) do
-                                    bufs[vim.api.nvim_win_get_buf(win)] = true
-                                end
-                                return vim.tbl_keys(bufs)
-                            end
-                        }
-                    },
-                    { name = 'luasnip' },
-                    { name = 'path' },
-                    { name = 'copilot' }
-                },
-                snippet = {
-                    -- REQUIRED - you must specify a snippet engine
-                    expand = function(args)
-                        -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-                        require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-                        -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-                        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-                        -- vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
-                    end,
-                },
-            }
-            local autocomplete_group = vim.api.nvim_create_augroup('vimrc_autocompletion', { clear = true })
-            vim.api.nvim_create_autocmd('FileType', {
-                pattern = { 'sql', 'mysql', 'plsql' },
-                callback = function()
-                    cmp.setup.buffer({
-                        sources = {
-                            { name = 'vim-dadbod-completion' },
-                            { name = 'buffer' }
-                        }
-                    })
-                end,
-                group = autocomplete_group,
-            })
-            cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
-        end
-    }
+        -- allows extending the providers array elsewhere in your config
+        -- without having to redefine it
+        opts_extend = { "sources.default" }
+    },
 }
