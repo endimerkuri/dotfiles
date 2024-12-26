@@ -31,6 +31,13 @@ return {
                 -- Adjusts spacing to ensure icons are aligned
                 nerd_font_variant = 'mono'
             },
+            completion = { 
+                menu = {
+                    auto_show = function(ctx)
+                        return ctx.mode ~= 'cmdline' and vim.bo.filetype ~= "TelescopePrompt"
+                    end
+                }
+            },
 
             -- default list of enabled providers defined so that you can extend it
             -- elsewhere in your config, without redefining it, via `opts_extend`
@@ -39,6 +46,12 @@ return {
                 -- optionally disable cmdline completions
                 -- cmdline = {},
             },
+            enabled = function()
+                return not vim.tbl_contains({ "lua", "markdown" }, vim.bo.filetype)
+                    and vim.bo.buftype ~= "prompt"
+                    and vim.b.completion ~= false
+                    and vim.bo.filetype ~= "TelescopePrompt"
+            end,
 
             -- experimental signature help support
             -- signature = { enabled = true }
