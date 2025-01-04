@@ -43,15 +43,12 @@ export ipuhome="scp://endim@dnat.simula.no/~/"
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-# Dotfiles git bare repository
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-
 alias ls='ls -CF --color=auto'
 alias v="nvim"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # NNN config
-export NNN_TRASH=1
+export NNN_TRASH=2
 n ()
 {
     # Block nesting of nnn in subshells
@@ -106,8 +103,8 @@ echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 # Plugins
-source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 bindkey '^ ' autosuggest-accept
