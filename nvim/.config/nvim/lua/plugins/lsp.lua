@@ -12,16 +12,42 @@ return {
         config = function()
             local on_attach = function(client, bufnr)
                 vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-                local opts = { noremap = true, silent = true }
 
-                vim.keymap.set('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', opts)
-                vim.keymap.set('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts)
-                vim.keymap.set('n', 'grr', ':lua vim.lsp.buf.references()<CR>', opts)
-                vim.keymap.set('n', 'grn', ':lua vim.lsp.buf.rename()<CR>', opts)
-                vim.keymap.set('n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
-                vim.keymap.set('n', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>', opts)
-                vim.keymap.set('v', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>', opts)
-                vim.keymap.set('n', '<leader>gt', ':TroubleToggle document_diagnostics<CR>', opts)
+                vim.keymap.set('n', 'K', ':lua vim.lsp.buf.hover()<CR>', {
+                    noremap = true,
+                    silent = true,
+                    desc = 'LSP Hover'
+                })
+                vim.keymap.set('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', {
+                    noremap = true,
+                    silent = true,
+                    desc = 'LSP Go To Implementation'
+                })
+                vim.keymap.set('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', {
+                    noremap = true,
+                    silent = true,
+                    desc = 'LSP Go To Definition'
+                })
+                vim.keymap.set('n', 'grr', ':lua vim.lsp.buf.references()<CR>', {
+                    noremap = true,
+                    silent = true,
+                    desc = 'LSP References'
+                })
+                vim.keymap.set('n', 'grn', ':lua vim.lsp.buf.rename()<CR>', {
+                    noremap = true,
+                    silent = true,
+                    desc = 'LSP Rename'
+                })
+                vim.keymap.set('n', 'gca', ':lua vim.lsp.buf.code_action()<CR>', {
+                    noremap = true,
+                    silent = true,
+                    desc = 'LSP Code Action'
+                })
+                vim.keymap.set('v', 'gca', ':lua vim.lsp.buf.code_action()<CR>', {
+                    noremap = true,
+                    silent = true,
+                    desc = 'LSP Code Action'
+                })
             end
 
             local capabilities = vim.lsp.protocol.make_client_capabilities()

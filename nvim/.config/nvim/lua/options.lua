@@ -37,7 +37,7 @@ vim.o.completeopt = 'menuone,noinsert,noselect'
 vim.o.shortmess = vim.o.shortmess .. 'c'
 
 vim.filetype.add({
-  extension = {
-    ['http'] = 'http',
-  },
+    extension = {
+        ['http'] = 'http',
+    },
 })

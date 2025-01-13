@@ -4,7 +4,10 @@ return {
     {
         'kristijanhusak/vim-dadbod-ui',
         config = function()
-            vim.keymap.set('n', '<leader>od', ':DBUIToggle<CR>', { noremap = true })
+            vim.keymap.set('n', '<leader>od', ':DBUIToggle<CR>', {
+                noremap = true,
+                desc = 'Toggle DBUI'
+            })
             vim.g.db_ui_win_position = 'left'
             vim.g.db_ui_use_nerd_fonts = true
             vim.g.db_ui_icons = {

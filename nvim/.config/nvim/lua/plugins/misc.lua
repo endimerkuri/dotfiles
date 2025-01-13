@@ -1,16 +1,24 @@
 return {
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        opts = {},
+        keys = {
+            {
+                "<leader>?",
+                function()
+                    require("which-key").show({ global = false })
+                end,
+                desc = "Buffer Local Keymaps (which-key)",
+            },
+        },
+    },
     { 'folke/neodev.nvim', opts = {} },
     { 'nvim-lua/plenary.nvim', lazy = true },
     'tpope/vim-sleuth',
     {
         'gennaro-tedesco/nvim-jqx',
         ft = { 'json', 'yaml' },
-    },
-    {
-        'tpope/vim-projectionist',
-        config = function ()
-            vim.keymap.set("n", "]r", ":A<CR>", { noremap = true })
-        end
     },
     {
         'monaqa/dial.nvim',
@@ -43,11 +51,13 @@ return {
     {
         'mbbill/undotree',
         config = function ()
-            vim.keymap.set('n', '<leader>ou', ':UndotreeToggle<CR>', { noremap = true })
+            vim.keymap.set('n', '<leader>ou', ':UndotreeToggle<CR>', {
+                noremap = true,
+                desc = 'Toggle UndoTree'
+            })
         end
     },
     'airblade/vim-rooter',
-    { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {} },
     {
         'windwp/nvim-autopairs',
         config = function ()

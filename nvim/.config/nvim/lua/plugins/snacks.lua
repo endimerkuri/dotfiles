@@ -4,6 +4,13 @@ return {
     lazy = false,
     opts = {
         bigfile = { enabled = false },
+        indent = { enabled = true },
+        input = { enabled = false },
+        notifier = { enabled = false },
+        quickfile = { enabled = false },
+        scroll = { enabled = false },
+        statuscolumn = { enabled = true },
+        words = { enabled = false },
         dashboard = {
             width = 60,
             row = nil, -- dashboard position. nil for center
@@ -72,12 +79,5 @@ return {
                 { section = "startup" },
             },
         },
-        indent = { enabled = false },
-        input = { enabled = false },
-        notifier = { enabled = false },
-        quickfile = { enabled = false },
-        scroll = { enabled = false },
-        statuscolumn = { enabled = true },
-        words = { enabled = false },
     },
 }

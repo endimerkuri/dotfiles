@@ -2,8 +2,8 @@ return {
     {
         'tpope/vim-fugitive',
         config = function ()
-            vim.keymap.set('n', '<leader>gs', ':Gedit :<CR>', { noremap = true })
-            vim.keymap.set('n', '<leader>gu', ':G pull<CR>', { noremap = true })
+            vim.keymap.set('n', '<leader>gs', ':Gedit :<CR>', { noremap = true, desc = 'Git Fugitive' })
+            vim.keymap.set('n', '<leader>gu', ':G pull<CR>', { noremap = true, desc = 'Git Fetch All' })
         end
     },
     {

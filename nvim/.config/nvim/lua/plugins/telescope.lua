@@ -34,12 +34,26 @@ return {
             }
             telescope.load_extension('project')
 
-            vim.keymap.set('n', '<leader>f', ':Telescope find_files<CR>', { noremap = true })
-            vim.keymap.set('n', '<leader>,', ':Telescope buffers<CR>', { noremap = true })
-            vim.keymap.set('n', '<leader>sw', ':Telescope grep_string<CR>', { noremap = true })
-            vim.keymap.set('n', '<c-p>', ':Telescope live_grep<CR>', { noremap = true })
-            vim.keymap.set('n', '<leader>op', ':Telescope projects<CR>', { noremap = true })
-            vim.keymap.set('n', '<leader>ss', ':Telescope lsp_document_symbols<CR>', { noremap = true })
+            vim.keymap.set('n', '<leader>f', ':Telescope find_files<CR>', {
+                noremap = true,
+                desc = "Fuzzy find files"
+            })
+            vim.keymap.set('n', '<leader>,', ':Telescope buffers<CR>', {
+                noremap = true,
+                desc = "Fuzzy find open buffers"
+            })
+            vim.keymap.set('n', '<c-p>', ':Telescope live_grep<CR>', {
+                noremap = true,
+                desc = "Live grep"
+            })
+            vim.keymap.set('n', '<leader>sw', ':Telescope grep_string<CR>', {
+                noremap = true,
+                desc = "Grep string in project"
+            })
+            vim.keymap.set('n', '<leader>ss', ':Telescope lsp_document_symbols<CR>', {
+                noremap = true,
+                desc = "Fuzzy find document symbols"
+            })
         end,
         dependencies = {
             {

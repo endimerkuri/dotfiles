@@ -10,14 +10,17 @@ return {
             },
         },
         keys = {
-            { '<leader>or', function() require('kulala').run() end, desc = 'Send request' }
+            { '<leader>or', function() require('kulala').run() end, desc = 'Send REST request' }
         }
     },
     {
         'hudclark/grpc-nvim',
         dependencies = { 'nvim-lua/plenary.nvim' },
         config = function ()
-            vim.keymap.set('n', '<leader>og', ':Grpc<CR>', { noremap = true })
+            vim.keymap.set('n', '<leader>og', ':Grpc<CR>', {
+                noremap = true,
+                desc = 'Send GRPC request'
+            })
         end
     },
 }
