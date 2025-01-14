@@ -9,7 +9,7 @@ return {
         notifier = { enabled = false },
         quickfile = { enabled = false },
         scroll = { enabled = false },
-        statuscolumn = { enabled = true },
+        statuscolumn = { enabled = false },
         words = { enabled = false },
         dashboard = {
             width = 60,

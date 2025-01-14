@@ -8,7 +8,6 @@ return {
         'nvim-telescope/telescope.nvim',
         config = function()
             vim.g.rooter_patterns = { '.git' }
-
             local telescope = require'telescope'
 
             require('telescope').setup{

@@ -43,7 +43,6 @@ return {
             })
         end
     },
-    'airblade/vim-rooter',
     {
         'windwp/nvim-autopairs',
         config = function ()
