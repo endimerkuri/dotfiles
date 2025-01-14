@@ -13,9 +13,9 @@ return {
             require('telescope').setup{
                 file_ignore_patterns = { "tags*" },
                 defaults = {
+                    layout_strategy = 'bottom_pane',
                     layout_config = {
-                        width = 0.9,
-                        height = 0.9,
+                        height = 100,
                     },
                     preview = {
                         treesitter = false
