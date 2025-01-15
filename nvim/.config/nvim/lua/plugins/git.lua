@@ -7,16 +7,6 @@ return {
         end
     },
     {
-        'NeogitOrg/neogit',
-        dependencies = {
-            'nvim-lua/plenary.nvim',
-        },
-        config = true,
-        opts = {
-            kind = 'replace'
-        }
-    },
-    {
         'lewis6991/gitsigns.nvim',
         event = { 'BufReadPre', 'BufNewFile' },
         opts = {
