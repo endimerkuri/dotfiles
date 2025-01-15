@@ -11,6 +11,7 @@ return {
         scroll = { enabled = false },
         statuscolumn = { enabled = true },
         words = { enabled = false },
+        picker = { enabled = true },
         dashboard = {
             width = 60,
             row = nil, -- dashboard position. nil for center
@@ -27,7 +28,7 @@ return {
                 -- When using a function, the `items` argument are the default keymaps.
                 ---@type snacks.dashboard.Item[]
                 keys = {
-                    { icon = " ", key = "p", desc = "Projects", action = ":lua require'telescope'.extensions.project.project{ display_type = 'full' }" },
+                    { icon = " ", key = "p", desc = "Projects", action = ":lua Snacks.dashboard.pick('projects')" },
                     { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
                     { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
                     { icon = " ", key = "d", desc = "Database", action = ":ene | DBUIToggle" },
@@ -80,4 +81,10 @@ return {
             },
         },
     },
+    keys = {
+        { "<leader>f", function() Snacks.picker.files() end, desc = "Files" },
+        { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
+        { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Grep Word" },
+        { "<c-p>", function() Snacks.picker.grep() end, desc = "Grep" },
+    }
 }
