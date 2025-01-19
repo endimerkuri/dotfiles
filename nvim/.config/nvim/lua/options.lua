@@ -1,9 +1,9 @@
 vim.o.nu = true
 vim.o.rnu = true
 vim.o.expandtab = true
-vim.o.tabstop = 4
-vim.o.softtabstop = 4
-vim.o.shiftwidth = 4
+vim.o.tabstop = 2
+vim.o.softtabstop = 2
+vim.o.shiftwidth = 2
 vim.o.shiftround = true
 vim.o.smartindent = true
 vim.o.hlsearch = false
@@ -21,14 +21,14 @@ vim.o.undofile = true
 -- vim.o.background = 'dark'
 vim.o.ignorecase = true
 vim.o.smartcase = true
-vim.o.laststatus = 3
+-- vim.o.laststatus = 3
 
 local function augroup(name)
     return vim.api.nvim_create_augroup('my_lazyvim_' .. name, { clear = true })
 end
 
 vim.g.mapleader = ' '
-vim.cmd[[set winbar=%=%m\ %f]]
+-- vim.cmd[[set winbar=%=%m\ %f]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noinsert,noselect'
