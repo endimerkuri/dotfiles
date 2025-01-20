@@ -1,9 +1,12 @@
+(add-to-list 'default-frame-alist '(font . "JetBrainsMono Nerd Font"))
+(set-face-attribute 'default t :font "JetBrainsMono Nerd Font")
+
 (setq inhibit-startup-message t
       visible-bell nil)
 
-(global-display-line-numbers-mode 1)
+(global-display-line-numbers-mode t)
 
-(recentf-mode 1)
+(recentf-mode t)
 
 (menu-bar-mode -1)
 (tool-bar-mode -1)
