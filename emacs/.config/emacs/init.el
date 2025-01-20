@@ -123,6 +123,9 @@
 (use-package magit
   :ensure t)
 
+(use-package go-mode
+  :ensure t)
+
 (use-package lsp-mode
   :init
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
