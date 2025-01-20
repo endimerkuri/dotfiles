@@ -123,5 +123,14 @@
 (use-package magit
   :ensure t)
 
+(use-package lsp-mode
+  :init
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  (setq lsp-keymap-prefix "C-c l")
+  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+         (js-mode . lsp-deferred)
+	 (go-mode . lsp-deferred))
+  :commands (lsp lsp-deferred))
+
 (setq modus-themes-mode-line '(accented borderless 4))
 (load-theme 'modus-vivendi t)
