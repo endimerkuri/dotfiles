@@ -9,9 +9,9 @@
 (setq inhibit-startup-message t
       visible-bell nil)
 
-(let ((mono-spaced-font "Ubuntu Mono")
-      (proportionately-spaced-font "Ubuntu Mono"))
-  (set-face-attribute 'default nil :family mono-spaced-font :height 110)
+(let ((mono-spaced-font "Iosevka")
+      (proportionately-spaced-font "Iosevka"))
+  (set-face-attribute 'default nil :family mono-spaced-font :height 120)
   (set-face-attribute 'fixed-pitch nil :family mono-spaced-font :height 1.0)
   (set-face-attribute 'variable-pitch nil :family proportionately-spaced-font :height 1.0))
 
@@ -26,6 +26,14 @@
     (unless package-archive-contents
       (package-refresh-contents))
     (package-install 'use-package)))
+
+(use-package treesit-auto
+  :ensure t
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
 
 (use-package nerd-icons
   :ensure t)
@@ -123,17 +131,18 @@
 (use-package magit
   :ensure t)
 
-(use-package go-mode
-  :ensure t)
-
 (use-package lsp-mode
+  :ensure t
   :init
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
   (setq lsp-keymap-prefix "C-c l")
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-         (js-mode . lsp-deferred)
-	 (go-mode . lsp-deferred))
+         (js-ts-mode . lsp-deferred)
+	 (go-ts-mode . lsp-deferred))
   :commands (lsp lsp-deferred))
+
+(setq modus-themes-italic-constructs t
+      modus-themes-bold-constructs t)
 
 (setq modus-themes-mode-line '(accented borderless 4))
 (load-theme 'modus-vivendi t)
