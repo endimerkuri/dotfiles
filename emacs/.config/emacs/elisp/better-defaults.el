@@ -3,6 +3,7 @@
   (recentf-mode t)
   (setq inhibit-startup-message t)
 
+  (electric-pair-mode nil)
   (unless (memq window-system '(mac ns))
     (menu-bar-mode -1))
   (when (fboundp 'tool-bar-mode)
