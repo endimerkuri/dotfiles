@@ -1,13 +1,5 @@
-(global-display-line-numbers-mode t)
-
-(recentf-mode t)
-
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-
-(setq inhibit-startup-message t
-      visible-bell nil)
+(add-to-list 'load-path "~/.config/emacs/elisp")
+(require 'better-defaults)
 
 (let ((mono-spaced-font "Iosevka")
       (proportionately-spaced-font "Iosevka"))
@@ -26,6 +18,12 @@
     (unless package-archive-contents
       (package-refresh-contents))
     (package-install 'use-package)))
+
+(use-package vterm
+  :ensure t)
+
+(use-package docker
+  :ensure t)
 
 (use-package treesit-auto
   :ensure t
@@ -143,6 +141,16 @@
 
 (setq modus-themes-italic-constructs t
       modus-themes-bold-constructs t)
+(setq modus-themes-region '(bg-only no-extend))
+(setq modus-themes-headings
+      '((1 . (rainbow overline background 1.4))
+        (2 . (rainbow background 1.3))
+        (3 . (rainbow bold 1.2))
+        (t . (semilight 1.1))))
+
+;; Important!
+(setq modus-themes-scale-headings t)
+(setq modus-themes-org-blocks 'tinted-background)
 
 (setq modus-themes-mode-line '(accented borderless 4))
 (load-theme 'modus-vivendi t)
