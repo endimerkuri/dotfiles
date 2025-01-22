@@ -121,6 +121,12 @@
 	 (go-ts-mode . lsp-deferred))
   :commands (lsp lsp-deferred))
 
+(use-package yasnippet
+  :ensure t)
+(use-package yasnippet-snippets
+  :ensure t)
+(yas-global-mode 1)
+
 (setq modus-themes-italic-constructs t
       modus-themes-bold-constructs t)
 (setq modus-themes-region '(bg-only no-extend))
