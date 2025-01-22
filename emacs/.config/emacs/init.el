@@ -133,6 +133,9 @@
   :ensure t)
 (yas-global-mode 1)
 
+(use-package format-all
+  :ensure t)
+
 (setq modus-themes-italic-constructs t
       modus-themes-bold-constructs t)
 (setq modus-themes-region '(bg-only no-extend))

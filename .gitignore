@@ -1,3 +1,14 @@
 .cfg
 tags*
 /emacs/.config/emacs/.cache/
+/emacs/.config/emacs/tree-sitter/
+/emacs/.config/emacs/transient/
+/emacs/.config/emacs/recentf
+/emacs/.config/emacs/projects
+/emacs/.config/emacs/places
+/emacs/.config/emacs/history
+/emacs/.config/emacs/elpa/
+/emacs/.config/emacs/auto-save-list/
+/emacs/.config/emacs/backups/
+/emacs/.config/emacs/.lsp-session-v1
+/emacs/.config/emacs/eln-cache/
