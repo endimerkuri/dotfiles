@@ -136,6 +136,10 @@
 (use-package format-all
   :ensure t)
 
+(use-package indent-bars
+  :ensure t
+  :hook ((js-ts-mode go-ts-mode) . indent-bars-mode))
+
 (setq modus-themes-italic-constructs t
       modus-themes-bold-constructs t)
 (setq modus-themes-region '(bg-only no-extend))
