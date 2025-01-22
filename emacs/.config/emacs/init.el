@@ -138,6 +138,9 @@
 
 (use-package indent-bars
   :ensure t
+  :custom
+  (indent-bars-no-descend-lists t) ; no extra bars in continued func arg lists
+  (indent-bars-treesit-support t)
   :hook ((js-ts-mode go-ts-mode) . indent-bars-mode))
 
 (setq modus-themes-italic-constructs t
