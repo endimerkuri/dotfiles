@@ -3,11 +3,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("2e7dc2838b7941ab9cabaa3b6793286e5134f583c04bde2fba2f4e20f2617cf7" default))
  '(package-selected-packages
-   '(treesit-auto gnu-elpa-keyring-update lsp-mode trashed dired-subtree corfu orderless vertico nerd-icons-dired nerd-icons-corfu nerd-icons-completion nerd-icons modus-themes magit))
- '(packagex-selected-packages '(magit ##)))
+   '(yasnippet-snippets yasnippet lsp-mode magit trashed dired-subtree corfu orderless marginalia vertico nerd-icons-dired nerd-icons-corfu nerd-icons-completion nerd-icons treesit-auto docker vterm)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

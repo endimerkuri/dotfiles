@@ -121,6 +121,12 @@
 	 (go-ts-mode . lsp-deferred))
   :commands (lsp lsp-deferred))
 
+(setq lsp-completion-provider :none)
+(defun corfu-lsp-setup ()
+  (setq-local completion-styles '(orderless)
+              completion-category-defaults nil))
+(add-hook 'lsp-mode-hook #'corfu-lsp-setup)
+
 (use-package yasnippet
   :ensure t)
 (use-package yasnippet-snippets
