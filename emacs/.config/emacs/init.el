@@ -118,7 +118,8 @@
   (setq lsp-keymap-prefix "C-c l")
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
          (js-ts-mode . lsp-deferred)
-	 (go-ts-mode . lsp-deferred))
+	 (go-ts-mode . lsp-deferred)
+	 (latex-mode . lsp-deferred))
   :commands (lsp lsp-deferred))
 
 (setq lsp-completion-provider :none)
@@ -141,6 +142,13 @@
   :custom
   (indent-bars-no-descend-lists t) ; no extra bars in continued func arg lists
   (indent-bars-treesit-support t)
+  (indent-bars-pattern ".")
+  (indent-bars-color '(highlight :face-bg t :blend 1.0))
+  (indent-bars-width-frac 0.1)
+  (indent-bars-zigzag nil)
+  (indent-bars-color-by-depth nil)
+  (indent-bars-highlight-current-depth nil)
+  (indent-bars-display-on-blank-lines t)
   :hook ((js-ts-mode go-ts-mode) . indent-bars-mode))
 
 (setq modus-themes-italic-constructs t
