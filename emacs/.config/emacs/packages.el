@@ -76,10 +76,10 @@
   ;; used by `completion-at-point'.  The order of the functions matters, the
   ;; first function returning a result wins.  Note that the list of buffer-local
   ;; completion functions takes precedence over the global list.
-   (add-hook 'completion-at-point-functions #'cape-file)
-   ;; (add-hook 'completion-at-point-functions #'cape-history)
+  (add-hook 'completion-at-point-functions #'cape-file)
+  ;; (add-hook 'completion-at-point-functions #'cape-history)
   ;; ...
-)
+  )
 
 (use-package dired
   :ensure nil
@@ -142,6 +142,13 @@
 
 (use-package format-all
   :ensure t)
+
+(use-package dtrt-indent
+  :ensure t
+  :config
+  (setq dtrt-indent-hook-mapping-list
+        (cons '(js-ts-mode javascript js-indent-level) dtrt-indent-hook-mapping-list))
+  :hook (after-init . dtrt-indent-global-mode))
 
 ;; (use-package indent-bars
 ;;   :ensure t

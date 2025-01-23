@@ -2,8 +2,6 @@
 (load "~/.config/emacs/nerd-icons-config.el" nil t)
 (load "~/.config/emacs/packages.el" nil t)
 
-(setq js-indent-level 2)
-
 (let ((mono-spaced-font "Iosevka")
       (proportionately-spaced-font "Iosevka"))
   (set-face-attribute 'default nil :family mono-spaced-font :height 120)
