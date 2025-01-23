@@ -13,3 +13,4 @@ tags*
 /emacs/.config/emacs/.lsp-session-v1
 /emacs/.config/emacs/eln-cache/
 /emacs/.config/emacs/games/
+/emacs/.config/emacs/eshell/
