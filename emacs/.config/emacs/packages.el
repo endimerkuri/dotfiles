@@ -146,6 +146,7 @@
 (use-package dtrt-indent
   :ensure t
   :config
+  (setq dtrt-indent-min-quality 100)
   (setq dtrt-indent-hook-mapping-list
         (cons '(js-ts-mode javascript js-indent-level) dtrt-indent-hook-mapping-list))
   :hook (after-init . dtrt-indent-global-mode))
