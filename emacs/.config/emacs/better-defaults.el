@@ -18,6 +18,7 @@
 
 ;; Display line numbers in programming mode
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+(add-hook 'prog-mode-hook 'electric-pair-mode)
 (setopt display-line-numbers-width 3)           ; Set a minimum width
 
 (setopt x-underline-at-descent-line nil)           ; Prettier underlines
@@ -38,7 +39,6 @@
 (recentf-mode t)
 (setq inhibit-startup-message t)
 
-(electric-pair-mode nil)
 (unless (memq window-system '(mac ns))
   (menu-bar-mode -1))
 (when (fboundp 'tool-bar-mode)
