@@ -1,5 +1,4 @@
 return {
-    { 'wakatime/vim-wakatime', lazy = false },
     { 'folke/neodev.nvim', opts = {} },
     { 'nvim-lua/plenary.nvim', lazy = true },
     'tpope/vim-sleuth',
@@ -56,5 +55,4 @@ return {
         end
     },
     'tpope/vim-surround',
-    'github/copilot.vim',
 }

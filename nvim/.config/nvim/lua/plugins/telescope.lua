@@ -32,7 +32,6 @@ return {
                     }
                 }
             }
-            telescope.load_extension('fzf')
             telescope.load_extension('project')
 
             vim.keymap.set('n', '<leader>f', ':Telescope find_files<CR>', { noremap = true })
@@ -43,7 +42,13 @@ return {
             vim.keymap.set('n', '<leader>ss', ':Telescope lsp_document_symbols<CR>', { noremap = true })
         end,
         dependencies = {
-            'nvim-telescope/telescope-fzf-native.nvim',
+            {
+                "nvim-telescope/telescope-fzf-native.nvim",
+                build = "make",
+                config = function()
+                    require("telescope").load_extension("fzf")
+                end,
+            },
             'nvim-telescope/telescope-project.nvim',
             'nvim-lua/plenary.nvim'
         }
