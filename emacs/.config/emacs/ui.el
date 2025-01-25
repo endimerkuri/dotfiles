@@ -1,8 +1,16 @@
-(let ((mono-spaced-font "Iosevka")
-      (proportionately-spaced-font "Iosevka"))
-  (set-face-attribute 'default nil :family mono-spaced-font :height 120)
-  (set-face-attribute 'fixed-pitch nil :family mono-spaced-font :height 1.0)
-  (set-face-attribute 'variable-pitch nil :family proportionately-spaced-font :height 1.0))
+(defun efs/set-font-faces ()
+  (let ((mono-spaced-font "Iosevka")
+        (proportionately-spaced-font "Iosevka"))
+    (set-face-attribute 'default nil :family mono-spaced-font :height 120)
+    (set-face-attribute 'fixed-pitch nil :family mono-spaced-font :height 1.0)
+    (set-face-attribute 'variable-pitch nil :family proportionately-spaced-font :height 1.0)))
+
+(if (daemonp)
+    (add-hook 'after-make-frame-functions
+              (lambda (frame)
+                (with-selected-frame frame
+                  (efs/set-font-faces))))
+    (efs/set-font-faces))
 
 (setq modus-themes-italic-constructs t
       modus-themes-bold-constructs t)

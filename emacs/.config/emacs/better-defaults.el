@@ -24,8 +24,6 @@
 (setopt x-underline-at-descent-line nil)           ; Prettier underlines
 (setopt switch-to-buffer-obey-display-actions t)   ; Make switching buffers more consistent
 
-(setopt indicate-buffer-boundaries 'left)  ; Show buffer top and bottom in the margin
-
 ;; Nice line wrapping when working with text
 (add-hook 'text-mode-hook 'visual-line-mode)
 
@@ -39,8 +37,7 @@
 (recentf-mode t)
 (setq inhibit-startup-message t)
 
-(unless (memq window-system '(mac ns))
-  (menu-bar-mode -1))
+(menu-bar-mode -1)
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
 (when (fboundp 'scroll-bar-mode)
