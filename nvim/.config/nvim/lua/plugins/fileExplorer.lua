@@ -3,7 +3,9 @@ return {
         'stevearc/oil.nvim',
         dependencies = { { "echasnovski/mini.icons", opts = {} } },
         config = function ()
-            require('oil').setup{}
+            require('oil').setup{
+                delete_to_trash = true
+            }
             vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
         end
     },

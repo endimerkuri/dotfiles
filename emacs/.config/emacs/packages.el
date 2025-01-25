@@ -138,7 +138,8 @@
   :ensure t)
 (use-package yasnippet-snippets
   :ensure t)
-(yas-global-mode 1)
+(yas-reload-all)
+(add-hook 'prog-mode-hook #'yas-minor-mode)
 
 (use-package format-all
   :ensure t)
