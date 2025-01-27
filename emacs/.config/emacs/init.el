@@ -5,7 +5,7 @@
 
 (defun my-modeline--major-mode-name ()
   "Return capitalized `major-mode' as a string."
-  (capitalize (symbol-name major-mode)))
+  (format "%18s" (capitalize (replace-regexp-in-string "-mode" "" (symbol-name major-mode)))))
 
 (defvar-local my-modeline-major-mode
     '(:eval
@@ -24,16 +24,11 @@
               `((space :align-to (- (+ right right-fringe right-margin) ,reserve)))))
 
 (setq-default mode-line-format
-              (list
-               '("%e" mode-line-front-space
-                 (:propertize
-                  ("" mode-line-client mode-line-modified mode-line-remote)
-                  display
-                  (min-width ...))
-                 mode-line-frame-identification mode-line-buffer-identification "   " mode-line-position
-                 (vc-mode vc-mode)
-                 "  "  mode-line-misc-info "  ")
-               (mode-line-fill 20) my-modeline-major-mode mode-line-end-spaces
-               ))
+              (list '("%e" mode-line-front-space
+                      (:propertize "[%*] " display (min-width ...))
+                      mode-line-buffer-identification "   " mode-line-position
+                      (vc-mode vc-mode))
+                    "  "  mode-line-misc-info "  "
+                    (mode-line-fill 20) my-modeline-major-mode))
 
 (setq gc-cons-threshold (or bedrock--initial-gc-threshold 800000))
