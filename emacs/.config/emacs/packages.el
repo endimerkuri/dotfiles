@@ -39,6 +39,9 @@
 
 (use-package vertico
   :ensure t
+  :config
+  (setq vertico-cycle 1)
+  (setq vertico-resize nil)
   :hook (after-init . vertico-mode))
 
 (use-package marginalia
@@ -278,7 +281,7 @@
 
   ;; Optionally make narrowing help available in the minibuffer.
   ;; You may want to use `embark-prefix-help-command' or which-key instead.
-  ;; (keymap-set consult-narrow-map (concat consult-narrow-key " ?") #'consult-narrow-help)
+  (keymap-set consult-narrow-map (concat consult-narrow-key " ?") #'consult-narrow-help)
   )
 
 (use-package embark

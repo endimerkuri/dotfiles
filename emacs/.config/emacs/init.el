@@ -6,4 +6,7 @@
 
 (add-to-list 'auto-mode-alist '("\.[cm]js" . js-mode))
 
+(setq ediff-split-window-function 'split-window-horizontally)
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
 (setq gc-cons-threshold (or bedrock--initial-gc-threshold 800000))
