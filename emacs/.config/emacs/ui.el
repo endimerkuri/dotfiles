@@ -53,3 +53,5 @@
   ;; vertically center content
   (setq dashboard-vertically-center-content t)
   (dashboard-setup-startup-hook))
+
+(setq treesit-font-lock-level 4)
