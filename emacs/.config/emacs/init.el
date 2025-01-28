@@ -4,4 +4,6 @@
 (load-file (expand-file-name "ui.el" user-emacs-directory))
 (load-file (expand-file-name "modeline.el" user-emacs-directory))
 
+(add-to-list 'auto-mode-alist '("\.[cm]js" . js-mode))
+
 (setq gc-cons-threshold (or bedrock--initial-gc-threshold 800000))
