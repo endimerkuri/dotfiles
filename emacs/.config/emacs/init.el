@@ -33,8 +33,8 @@
 (let ((hl-line-hooks '(text-mode-hook prog-mode-hook)))
   (mapc (lambda (hook) (add-hook hook 'hl-line-mode)) hl-line-hooks))
 
-(blink-cursor-mode -1)                                ; Steady cursor
-(pixel-scroll-precision-mode)                         ; Smooth scrolling
+(blink-cursor-mode -1)
+(pixel-scroll-precision-mode)
 
 (recentf-mode t)
 (setq inhibit-startup-message t)
@@ -524,7 +524,6 @@
                       (vc-mode vc-mode))
                     "  "  mode-line-misc-info "  "
                     (mode-line-fill 20) my-modeline-major-mode))
-
 
 (add-to-list 'auto-mode-alist '("\.[cm]js" . js-mode))
 
