@@ -111,14 +111,14 @@
   :config
   (setq docker-container-columns
         '((:name "Id" :width 16 :template "{{ json .ID }}" :sort nil :format nil)
-         (:name "Names" :width 50 :template "{{ json .Names }}" :sort nil :format nil)
-         (:name "Image" :width 15 :template "{{ json .Image }}" :sort nil :format nil)
-         (:name "Created" :width 23 :template "{{ json .CreatedAt }}" :sort nil :format
-                (lambda
-                  (x)
-                  (format-time-string "%F %T"
-                                      (date-to-time x))))
-         (:name "Status" :width 20 :template "{{ json .Status }}" :sort nil :format nil))
+          (:name "Names" :width 50 :template "{{ json .Names }}" :sort nil :format nil)
+          (:name "Image" :width 15 :template "{{ json .Image }}" :sort nil :format nil)
+          (:name "Created" :width 23 :template "{{ json .CreatedAt }}" :sort nil :format
+                 (lambda
+                   (x)
+                   (format-time-string "%F %T"
+                                       (date-to-time x))))
+          (:name "Status" :width 20 :template "{{ json .Status }}" :sort nil :format nil))
         ))
 
 (use-package treesit-auto
@@ -235,8 +235,8 @@
   (setq lsp-keymap-prefix "C-c l")
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
          (js-ts-mode . lsp-deferred)
-	 (go-ts-mode . lsp-deferred)
-	 (latex-mode . lsp-deferred))
+         (go-ts-mode . lsp-deferred)
+         (latex-mode . lsp-deferred))
   :commands (lsp lsp-deferred))
 
 (setq lsp-completion-provider :none)
@@ -448,7 +448,7 @@
               (lambda (frame)
                 (with-selected-frame frame
                   (efs/set-font-faces))))
-    (efs/set-font-faces))
+  (efs/set-font-faces))
 
 (setq modus-themes-italic-constructs t
       modus-themes-bold-constructs t)
@@ -491,6 +491,9 @@
   ;; vertically center content
   (setq dashboard-vertically-center-content t)
   (dashboard-setup-startup-hook))
+
+(use-package copilot
+  :ensure t)
 
 (setq treesit-font-lock-level 4)
 
