@@ -520,7 +520,7 @@
 (setq-default mode-line-format
               (list '("%e" mode-line-front-space
                       (:propertize "[%*] " display (min-width ...))
-                      mode-line-buffer-identification  "   " mode-line-position
+                      (:eval (propertize "%b" 'face 'bold))  "   " "L%l" "   " "%o" "  "
                       (vc-mode vc-mode))
                     "  "  mode-line-misc-info "  "
                     (mode-line-fill 20) my-modeline-major-mode))
@@ -531,3 +531,13 @@
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
 (setq gc-cons-threshold (or bedrock--initial-gc-threshold 800000))
+
+(use-package combobulate
+  :custom
+  ;; You can customize Combobulate's key prefix here.
+  ;; Note that you may have to restart Emacs for this to take effect!
+  (combobulate-key-prefix "C-c o")
+  :hook ((prog-mode . combobulate-mode))
+  ;; Amend this to the directory where you keep Combobulate's source
+  ;; code.
+  :load-path ("elpa/combobulate"))
