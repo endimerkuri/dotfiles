@@ -93,6 +93,7 @@ export PATH="$PATH:/Users/endimerkuri/.dotnet/tools"
 export PATH="/Users/endimerkuri/.local/bin:$PATH"
 export GOBIN="$HOME/.local/bin"
 export XCURSOR_SIZE=16
+source "$HOME/.cargo/env"
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh

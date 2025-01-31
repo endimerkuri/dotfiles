@@ -1,5 +1,6 @@
-(setq bedrock--initial-gc-threshold gc-cons-threshold)
-(setq gc-cons-threshold 10000000)
+(setq gc-cons-threshold 100000000)
+(setenv "LSP_USE_PLISTS" "true")
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
 (setq byte-compile-warnings '(not obsolete))
 (setq warning-suppress-log-types '((comp) (bytecomp)))
 (setq native-comp-async-report-warnings-errors 'silent)
