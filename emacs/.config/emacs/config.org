@@ -1,6 +1,7 @@
 # Created 2025-01-30 Thu 12:11
 #+title: Emacs Configuration
 #+author: Endi Merkuri
+
 * Configuration
 ** Early Initialization
 #+begin_src emacs-lisp :tangle early-init.el
@@ -336,6 +337,7 @@
 #+end_src
 
 *** Emacs lsp booster
+Delete and install lsp mode again before enabling lsp booster.
 Note: install lsp booster with =cargo install emacs-lsp-booster=
 #+begin_src emacs-lisp :tangle init.el
   (defun lsp-booster--advice-json-parse (old-fn &rest args)
@@ -671,13 +673,8 @@ Note: install lsp booster with =cargo install emacs-lsp-booster=
                           (mode-line-fill 20) my-modeline-major-mode))
 #+end_src
 
-*** Misc
+*** Treesitter based movement/selection
 #+begin_src emacs-lisp :tangle init.el
-  (add-to-list 'auto-mode-alist '("\.[cm]js" . js-mode))
-
-  (setq ediff-split-window-function 'split-window-horizontally)
-  (setq ediff-window-setup-function 'ediff-setup-windows-plain)
-
   (use-package combobulate
     :custom
     (combobulate-key-prefix "C-c o")
@@ -685,4 +682,23 @@ Note: install lsp booster with =cargo install emacs-lsp-booster=
            (go-ts-mode . combobulate-mode)
            (js-ts-mode . combobulate-mode))
     :load-path ("elpa/combobulate"))
+#+end_src
+
+*** Rest requests
+
+#+begin_src emacs-lisp :tangle init.el
+  (use-package verb
+    :ensure t)
+
+  (use-package org
+    :mode ("\\.org\\'" . org-mode)
+    :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
+#+end_src
+
+*** Misc
+#+begin_src emacs-lisp :tangle init.el
+  (add-to-list 'auto-mode-alist '("\.[cm]js" . js-mode))
+
+  (setq ediff-split-window-function 'split-window-horizontally)
+  (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 #+end_src

@@ -556,11 +556,6 @@
                     "  "  mode-line-misc-info "  "
                     (mode-line-fill 20) my-modeline-major-mode))
 
-(add-to-list 'auto-mode-alist '("\.[cm]js" . js-mode))
-
-(setq ediff-split-window-function 'split-window-horizontally)
-(setq ediff-window-setup-function 'ediff-setup-windows-plain)
-
 (use-package combobulate
   :custom
   (combobulate-key-prefix "C-c o")
@@ -568,3 +563,15 @@
          (go-ts-mode . combobulate-mode)
          (js-ts-mode . combobulate-mode))
   :load-path ("elpa/combobulate"))
+
+(use-package verb
+  :ensure t)
+
+(use-package org
+  :mode ("\\.org\\'" . org-mode)
+  :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
+
+(add-to-list 'auto-mode-alist '("\.[cm]js" . js-mode))
+
+(setq ediff-split-window-function 'split-window-horizontally)
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
