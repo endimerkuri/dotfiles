@@ -564,6 +564,9 @@
          (js-ts-mode . combobulate-mode))
   :load-path ("elpa/combobulate"))
 
+(use-package diff-hl
+  :ensure t)
+
 (use-package verb
   :ensure t)
 
