@@ -516,7 +516,7 @@
 
 (defun my-modeline--major-mode-name ()
   "Return capitalized `major-mode' as a string."
-  (format "%18s" (capitalize (replace-regexp-in-string "-mode" "" (symbol-name major-mode)))))
+  (format "%18s" (capitalize (replace-regexp-in-string "-ts" "" (replace-regexp-in-string "-mode" "" (symbol-name major-mode))))))
 
 (defvar-local my-modeline-major-mode
     '(:eval
