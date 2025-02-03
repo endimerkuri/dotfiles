@@ -294,20 +294,6 @@
         (cons '(js-ts-mode javascript (js-indent-level standard-indent)) dtrt-indent-hook-mapping-list))
   :hook (after-init . dtrt-indent-global-mode))
 
-(use-package indent-bars
-  :ensure t
-  :custom
-  (indent-bars-no-descend-lists t) ; no extra bars in continued func arg lists
-  (indent-bars-treesit-support t)
-  (indent-bars-pattern ".")
-  (indent-bars-color '(highlight :face-bg t :blend 1.0))
-  (indent-bars-width-frac 0.1)
-  (indent-bars-zigzag nil)
-  (indent-bars-color-by-depth nil)
-  (indent-bars-highlight-current-depth nil)
-  (indent-bars-display-on-blank-lines t)
-  :hook (dtrt-indent-mode . indent-bars-mode))
-
 (use-package consult
   :ensure t
   ;; Replace bindings. Lazily loaded by `use-package'.
