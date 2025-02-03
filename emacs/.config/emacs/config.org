@@ -667,6 +667,13 @@ Note: install lsp booster with =cargo install emacs-lsp-booster=
     :load-path ("elpa/combobulate"))
 #+end_src
 
+*** Which key
+#+begin_src emacs-lisp :tangle init.el
+  (use-package which-key
+    :ensure t)
+  (which-key-mode)
+#+end_src
+
 *** Git highlights
 #+begin_src emacs-lisp :tangle init.el
   (use-package diff-hl

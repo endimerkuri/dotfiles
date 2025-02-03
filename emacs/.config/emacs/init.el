@@ -550,6 +550,10 @@
          (js-ts-mode . combobulate-mode))
   :load-path ("elpa/combobulate"))
 
+(use-package which-key
+  :ensure t)
+(which-key-mode)
+
 (use-package diff-hl
   :ensure t)
 (global-diff-hl-mode)
