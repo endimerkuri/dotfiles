@@ -566,6 +566,7 @@
 
 (use-package diff-hl
   :ensure t)
+(global-diff-hl-mode)
 
 (use-package verb
   :ensure t)

@@ -686,8 +686,9 @@ Note: install lsp booster with =cargo install emacs-lsp-booster=
 
 *** Git highlights
 #+begin_src emacs-lisp :tangle init.el
-    (use-package diff-hl
-      :ensure t)
+  (use-package diff-hl
+    :ensure t)
+  (global-diff-hl-mode)
 #+end_src
 
 *** Rest requests
