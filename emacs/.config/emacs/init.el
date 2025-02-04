@@ -1,3 +1,4 @@
+(setq use-package-verbose t)
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file :no-error-if-file-is-missing)
 
@@ -104,10 +105,12 @@
     (package-install 'use-package)))
 
 (use-package vterm
-  :ensure t)
+  :ensure t
+  :commands vterm)
 
 (use-package docker
   :ensure t
+  :commands docker
   :config
   (setq docker-container-columns
         '((:name "Id" :width 16 :template "{{ json .ID }}" :sort nil :format nil)
@@ -226,7 +229,8 @@
   (setq trashed-date-format "%Y-%m-%d %H:%M:%S"))
 
 (use-package magit
-  :ensure t)
+  :ensure t
+  :commands (magit-status magit-clone))
 
 (use-package lsp-mode
   :ensure t
@@ -559,11 +563,12 @@
 (global-diff-hl-mode)
 
 (use-package verb
-  :ensure t)
+  :ensure t
+  :after org
+  :defer t)
 
-(use-package org
-  :mode ("\\.org\\'" . org-mode)
-  :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
+(with-eval-after-load 'org
+  (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 
 (add-to-list 'auto-mode-alist '("\.[cm]js" . js-mode))
 
