@@ -337,7 +337,8 @@
   (add-hook 'prog-mode-hook #'yas-minor-mode)
 
   (use-package format-all
-    :ensure t)
+    :ensure t
+    :commands format-all-buffer)
 #+end_src
 
 *** Emacs lsp booster

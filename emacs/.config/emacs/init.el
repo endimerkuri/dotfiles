@@ -257,7 +257,8 @@
 (add-hook 'prog-mode-hook #'yas-minor-mode)
 
 (use-package format-all
-  :ensure t)
+  :ensure t
+  :commands format-all-buffer)
 
 (defun lsp-booster--advice-json-parse (old-fn &rest args)
   "Try to parse bytecode instead of json."
