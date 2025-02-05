@@ -1,3 +1,23 @@
+;;; init.el --- Init -*- no-byte-compile: t; lexical-binding: t; -*-
+
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
+(when (< emacs-major-version 29)
+  (unless (package-installed-p 'use-package)
+    (unless package-archive-contents
+      (package-refresh-contents))
+    (package-install 'use-package)))
+
+(setq compile-angel-excluded-files-regexps '("^/usr/share/.*"))
+(use-package compile-angel
+  :ensure t
+  :demand t
+  :config
+  (setq compile-angel-verbose t)
+  (compile-angel-on-load-mode)
+  (add-hook 'emacs-lisp-mode-hook #'compile-angel-on-save-local-mode))
+
 (setq use-package-verbose t)
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file :no-error-if-file-is-missing)
@@ -94,15 +114,6 @@
 (make-directory (expand-file-name "tmp/auto-saves/" user-emacs-directory) t)
 (setq auto-save-list-file-prefix (expand-file-name "tmp/auto-saves/sessions/" user-emacs-directory)
       auto-save-file-name-transforms `((".*" ,(expand-file-name "tmp/auto-saves" user-emacs-directory) t)))
-
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-
-(when (< emacs-major-version 29)
-  (unless (package-installed-p 'use-package)
-    (unless package-archive-contents
-      (package-refresh-contents))
-    (package-install 'use-package)))
 
 (use-package vterm
   :ensure t
