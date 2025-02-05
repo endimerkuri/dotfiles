@@ -529,6 +529,8 @@
 (use-package combobulate
   :custom
   (combobulate-key-prefix "C-c o")
+  :config
+  (setq combobulate-flash-node nil)
   :hook (
          (go-ts-mode . combobulate-mode)
          (js-ts-mode . combobulate-mode))
