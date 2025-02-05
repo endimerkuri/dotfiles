@@ -106,7 +106,11 @@
 
 (use-package vterm
   :ensure t
-  :commands vterm)
+  :defer t
+  :commands vterm
+  :config
+  ;; Speed up vterm
+  (setq vterm-timer-delay 0.01))
 
 (use-package docker
   :ensure t
@@ -138,21 +142,25 @@
 
 (use-package vertico
   :ensure t
-  :config
-  (setq vertico-cycle 1)
-  (setq vertico-resize nil)
-  :hook (after-init . vertico-mode))
+  :defer t
+  :commands vertico-mode
+  :hook (after-init . vertico-mode)
+  :custom
+  (vertico-cycle t)
+  (vertico-resize nil))
 
 (use-package marginalia
   :ensure t
+  :defer t
+  :commands (marginalia-mode marginalia-cycle)
   :hook (after-init . marginalia-mode))
 
 (use-package orderless
   :ensure t
-  :config
-  (setq completion-styles '(orderless basic))
-  (setq completion-category-defaults nil)
-  (setq completion-category-overrides nil))
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-defaults nil)
+  (completion-category-overrides nil))
 
 (use-package savehist
   :ensure nil ; it is built-in
@@ -160,40 +168,30 @@
 
 (use-package corfu
   :ensure t
-  :hook (after-init . global-corfu-mode)
+  :defer t
+  :commands (corfu-mode global-corfu-mode)
+  :hook ((prog-mode . corfu-mode)
+         (shell-mode . corfu-mode)
+         (eshell-mode . corfu-mode))
   :bind (:map corfu-map ("<tab>" . corfu-complete))
+  :custom
+  ;; Hide commands in M-x which do not apply to the current mode.
+  (read-extended-command-predicate #'command-completion-default-include-p)
+  ;; Disable Ispell completion function. As an alternative try `cape-dict'.
+  (text-mode-ispell-word-completion nil)
+  (tab-always-indent 'complete)
+
+  ;; Enable Corfu
   :config
-  (setq tab-always-indent 'complete)
-  (setq corfu-preview-current nil)
-  (setq corfu-min-width 20)
-
-  (setq corfu-popupinfo-delay '(1.25 . 0.5))
-  (corfu-popupinfo-mode 1) ; shows documentation after `corfu-popupinfo-delay'
-
-  ;; Sort by input history (no need to modify `corfu-sort-function').
-  (with-eval-after-load 'savehist
-    (corfu-history-mode 1)
-    (add-to-list 'savehist-additional-variables 'corfu-history)))
+  (global-corfu-mode))
 
 (use-package cape
   :ensure t
-  ;; Bind prefix keymap providing all Cape commands under a mnemonic key.
-  ;; Press C-c p ? to for help.
-  :bind ("C-c p" . cape-prefix-map) ;; Alternative key: M-<tab>, M-p, M-+
-  ;; Alternatively bind Cape commands individually.
-  ;; :bind (("C-c p d" . cape-dabbrev)
-  ;;        ("C-c p h" . cape-history)
-  ;;        ("C-c p f" . cape-file)
-  ;;        ...)
+  :defer t
+  :commands (cape-dabbrev cape-file cape-elisp-block)
+  :bind ("C-c p" . cape-prefix-map)
   :init
-  ;; Add to the global default value of `completion-at-point-functions' which is
-  ;; used by `completion-at-point'.  The order of the functions matters, the
-  ;; first function returning a result wins.  Note that the list of buffer-local
-  ;; completion functions takes precedence over the global list.
-  (add-hook 'completion-at-point-functions #'cape-file)
-  ;; (add-hook 'completion-at-point-functions #'cape-history)
-  ;; ...
-  )
+  (add-hook 'completion-at-point-functions #'cape-file))
 
 (use-package dired
   :ensure nil
@@ -399,19 +397,23 @@
 
   ;; Optionally make narrowing help available in the minibuffer.
   ;; You may want to use `embark-prefix-help-command' or which-key instead.
-  (keymap-set consult-narrow-map (concat consult-narrow-key " ?") #'consult-narrow-help)
-  )
+  (keymap-set consult-narrow-map (concat consult-narrow-key " ?") #'consult-narrow-help))
 
 (use-package embark
   :ensure t
-
+  :defer t
+  :commands (embark-act
+             embark-dwim
+             embark-export
+             embark-collect
+             embark-bindings
+             embark-prefix-help-command)
   :bind
   (("C-." . embark-act)         ;; pick some comfortable binding
    ("C-;" . embark-dwim)        ;; good alternative: M-.
    ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
 
   :init
-
   ;; Optionally replace the key help with a completing-read interface
   (setq prefix-help-command #'embark-prefix-help-command)
 
@@ -556,8 +558,8 @@
   :load-path ("elpa/combobulate"))
 
 (use-package which-key
-  :ensure t)
-(which-key-mode)
+  :ensure t
+  :config (which-key-mode))
 
 (use-package diff-hl
   :ensure t)
