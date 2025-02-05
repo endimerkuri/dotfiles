@@ -230,22 +230,26 @@
   :ensure t
   :commands (magit-status magit-clone))
 
-(use-package lsp-mode
-  :ensure t
-  :init
-  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-  (setq lsp-keymap-prefix "C-c l")
-  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-         (js-ts-mode . lsp-deferred)
-         (go-ts-mode . lsp-deferred)
-         (latex-mode . lsp-deferred))
-  :commands (lsp lsp-deferred))
+(use-package eglot
+  :ensure nil
+  :defer t
+  :commands (eglot
+             eglot-rename
+             eglot-ensure
+             eglot-format-buffer)
 
-(setq lsp-completion-provider :none)
-(defun corfu-lsp-setup ()
-  (setq-local completion-styles '(orderless)
-              completion-category-defaults nil))
-(add-hook 'lsp-mode-hook #'corfu-lsp-setup)
+  :custom
+  (eglot-report-progress nil)  ; Prevent minibuffer spam
+
+  :config
+  ;; Optimizations
+  (fset #'jsonrpc--log-event #'ignore)
+  (setq jsonrpc-event-hook nil))
+
+(add-hook 'js-mode-hook #'eglot-ensure)
+(add-hook 'js-ts-mode-hook #'eglot-ensure)
+(add-hook 'go-mode-hook #'eglot-ensure)
+(add-hook 'go-ts-mode-hook #'eglot-ensure)
 
 (use-package yasnippet
   :ensure t)
@@ -258,36 +262,9 @@
   :ensure t
   :commands format-all-buffer)
 
-(defun lsp-booster--advice-json-parse (old-fn &rest args)
-  "Try to parse bytecode instead of json."
-  (or
-   (when (equal (following-char) ?#)
-     (let ((bytecode (read (current-buffer))))
-       (when (byte-code-function-p bytecode)
-         (funcall bytecode))))
-   (apply old-fn args)))
-(advice-add (if (progn (require 'json)
-                       (fboundp 'json-parse-buffer))
-                'json-parse-buffer
-              'json-read)
-            :around
-            #'lsp-booster--advice-json-parse)
-
-(defun lsp-booster--advice-final-command (old-fn cmd &optional test?)
-  "Prepend emacs-lsp-booster command to lsp CMD."
-  (let ((orig-result (funcall old-fn cmd test?)))
-    (if (and (not test?)                             ;; for check lsp-server-present?
-             (not (file-remote-p default-directory)) ;; see lsp-resolve-final-command, it would add extra shell wrapper
-             lsp-use-plists
-             (not (functionp 'json-rpc-connection))  ;; native json-rpc
-             (executable-find "emacs-lsp-booster"))
-        (progn
-          (when-let ((command-from-exec-path (executable-find (car orig-result))))  ;; resolve command from exec-path (in case not found in $PATH)
-            (setcar orig-result command-from-exec-path))
-          (message "Using emacs-lsp-booster for %s!" orig-result)
-          (cons "emacs-lsp-booster" orig-result))
-      orig-result)))
-(advice-add 'lsp-resolve-final-command :around #'lsp-booster--advice-final-command)
+(use-package eglot-booster
+  :after eglot
+  :config	(eglot-booster-mode))
 
 (use-package dtrt-indent
   :ensure t
@@ -517,7 +494,8 @@
   (dashboard-setup-startup-hook))
 
 (use-package copilot
-  :ensure t)
+  :ensure t
+  :commands (copilot-mode))
 
 (setq treesit-font-lock-level 4)
 
@@ -545,8 +523,7 @@
               (list '("%e" mode-line-front-space
                       (:propertize "[%*] " display (min-width ...))
                       (:eval (propertize "%b" 'face 'bold))  "   " "L%l" "   " "%o" "  "
-                      (vc-mode vc-mode))
-                    "  "  mode-line-misc-info "  "
+                      (vc-mode vc-mode) "  "  mode-line-misc-info)
                     (mode-line-fill 20) my-modeline-major-mode))
 
 (use-package combobulate
