@@ -9,6 +9,12 @@
       (package-refresh-contents))
     (package-install 'use-package)))
 
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize)))
+
 (setq compile-angel-excluded-files-regexps '("^/usr/share/.*"))
 (use-package compile-angel
   :ensure t
@@ -18,6 +24,9 @@
   (compile-angel-on-load-mode)
   (add-hook 'emacs-lisp-mode-hook #'compile-angel-on-save-local-mode))
 
+(setq mac-command-modifier 'meta)
+(when (string= system-type "darwin")
+  (setq dired-use-ls-dired nil))
 (setq use-package-verbose t)
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file :no-error-if-file-is-missing)
@@ -35,7 +44,6 @@
 (global-auto-revert-mode)
 (setopt sentence-end-double-space nil)
 
-;; Mode line information
 (setopt line-number-mode t)                        ; Show current line in modeline
 (setopt column-number-mode t)                      ; Show column as well
 
@@ -261,6 +269,8 @@
 (add-hook 'js-ts-mode-hook #'eglot-ensure)
 (add-hook 'go-mode-hook #'eglot-ensure)
 (add-hook 'go-ts-mode-hook #'eglot-ensure)
+(add-hook 'python-mode-hook #'eglot-ensure)
+(add-hook 'python-ts-mode-hook #'eglot-ensure)
 
 (use-package yasnippet
   :ensure t)
@@ -451,7 +461,7 @@
 (defun efs/set-font-faces ()
   (let ((mono-spaced-font "Iosevka")
         (proportionately-spaced-font "Iosevka"))
-    (set-face-attribute 'default nil :family mono-spaced-font :height 120)
+    (set-face-attribute 'default nil :family mono-spaced-font :height 140)
     (set-face-attribute 'fixed-pitch nil :family mono-spaced-font :height 1.0)
     (set-face-attribute 'variable-pitch nil :family proportionately-spaced-font :height 1.0)))
 
@@ -477,31 +487,39 @@
 (setq modus-themes-mode-line '(accented borderless 4))
 (load-theme 'modus-vivendi t)
 
-(use-package dashboard
+(use-package dotenv-mode
   :ensure t
   :config
-  (setq dashboard-display-icons-p t)     ; display icons on both GUI and terminal
-  (setq dashboard-icon-type 'nerd-icons) ; use `nerd-icons' package
-  (setq dashboard-set-file-icons t)
-  (setq dashboard-items '((recents   . 5)
-                          (bookmarks . 5)
-                          (projects  . 5)
-                          (agenda    . 5)
-                          (registers . 5)))
-  (setq dashboard-startupify-list '(dashboard-insert-banner
-                                    dashboard-insert-newline
-                                    dashboard-insert-banner-title
-                                    dashboard-insert-newline
-                                    dashboard-insert-navigator
-                                    dashboard-insert-newline
-                                    dashboard-insert-init-info
-                                    dashboard-insert-items
-                                    dashboard-insert-newline))
-  (setq dashboard-startup-banner 'logo)
+  (add-to-list 'auto-mode-alist '("\\.env\\..*\\'" . dotenv-mode)))
+
+(use-package dashboard
+  :ensure t
+  :init
+  (setq initial-buffer-choice 'dashboard-open)
+  :custom
+  (dashboard-display-icons-p t)     ; display icons on both GUI and terminal
+  (dashboard-icon-type 'nerd-icons) ; use `nerd-icons' package
+  (dashboard-set-file-icons t)
+  (dashboard-items '((recents   . 5)
+                     (bookmarks . 5)
+                     (projects  . 5)
+                     (agenda    . 5)
+                     (registers . 5)))
+  (dashboard-startupify-list '(dashboard-insert-banner
+                               dashboard-insert-newline
+                               dashboard-insert-banner-title
+                               dashboard-insert-newline
+                               dashboard-insert-navigator
+                               dashboard-insert-newline
+                               dashboard-insert-init-info
+                               dashboard-insert-items
+                               dashboard-insert-newline))
+  (dashboard-startup-banner 'logo)
   ;; Content is not centered by default. To center, set
-  (setq dashboard-center-content t)
+  (dashboard-center-content t)
   ;; vertically center content
-  (setq dashboard-vertically-center-content t)
+  (dashboard-vertically-center-content t)
+  :config
   (dashboard-setup-startup-hook))
 
 (use-package copilot

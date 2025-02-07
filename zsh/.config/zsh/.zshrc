@@ -23,20 +23,7 @@ HISTSIZE=10000000
 SAVEHIST=10000000
 HISTFILE=~/.cache/zsh/history
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
 export PATH=$PATH:/home/endi/.local/bin
-export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
@@ -80,8 +67,8 @@ n ()
 bindkey -e
 
 # Plugins
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 bindkey '^ ' autosuggest-accept
@@ -93,8 +80,8 @@ export PATH="$PATH:/Users/endimerkuri/.dotnet/tools"
 export PATH="/Users/endimerkuri/.local/bin:$PATH"
 export GOBIN="$HOME/.local/bin"
 export XCURSOR_SIZE=16
-source "$HOME/.cargo/env"
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 source /etc/profile
+eval "$(/opt/homebrew/bin/brew shellenv)"
