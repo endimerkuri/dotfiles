@@ -67,8 +67,15 @@ n ()
 bindkey -e
 
 # Plugins
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+unameOut="$(uname -s)"
+pluginsDirectory="/usr/share"
+if [ $unameOut = "Darwin" ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  pluginsDirectory="/opt/homebrew/share"
+fi
+
+source "$pluginsDirectory/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$pluginsDirectory/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 bindkey '^ ' autosuggest-accept
@@ -84,4 +91,3 @@ export XCURSOR_SIZE=16
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 source /etc/profile
-eval "$(/opt/homebrew/bin/brew shellenv)"
