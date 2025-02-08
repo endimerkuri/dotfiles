@@ -12,7 +12,7 @@
 (use-package exec-path-from-shell
   :ensure t
   :config
-  (when (memq window-system '(mac ns x))
+  (when (memq window-system '(mac ns x pgtk))
     (exec-path-from-shell-initialize)))
 
 (setq compile-angel-excluded-files-regexps '("^/usr/share/.*"))
