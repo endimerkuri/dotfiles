@@ -583,5 +583,9 @@
 
 (add-to-list 'auto-mode-alist '("\.[cm]js" . js-mode))
 
+(add-hook 'js-mode-hook
+          (lambda() (local-unset-key (kbd "M-."))))
+(add-hook 'js-ts-mode-hook
+          (lambda() (local-unset-key (kbd "M-."))))
 (setq ediff-split-window-function 'split-window-horizontally)
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
