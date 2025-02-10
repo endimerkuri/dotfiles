@@ -735,6 +735,7 @@ Note: install lsp booster with =cargo install emacs-lsp-booster=
 
 *** Misc
 #+begin_src emacs-lisp :tangle init.el
+  (setq x-stretch-cursor t)
   (add-to-list 'auto-mode-alist '("\.[cm]js" . js-mode))
   (add-hook 'js-mode-hook
             (lambda() (local-unset-key (kbd "M-."))))
