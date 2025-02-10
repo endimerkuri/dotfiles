@@ -263,7 +263,9 @@
   :config
   ;; Optimizations
   (fset #'jsonrpc--log-event #'ignore)
-  (setq jsonrpc-event-hook nil))
+  (setq jsonrpc-event-hook nil)
+  (add-to-list 'eglot-server-programs
+               '((php-ts-mode :language-id "php") . ("intelephense" "--stdio"))))
 
 (add-hook 'js-mode-hook #'eglot-ensure)
 (add-hook 'js-ts-mode-hook #'eglot-ensure)
@@ -271,6 +273,7 @@
 (add-hook 'go-ts-mode-hook #'eglot-ensure)
 (add-hook 'python-mode-hook #'eglot-ensure)
 (add-hook 'python-ts-mode-hook #'eglot-ensure)
+(add-hook 'php-ts-mode-hook #'eglot-ensure)
 
 (use-package yasnippet
   :ensure t)
@@ -561,6 +564,7 @@
   :config
   (setq combobulate-flash-node nil)
   :hook (
+         (php-ts-mode . combobulate-mode)
          (go-ts-mode . combobulate-mode)
          (js-ts-mode . combobulate-mode))
   :load-path ("elpa/combobulate"))
@@ -581,8 +585,12 @@
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 
-(add-to-list 'auto-mode-alist '("\.[cm]js" . js-mode))
+(add-to-list 'auto-mode-alist '("\.php" . php-ts-mode))
+(add-hook 'php-ts-mode-hook (lambda ()
+                              ;; Use spaces for indent
+                              (setq-local indent-tabs-mode nil)))
 
+(add-to-list 'auto-mode-alist '("\.[cm]js" . js-mode))
 (add-hook 'js-mode-hook
           (lambda() (local-unset-key (kbd "M-."))))
 (add-hook 'js-ts-mode-hook
