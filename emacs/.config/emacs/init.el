@@ -247,7 +247,9 @@
 
 (use-package magit
   :ensure t
-  :commands (magit-status magit-clone))
+  :commands (magit-status magit-clone)
+  :custom
+  (magit-format-file-function #'magit-format-file-nerd-icons))
 
 (use-package eglot
   :ensure nil
