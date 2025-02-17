@@ -1,11 +1,10 @@
 return {
     {
-        "rebelot/kanagawa.nvim",
-        name = "kanagawa",
+        "sainnhe/gruvbox-material",
+        name = "gruvbox-material",
         priority = 1000,
         config = function()
-            require('kanagawa').setup{}
-            vim.cmd([[colorscheme kanagawa]])
+            vim.cmd([[colorscheme gruvbox-material]])
         end
     }
 }

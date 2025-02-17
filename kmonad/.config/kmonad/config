@@ -1,11 +1,11 @@
 (defcfg
   ;; For Linux
-  input  (device-file "/dev/input/by-id/usb-04d9_daskeyboard-event-kbd")
-  output (uinput-sink "My KMonad output"
+  ;input  (device-file "/dev/input/by-id/usb-04d9_daskeyboard-event-kbd")
+  ;output (uinput-sink "My KMonad output"
 
   ;; For Windows
-  ;; input  (low-level-hook)
-  ;; output (send-event-sink)
+  input  (low-level-hook)
+  output (send-event-sink)
 
   ;; For MacOS
   ;; input  (iokit-name "my-keyboard-product-string")

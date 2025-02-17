@@ -30,7 +30,6 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 alias ls='ls -CF --color=auto'
 alias v="nvim"
-alias e="emacs"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # NNN config
@@ -64,7 +63,7 @@ n ()
     fi
 }
 
-bindkey -e
+bindkey -v
 
 # Plugins
 unameOut="$(uname -s)"
