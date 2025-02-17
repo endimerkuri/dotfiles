@@ -1,71 +1,71 @@
 return {
-    {
-        'microsoft/vscode-js-debug',
-        build = 'npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out',
-        lazy = true
-    },
-    {
-        'mfussenegger/nvim-dap',
-        dependencies = {
-            -- fancy UI for the debugger
-            'nvim-neotest/nvim-nio',
-            {
-                'mxsdev/nvim-dap-vscode-js',
-                lazy = true,
-                config = function()
-                    require('dap-vscode-js').setup({
-                        debugger_path = vim.fn.stdpath 'data' .. '/lazy/vscode-js-debug',
-                        adapters = { 'pwa-node' },
-                    })
-                end
-            },
-            {
-                'rcarriga/nvim-dap-ui',
+	{
+		"microsoft/vscode-js-debug",
+		build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
+		lazy = true,
+	},
+	{
+		"mfussenegger/nvim-dap",
+		dependencies = {
+			-- fancy UI for the debugger
+			"nvim-neotest/nvim-nio",
+			{
+				"mxsdev/nvim-dap-vscode-js",
+				lazy = true,
+				config = function()
+					require("dap-vscode-js").setup({
+						debugger_path = vim.fn.stdpath("data") .. "/lazy/vscode-js-debug",
+						adapters = { "pwa-node" },
+					})
+				end,
+			},
+			{
+				"rcarriga/nvim-dap-ui",
                 -- stylua: ignore
                 keys = {
                     { '<leader>du', function() require('dapui').toggle({ }) end, desc = 'Dap UI' },
                     { '<leader>de', function() require('dapui').eval() end, desc = 'Eval', mode = { 'n', 'v' } },
                 },
-                opts = {},
-                config = function(_, opts)
-                    -- setup dap config by VsCode launch.json file
-                    -- require("dap.ext.vscode").load_launchjs()
-                    local dap = require('dap')
-                    local dapui = require('dapui')
-                    dapui.setup(opts)
-                    dap.listeners.after.event_initialized['dapui_config'] = function()
-                        dapui.open({})
-                    end
-                    dap.listeners.before.event_terminated['dapui_config'] = function()
-                        dapui.close({})
-                    end
-                    dap.listeners.before.event_exited['dapui_config'] = function()
-                        dapui.close({})
-                    end
-                end,
-            },
-            -- mason.nvim integration
-            {
-                'jay-babu/mason-nvim-dap.nvim',
-                dependencies = 'mason.nvim',
-                cmd = { 'DapInstall', 'DapUninstall' },
-                opts = {
-                    -- Makes a best effort to setup the various debuggers with
-                    -- reasonable debug configurations
-                    automatic_installation = true,
+				opts = {},
+				config = function(_, opts)
+					-- setup dap config by VsCode launch.json file
+					-- require("dap.ext.vscode").load_launchjs()
+					local dap = require("dap")
+					local dapui = require("dapui")
+					dapui.setup(opts)
+					dap.listeners.after.event_initialized["dapui_config"] = function()
+						dapui.open({})
+					end
+					dap.listeners.before.event_terminated["dapui_config"] = function()
+						dapui.close({})
+					end
+					dap.listeners.before.event_exited["dapui_config"] = function()
+						dapui.close({})
+					end
+				end,
+			},
+			-- mason.nvim integration
+			{
+				"jay-babu/mason-nvim-dap.nvim",
+				dependencies = "mason.nvim",
+				cmd = { "DapInstall", "DapUninstall" },
+				opts = {
+					-- Makes a best effort to setup the various debuggers with
+					-- reasonable debug configurations
+					automatic_installation = true,
 
-                    -- You can provide additional configuration to the handlers,
-                    -- see mason-nvim-dap README for more information
-                    handlers = {},
+					-- You can provide additional configuration to the handlers,
+					-- see mason-nvim-dap README for more information
+					handlers = {},
 
-                    -- You'll need to check that you have the required things installed
-                    -- online, please don't ask me how to install them :)
-                    ensure_installed = {
-                        -- Update this to ensure that you have the debuggers for the langs you want
-                    },
-                },
-            },
-        },
+					-- You'll need to check that you have the required things installed
+					-- online, please don't ask me how to install them :)
+					ensure_installed = {
+						-- Update this to ensure that you have the debuggers for the langs you want
+					},
+				},
+			},
+		},
         -- stylua: ignore
         keys = {
             { '<leader>dB', function() require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, desc = 'Breakpoint Condition' },
@@ -86,24 +86,24 @@ return {
             { '<leader>dt', function() require('dap').terminate() end, desc = 'Terminate' },
             { '<leader>dw', function() require('dap.ui.widgets').hover() end, desc = 'Widgets' },
         },
-        config = function()
-            local dap = require'dap'
-            dap.configurations.cs = {
-                {
-                    type = 'coreclr',
-                    name = 'attach - netcoredbg',
-                    request = 'attach',
-                    processId = require('dap.utils').pick_process,
-                },
-            }
-            dap.configurations.javascript = {
-                {
-                    type = 'pwa-node',
-                    request = 'attach',
-                    name = 'attach nodejs',
-                    processId = require('dap.utils').pick_process,
-                },
-            }
-        end
-    }
+		config = function()
+			local dap = require("dap")
+			dap.configurations.cs = {
+				{
+					type = "coreclr",
+					name = "attach - netcoredbg",
+					request = "attach",
+					processId = require("dap.utils").pick_process,
+				},
+			}
+			dap.configurations.javascript = {
+				{
+					type = "pwa-node",
+					request = "attach",
+					name = "attach nodejs",
+					processId = require("dap.utils").pick_process,
+				},
+			}
+		end,
+	},
 }

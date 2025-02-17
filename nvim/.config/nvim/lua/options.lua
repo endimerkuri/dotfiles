@@ -11,40 +11,33 @@ vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.wrap = false
 vim.o.scrolloff = 8
-vim.o.signcolumn = 'yes'
+vim.o.signcolumn = "yes"
 vim.o.termguicolors = true
 vim.o.cursorline = true
 vim.o.hidden = true
 -- vim.o.cmdheight = 0
-vim.o.undodir = os.getenv('HOME') .. '/.vim/undodir'
+vim.o.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.o.undofile = true
--- vim.o.background = 'dark'
 vim.o.ignorecase = true
 vim.o.smartcase = true
 -- vim.o.laststatus = 3
-vim.g.gruvbox_material_background = 'hard'
+vim.g.gruvbox_material_background = "hard"
 
 local function augroup(name)
-    return vim.api.nvim_create_augroup('my_lazyvim_' .. name, { clear = true })
+	return vim.api.nvim_create_augroup("my_lazyvim_" .. name, { clear = true })
 end
 
-vim.g.mapleader = ' '
--- vim.cmd[[set winbar=%=%m\ %f]]
+vim.g.mapleader = " "
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noinsert,noselect'
+vim.o.completeopt = "menuone,noinsert,noselect"
 
 -- Avoid showing message extra message when using completion
-vim.o.shortmess = vim.o.shortmess .. 'c'
+vim.o.shortmess = vim.o.shortmess .. "c"
 
 vim.filetype.add({
-    extension = {
-        ['http'] = 'http',
-    },
-})
-
-vim.filetype.add({
-    extension = {
-        ['grpc'] = 'grpc'
-    }
+	extension = {
+		["http"] = "http",
+		["grpc"] = "grpc",
+	},
 })
