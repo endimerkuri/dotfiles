@@ -11,7 +11,12 @@ return {
 		scroll = { enabled = false },
 		statuscolumn = { enabled = true },
 		words = { enabled = false },
-		picker = { enabled = true },
+		picker = {
+			enabled = true,
+			layout = {
+				fullscreen = true,
+			},
+		},
 		dashboard = {
 			width = 60,
 			row = nil, -- dashboard position. nil for center
