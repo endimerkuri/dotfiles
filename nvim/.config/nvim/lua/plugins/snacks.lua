@@ -16,6 +16,11 @@ return {
 			layout = {
 				fullscreen = true,
 			},
+			formatters = {
+				file = {
+					truncate = 80
+				}
+			}
 		},
 		dashboard = {
 			width = 60,
