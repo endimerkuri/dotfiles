@@ -38,6 +38,5 @@ vim.o.shortmess = vim.o.shortmess .. "c"
 vim.filetype.add({
 	extension = {
 		["http"] = "http",
-		["grpc"] = "grpc",
 	},
 })
