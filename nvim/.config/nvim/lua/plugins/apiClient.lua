@@ -19,15 +19,4 @@ return {
 			},
 		},
 	},
-	{
-		"hudclark/grpc-nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		ft = "grpc",
-		config = function()
-			vim.keymap.set("n", "<leader>sr", ":Grpc<CR>", {
-				noremap = true,
-				desc = "Send GRPC request",
-			})
-		end,
-	},
 }

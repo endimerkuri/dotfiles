@@ -122,7 +122,7 @@ return {
 		{
 			"<leader>f",
 			function()
-				Snacks.picker.git_files()
+				Snacks.picker.files({ hidden = true })
 			end,
 			desc = "Files",
 		},
