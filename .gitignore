@@ -19,3 +19,5 @@ tags*
 /emacs/.config/emacs/tmp/
 /emacs/.config/emacs/url/
 lazy-lock.json
+/zsh/.config/zsh/.zsh_history
+/zsh/.config/zsh/.zsh_sessions/
