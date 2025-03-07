@@ -20,7 +20,7 @@ vim.o.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.o.undofile = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
--- vim.o.laststatus = 3
+vim.o.laststatus = 3
 vim.g.gruvbox_material_background = "hard"
 
 local function augroup(name)
