@@ -38,12 +38,12 @@ return {
 					silent = true,
 					desc = "LSP Rename",
 				})
-				vim.keymap.set("n", "gac", ":lua vim.lsp.buf.code_action()<CR>", {
+				vim.keymap.set("n", "gra", ":lua vim.lsp.buf.code_action()<CR>", {
 					noremap = true,
 					silent = true,
 					desc = "LSP Code Action",
 				})
-				vim.keymap.set("v", "gac", ":lua vim.lsp.buf.code_action()<CR>", {
+				vim.keymap.set("v", "gra", ":lua vim.lsp.buf.code_action()<CR>", {
 					noremap = true,
 					silent = true,
 					desc = "LSP Code Action",
