@@ -40,3 +40,5 @@ vim.filetype.add({
 		["http"] = "http",
 	},
 })
+
+vim.lsp.enable({ "csharp_ls", "gopls", "intelephense", "pylsp", "ts_ls" })
