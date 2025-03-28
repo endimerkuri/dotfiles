@@ -42,3 +42,4 @@ vim.filetype.add({
 })
 
 vim.lsp.enable({ "csharp_ls", "gopls", "intelephense", "pylsp", "ts_ls" })
+vim.diagnostic.config({ virtual_text = true })

@@ -101,3 +101,7 @@ vim.keymap.set("n", "<c-k>", ":cprevious<CR>", {
 	noremap = true,
 	desc = "Previous Quickfix List Entry",
 })
+vim.keymap.set("n", "gK", vim.diagnostic.open_float, {
+	noremap = true,
+	desc = "Open diagnostic float"
+})
