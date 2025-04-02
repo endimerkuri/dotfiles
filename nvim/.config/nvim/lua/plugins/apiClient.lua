@@ -4,18 +4,10 @@ return {
 		ft = "http",
 		opts = {
 			default_winbar_panes = { "body", "headers", "script_output" },
+			global_keymaps = true,
 			winbar = true,
 			load = {
 				["core.defaults"] = {},
-			},
-		},
-		keys = {
-			{
-				"<leader>sr",
-				function()
-					require("kulala").run()
-				end,
-				desc = "Send REST request",
 			},
 		},
 	},
