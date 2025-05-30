@@ -41,5 +41,5 @@ vim.filetype.add({
 	},
 })
 
-vim.lsp.enable({ "csharp_ls", "gopls", "intelephense", "pylsp", "ts_ls" })
+vim.lsp.enable({ "csharp_ls", "gopls", "intelephense", "pylsp", "ts_ls", "rust_analyzer" })
 vim.diagnostic.config({ virtual_text = true })
