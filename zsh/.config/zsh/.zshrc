@@ -90,3 +90,7 @@ export XCURSOR_SIZE=16
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 source /etc/profile
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"
