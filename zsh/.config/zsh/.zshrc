@@ -84,6 +84,7 @@ export PATH="${M2_HOME}/bin:${PATH}"
 export PATH="/usr/local/mysql/bin:$PATH"
 export PATH="$PATH:/Users/endimerkuri/.dotnet/tools"
 export PATH="/Users/endimerkuri/.local/bin:$PATH"
+export PATH="/usr/local:$PATH"
 export GOBIN="$HOME/.local/bin"
 export XCURSOR_SIZE=16
 
