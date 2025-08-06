@@ -20,7 +20,7 @@ vim.o.undofile = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.laststatus = 3
--- vim.g.gruvbox_material_background = "hard"
+vim.o.winborder = "single"
 
 local function augroup(name)
 	return vim.api.nvim_create_augroup("my_lazyvim_" .. name, { clear = true })
