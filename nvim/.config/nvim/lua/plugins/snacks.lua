@@ -13,9 +13,6 @@ return {
 		words = { enabled = false },
 		picker = {
 			enabled = true,
-			layout = {
-				fullscreen = true,
-			},
 			formatters = {
 				file = {
 					truncate = 80
@@ -43,12 +40,6 @@ return {
 					{ icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
 					{ icon = " ", key = "d", desc = "Database", action = ":ene | DBUIToggle" },
 					{
-						icon = " ",
-						key = "g",
-						desc = "Find Text",
-						action = ":lua Snacks.dashboard.pick('live_grep')",
-					},
-					{
 						icon = " ",
 						key = "r",
 						desc = "Recent Files",
@@ -74,7 +65,6 @@ return {
 						action = ":Lazy",
 						enabled = package.loaded.lazy ~= nil,
 					},
-					{ icon = "󰒲 ", key = "M", desc = "Mason", action = ":Mason" },
 					{ icon = " ", key = "q", desc = "Quit", action = ":qa" },
 				},
 				-- Used by the `header` section
