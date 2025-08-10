@@ -22,10 +22,6 @@ vim.o.smartcase = true
 vim.o.laststatus = 3
 vim.o.winborder = "single"
 
-local function augroup(name)
-	return vim.api.nvim_create_augroup("my_lazyvim_" .. name, { clear = true })
-end
-
 vim.g.mapleader = " "
 
 -- Set completeopt to have a better completion experience
@@ -41,6 +37,7 @@ vim.filetype.add({
 })
 
 vim.lsp.enable({ "csharp_ls", "gopls", "intelephense", "pylsp", "ts_ls", "rust_analyzer" })
+
 vim.diagnostic.config({
 	virtual_text = true,
 	-- Use only color to show diagnostics in sign column

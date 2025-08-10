@@ -32,12 +32,6 @@ vim.keymap.set("n", "<leader><leader>", "<c-^>", {
 	desc = "Previous File",
 })
 
--- Create new buffer
-vim.keymap.set("n", "<leader>ot", ":e<Space>", {
-	noremap = true,
-	desc = "New File",
-})
-
 -- Create new split
 vim.keymap.set("n", "<leader>-", ":sp<CR>", {
 	noremap = true,
@@ -66,10 +60,9 @@ vim.keymap.set("v", "<leader>p", '"+p', {
 	desc = "Paste from system clipboard",
 })
 
--- Terminal mode keybindings
 vim.keymap.set("n", "<leader>;", ":vsp<CR>:terminal<CR>", {
 	noremap = true,
-	desc = "Terminal in Vertical Split",
+	desc = "Open terminal in Vertical Split",
 })
 
 -- Keep visual mode after changing indentation
@@ -82,7 +75,6 @@ vim.keymap.set("v", ">", ">gv", {
 	desc = "Indent",
 })
 
--- Move line in visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", {
 	noremap = true,
 	desc = "Move Line Down",
@@ -92,7 +84,6 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", {
 	desc = "Move Line Up",
 })
 
--- Move in the quickfix list
 vim.keymap.set("n", "<c-j>", ":cnext<CR>", {
 	noremap = true,
 	desc = "Next Quickfix List Entry",
@@ -101,6 +92,7 @@ vim.keymap.set("n", "<c-k>", ":cprevious<CR>", {
 	noremap = true,
 	desc = "Previous Quickfix List Entry",
 })
+
 vim.keymap.set("n", "gK", vim.diagnostic.open_float, {
 	noremap = true,
 	desc = "Open diagnostic float"
