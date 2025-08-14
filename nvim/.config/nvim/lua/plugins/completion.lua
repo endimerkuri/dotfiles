@@ -1,7 +1,6 @@
 return {
 	{
 		"saghen/blink.cmp",
-		dependencies = { "L3MON4D3/LuaSnip", version = "v2.*" },
 
 		-- use a release tag to download pre-built binaries
 		version = "*",
@@ -13,12 +12,15 @@ return {
 		---@module 'blink.cmp'
 		---@type blink.cmp.Config
 		opts = {
-			snippets = { preset = "luasnip" },
+			-- snippets = { preset = "luasnip" },
 			-- 'default' for mappings similar to built-in completion
 			-- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
 			-- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
 			-- See the full "keymap" documentation for information on defining your own keymap.
-			keymap = { preset = "default" },
+			keymap = {
+				preset = "default",
+				["<C-e>"] = false,
+			},
 
 			appearance = {
 				-- Sets the fallback highlight groups to nvim-cmp's highlight groups
@@ -30,20 +32,10 @@ return {
 				nerd_font_variant = "mono",
 			},
 
-			completion = {
-				list = {
-					selection = {
-						preselect = function(ctx)
-							return not require("blink.cmp").snippet_active({ direction = 1 })
-						end,
-					},
-				},
-			},
-
 			-- Default list of enabled providers defined so that you can extend it
 			-- elsewhere in your config, without redefining it, due to `opts_extend`
 			sources = {
-				default = { "lsp", "path", "snippets", "buffer", "dadbod" },
+				default = { "lsp", "path", "buffer", "dadbod" },
 				providers = {
 					dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
 				},

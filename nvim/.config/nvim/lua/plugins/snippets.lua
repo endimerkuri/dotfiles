@@ -1,46 +1,20 @@
 return {
 	{
 		"L3MON4D3/LuaSnip",
-		build = (not jit.os:find("Windows"))
-				and "echo -e 'NOTE: jsregexp is optional, so not a big deal if it fails to build\n'; make install_jsregexp"
-			or nil,
-		dependencies = {
-			"rafamadriz/friendly-snippets",
-		},
-		opts = {
-			history = true,
-			delete_check_events = "TextChanged",
-		},
-		keys = {
-			{
-				"<tab>",
-				function()
-					return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
-				end,
-				expr = true,
-				silent = true,
-				mode = "i",
-			},
-			{
-				"<tab>",
-				function()
-					require("luasnip").jump(1)
-				end,
-				mode = "s",
-			},
-			{
-				"<s-tab>",
-				function()
-					require("luasnip").jump(-1)
-				end,
-				mode = { "i", "s" },
-			},
-		},
-	},
-	{
-		"rafamadriz/friendly-snippets",
+		-- follow latest release.
+		version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+		-- install jsregexp (optional!).
+		build = "make install_jsregexp",
 		config = function()
-			require("luasnip.loaders.from_vscode").lazy_load()
+			require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets/" })
+			local ls = require("luasnip")
+			vim.keymap.set("i", "<C-e>", function()
+				ls.expand_or_jump(1)
+			end, { silent = true })
+			-- map({ "i", "s" }, "<C-J>", function() ls.jump(1) end, { silent = true })
+			vim.keymap.set({ "i", "s" }, "<C-k>", function()
+				ls.jump(-1)
+			end, { silent = true })
 		end,
 	},
 }
