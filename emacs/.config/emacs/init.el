@@ -94,9 +94,6 @@
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
 
-;; change cursor width based on character
-;; (setq x-stretch-cursor t)
-
 (show-paren-mode 1)
 (setq-default indent-tabs-mode nil)
 (savehist-mode 1)
@@ -301,6 +298,7 @@
   :hook (after-init . dtrt-indent-global-mode))
 
 (use-package consult
+  :after perspective
   :ensure t
   ;; Replace bindings. Lazily loaded by `use-package'.
   :bind (;; C-c bindings in `mode-specific-map'
@@ -393,7 +391,8 @@
    consult--source-recent-file consult--source-project-recent-file
    ;; :preview-key "M-."
    :preview-key '(:debounce 0.4 any))
-
+  (consult-customize consult--source-buffer :hidden t :default nil)
+  (add-to-list 'consult-buffer-sources persp-consult-source)
   ;; Optionally configure the narrowing key.
   ;; Both < and C-+ work reasonably well.
   (setq consult-narrow-key "<") ;; "C-+"
@@ -464,9 +463,9 @@
   (dired-mode . nerd-icons-dired-mode))
 
 (defun efs/set-font-faces ()
-  (let ((mono-spaced-font "Iosevka")
-        (proportionately-spaced-font "Iosevka"))
-    (set-face-attribute 'default nil :family mono-spaced-font :height 120)
+  (let ((mono-spaced-font "JetBrains Mono")
+        (proportionately-spaced-font "JetBrains Mono"))
+    (set-face-attribute 'default nil :family mono-spaced-font :height 160)
     (set-face-attribute 'fixed-pitch nil :family mono-spaced-font :height 1.0)
     (set-face-attribute 'variable-pitch nil :family proportionately-spaced-font :height 1.0)))
 
@@ -479,17 +478,12 @@
 
 (setq modus-themes-italic-constructs t
       modus-themes-bold-constructs t)
-(setq modus-themes-region '(bg-only no-extend))
 (setq modus-themes-headings
       '((1 . (rainbow overline background 1.4))
         (2 . (rainbow background 1.3))
         (3 . (rainbow bold 1.2))
         (t . (semilight 1.1))))
 
-(setq modus-themes-scale-headings t)
-(setq modus-themes-org-blocks 'tinted-background)
-
-(setq modus-themes-mode-line '(accented borderless 4))
 (load-theme 'modus-vivendi t)
 
 (use-package dotenv-mode
@@ -527,49 +521,7 @@
   :config
   (dashboard-setup-startup-hook))
 
-(use-package copilot
-  :ensure t
-  :commands (copilot-mode))
-
 (setq treesit-font-lock-level 4)
-
-(defun my-modeline--major-mode-name ()
-  "Return capitalized `major-mode' as a string."
-  (format "%18s" (capitalize (replace-regexp-in-string "-ts" "" (replace-regexp-in-string "-mode" "" (symbol-name major-mode))))))
-
-(defvar-local my-modeline-major-mode
-    '(:eval
-      (propertize (my-modeline--major-mode-name) 'face 'bold))
-  "Mode line construct to display the major mode.")
-
-(put 'my-modeline-major-mode 'risky-local-variable t)
-
-(defun mode-line-fill (reserve)
-  "Return empty space using FACE and leaving RESERVE space on the right."
-  (when
-      (and window-system (eq 'right (get-scroll-bar-mode)))
-    (setq reserve (- reserve 3)))
-  (propertize " "
-              'display
-              `((space :align-to (- (+ right right-fringe right-margin) ,reserve)))))
-
-(setq-default mode-line-format
-              (list '("%e" mode-line-front-space
-                      (:propertize "[%*] " display (min-width ...))
-                      (:eval (propertize "%b" 'face 'bold))  "   " "L%l" "   " "%o" "  "
-                      (vc-mode vc-mode) "  "  mode-line-misc-info)
-                    (mode-line-fill 20) my-modeline-major-mode))
-
-(use-package combobulate
-  :custom
-  (combobulate-key-prefix "C-c o")
-  :config
-  (setq combobulate-flash-node nil)
-  :hook (
-         (php-ts-mode . combobulate-mode)
-         (go-ts-mode . combobulate-mode)
-         (js-ts-mode . combobulate-mode))
-  :load-path ("elpa/combobulate"))
 
 (use-package which-key
   :ensure t
@@ -592,7 +544,18 @@
                               ;; Use spaces for indent
                               (setq-local indent-tabs-mode nil)))
 
+(use-package perspective
+  :ensure t
+  :bind
+  ("C-x C-b" . persp-list-buffers)         ; or use a nicer switcher, see below
+  :custom
+  (persp-mode-prefix-key (kbd "C-z"))  ; pick your own prefix key here
+  :init
+  (persp-mode))
+
 (setq x-stretch-cursor t)
+(global-set-key (kbd "M-o") 'other-window)
+(add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 (add-to-list 'auto-mode-alist '("\.[cm]js" . js-mode))
 (add-hook 'js-mode-hook
           (lambda() (local-unset-key (kbd "M-."))))

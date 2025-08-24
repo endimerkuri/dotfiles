@@ -21,6 +21,7 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.laststatus = 3
 vim.o.winborder = "single"
+vim.o.statusline = [[%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P]]
 
 vim.g.mapleader = " "
 

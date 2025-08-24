@@ -4,6 +4,7 @@ return {
 		config = function()
 			vim.keymap.set("n", "<leader>gs", ":Gedit :<CR>", { noremap = true, desc = "Git Fugitive" })
 			vim.keymap.set("n", "<leader>gu", ":G pull<CR>", { noremap = true, desc = "Git Fetch All" })
+			vim.keymap.set("n", "<leader>gb", ":G blame<CR>", { noremap = true, desc = "Git Blame" })
 		end,
 	},
 	{
@@ -41,7 +42,6 @@ return {
 					gs.diffthis("~")
 				end, "Diff This ~")
 				map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
-				map("n", "<leader>gb", ":Gitsigns blame<CR>", "Git Blame")
 			end,
 		},
 	},
