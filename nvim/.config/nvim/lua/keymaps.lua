@@ -1,22 +1,43 @@
 -- Easier keybindings for switching panes
 vim.keymap.set("n", "<leader>wo", "<c-w>o", { noremap = true, desc = "Maximize window" })
 vim.keymap.set("n", "<leader>wd", ":close<CR>", { noremap = true, desc = "Close window" })
-vim.keymap.set("n", "<leader>h", ":wincmd h<CR>", {
+
+local function smart_split(direction)
+	local prev = vim.fn.winnr()
+	local ok = pcall(vim.cmd, "wincmd " .. direction)
+	local new_win = vim.api.nvim_get_current_win()
+	local cmd = (direction == "l" or direction == "h") and "vsplit" or "split"
+
+	if not ok or vim.fn.winnr() == prev then
+		vim.cmd(cmd)
+	end
+end
+
+vim.keymap.set("n", "<leader>h", function()
+	smart_split("h")
+end, {
 	noremap = true,
-	desc = "Switch to left window",
+	desc = "Switch to or create left window",
 })
-vim.keymap.set("n", "<leader>j", ":wincmd j<CR>", {
+vim.keymap.set("n", "<leader>j", function()
+	smart_split("j")
+end, {
 	noremap = true,
-	desc = "Switch to bottom window",
+	desc = "Switch to or create bottom window",
 })
-vim.keymap.set("n", "<leader>l", ":wincmd l<CR>", {
+vim.keymap.set("n", "<leader>l", function()
+	smart_split("l")
+end, {
 	noremap = true,
-	desc = "Switch to right window",
+	desc = "Switch to or create right window",
 })
-vim.keymap.set("n", "<leader>k", ":wincmd k<CR>", {
+vim.keymap.set("n", "<leader>k", function()
+	smart_split("k")
+end, {
 	noremap = true,
-	desc = "Switch to top window",
+	desc = "Switch to or create top window",
 })
+
 vim.keymap.set("n", "<leader>bd", ":bd<CR>", {
 	noremap = true,
 	desc = "Delete buffer",
@@ -30,16 +51,6 @@ vim.keymap.set("n", "<leader>q", ":q<CR>", {
 vim.keymap.set("n", "<leader><leader>", "<c-^>", {
 	noremap = true,
 	desc = "Previous File",
-})
-
--- Create new split
-vim.keymap.set("n", "<leader>-", ":sp<CR>", {
-	noremap = true,
-	desc = "Horizontal Split",
-})
-vim.keymap.set("n", "<leader>\\", ":vsp<CR>", {
-	noremap = true,
-	desc = "Vertical Split",
 })
 
 -- Copy paste from system clipboard
