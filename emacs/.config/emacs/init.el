@@ -285,10 +285,6 @@
   :ensure t
   :commands format-all-buffer)
 
-(use-package eglot-booster
-  :after eglot
-  :config	(eglot-booster-mode))
-
 (use-package dtrt-indent
   :ensure t
   :config
@@ -465,7 +461,7 @@
 (defun efs/set-font-faces ()
   (let ((mono-spaced-font "JetBrains Mono")
         (proportionately-spaced-font "JetBrains Mono"))
-    (set-face-attribute 'default nil :family mono-spaced-font :height 160)
+    (set-face-attribute 'default nil :family mono-spaced-font :height 180)
     (set-face-attribute 'fixed-pitch nil :family mono-spaced-font :height 1.0)
     (set-face-attribute 'variable-pitch nil :family proportionately-spaced-font :height 1.0)))
 
