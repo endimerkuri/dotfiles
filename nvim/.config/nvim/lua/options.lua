@@ -14,7 +14,6 @@ vim.o.scrolloff = 8
 vim.o.signcolumn = "yes:1"
 vim.o.termguicolors = true
 vim.o.cursorline = true
-vim.o.hidden = true
 vim.o.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.o.undofile = true
 vim.o.ignorecase = true

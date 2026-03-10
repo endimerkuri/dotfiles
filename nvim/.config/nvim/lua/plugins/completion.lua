@@ -35,7 +35,11 @@ return {
 			-- Default list of enabled providers defined so that you can extend it
 			-- elsewhere in your config, without redefining it, due to `opts_extend`
 			sources = {
-				default = { "lsp", "path", "buffer", "dadbod" },
+				default = { "lsp", "path", "buffer" },
+				per_filetype = {
+					sql = { "lsp", "path", "buffer", "dadbod" },
+					mysql = { "lsp", "path", "buffer", "dadbod" },
+				},
 				providers = {
 					dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
 				},

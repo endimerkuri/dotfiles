@@ -47,5 +47,9 @@ return {
 			require("nvim-autopairs").setup({})
 		end,
 	},
-	"tpope/vim-surround",
+	{
+		"kylechui/nvim-surround",
+		event = "VeryLazy",
+		config = true,
+	},
 }
