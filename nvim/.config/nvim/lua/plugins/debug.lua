@@ -136,7 +136,7 @@ return {
 			local dap = require("dap")
 			dap.adapters.coreclr = {
 				type = "executable",
-				command = "/usr/local/netcoredbg",
+				command = vim.fn.exepath("netcoredbg") ~= "" and vim.fn.exepath("netcoredbg") or "/usr/local/netcoredbg",
 				args = { "--interpreter=vscode" },
 			}
 			dap.configurations.cs = {

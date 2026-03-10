@@ -1,13 +1,15 @@
 return {
-	"tpope/vim-dadbod",
-	"kristijanhusak/vim-dadbod-completion",
 	{
 		"kristijanhusak/vim-dadbod-ui",
+		dependencies = {
+			{ "tpope/vim-dadbod", lazy = true },
+			{ "kristijanhusak/vim-dadbod-completion", lazy = true },
+		},
+		cmd = { "DBUI", "DBUIToggle", "DBUIAddConnection", "DBUIFindBuffer" },
+		keys = {
+			{ "<leader>od", ":DBUIToggle<CR>", noremap = true, desc = "Toggle DBUI" },
+		},
 		config = function()
-			vim.keymap.set("n", "<leader>od", ":DBUIToggle<CR>", {
-				noremap = true,
-				desc = "Toggle DBUI",
-			})
 			vim.g.db_ui_win_position = "left"
 			vim.g.db_ui_use_nerd_fonts = true
 			vim.g.db_ui_icons = {
