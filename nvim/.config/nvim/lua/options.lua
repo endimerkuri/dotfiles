@@ -39,6 +39,21 @@ vim.filetype.add({
 
 vim.lsp.enable({ "csharp_ls", "gopls", "intelephense", "pylsp", "ts_ls", "rust_analyzer" })
 
+vim.api.nvim_create_autocmd("LspProgress", {
+	---@param ev {data: {client_id: integer, params: lsp.ProgressParams}}
+	callback = function(ev)
+		local spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+		vim.notify(vim.lsp.status(), "info", {
+			id = "lsp_progress",
+			title = "LSP Progress",
+			opts = function(notif)
+				notif.icon = ev.data.params.value.kind == "end" and " "
+					or spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
+			end,
+		})
+	end,
+})
+
 vim.diagnostic.config({
 	virtual_text = true,
 	-- Use only color to show diagnostics in sign column

@@ -6,7 +6,7 @@ return {
 		bigfile = { enabled = false },
 		indent = { enabled = false },
 		input = { enabled = false },
-		notifier = { enabled = false },
+		notifier = { enabled = true },
 		quickfile = { enabled = false },
 		scroll = { enabled = false },
 		statuscolumn = { enabled = false },
