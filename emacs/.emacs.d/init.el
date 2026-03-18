@@ -133,6 +133,8 @@
 (add-to-list 'auto-mode-alist '("\\.go" . go-ts-mode))
 
 (use-package vertico
+  :custom
+  (vertico-cycle t)
   :init
   (vertico-mode))
 
@@ -151,7 +153,7 @@
   ;; Optional customizations
   :custom
   (tab-always-indent 'complete)
-  ;; (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+  (corfu-cycle t)                   ;; Enable cycling for `corfu-next/previous'
   ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
   ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
   ;; (corfu-preview-current nil)    ;; Disable current candidate preview
@@ -224,3 +226,7 @@
 (add-hook 'python-ts-mode-hook #'eglot-ensure)
 (add-hook 'php-ts-mode-hook #'eglot-ensure)
 (add-hook 'csharp-ts-mode-hook #'eglot-ensure)
+
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
