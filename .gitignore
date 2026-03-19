@@ -23,3 +23,4 @@ lazy-lock.json
 /zsh/.config/zsh/.zsh_sessions/
 /emacs/.emacs.d/*
 !/emacs/.emacs.d/init.el
+/.agent-shell/

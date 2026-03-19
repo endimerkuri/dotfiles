@@ -11,10 +11,6 @@
 ;; Default frame configuration: full screen, good-looking title bar on macOS
 (setq frame-resize-pixelwise t)
 (setq default-frame-alist '((fullscreen . maximized)
-                            ;; Setting the face in here prevents flashes of
-                            ;; color as the theme gets activated
-                            (background-color . "#000000")
-                            (foreground-color . "#ffffff")
                             (ns-appearance . dark)
                             (ns-transparent-titlebar . t)))
 
@@ -35,7 +31,7 @@
 (setq use-package-always-ensure t)
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file :no-error-if-file-is-missing)
-(set-default 'truncate-lines t)
+(setq-default truncate-lines t)
 
 (setopt line-number-mode t)                        ; Show current line in modeline
 (setopt column-number-mode t)                      ; Show column as well
@@ -53,9 +49,6 @@
                 (with-selected-frame frame
                   (my/set-font-faces))))
   (my/set-font-faces))
-(setq modus-themes-italic-constructs t
-      modus-themes-bold-constructs t)
-(load-theme 'modus-vivendi t)
 
 (use-package dired
   :ensure nil
@@ -114,7 +107,7 @@
 ;; auto-save files directory
 (make-directory (expand-file-name "tmp/auto-saves/" user-emacs-directory) t)
 (setq auto-save-list-file-prefix (expand-file-name "tmp/auto-saves/sessions/" user-emacs-directory)
-      auto-save-file-name-transforms `((".*" ,(expand-file-name "tmp/auto-saves" user-emacs-directory) t)))
+      auto-save-file-name-transforms `((".*" ,(expand-file-name "tmp/auto-saves/" user-emacs-directory) t)))
 
 (use-package delsel
   :ensure nil ; no need to install it as it is built-in
@@ -124,13 +117,13 @@
 (setq x-stretch-cursor t)
 (global-set-key (kbd "M-o") 'other-window)
 
-(add-to-list 'auto-mode-alist '("\\.php" . php-ts-mode))
-(add-to-list 'auto-mode-alist '("\\.[cm]js" . js-ts-mode))
-(add-to-list 'auto-mode-alist '("\\.ts" . typescript-ts-mode))
-(add-to-list 'auto-mode-alist '("\\.tsx" . tsx-ts-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx" . tsx-ts-mode))
-(add-to-list 'auto-mode-alist '("\\.cs" . csharp-ts-mode))
-(add-to-list 'auto-mode-alist '("\\.go" . go-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.php\\'" . php-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.[cm]?js\\'" . js-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . tsx-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.cs\\'" . csharp-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.go\\'" . go-ts-mode))
 
 (use-package vertico
   :custom
@@ -171,11 +164,7 @@
   ;; Capfs and Dabbrev can be used globally (M-/).  See also the customization
   ;; variable `global-corfu-modes' to exclude certain modes.
   (global-corfu-mode)
-
-  ;; Enable optional extension modes:
-  ;; (corfu-history-mode)
-  ;; (corfu-popupinfo-mode)
-  )
+  (corfu-popupinfo-mode))
 
 (use-package perspective
   :bind
@@ -196,37 +185,28 @@
 (use-package persp-projectile)
 (use-package magit)
 
-(use-package gptel)
-
-(setq gptel-model   'mistral-medium
-      gptel-backend
-      (gptel-make-openai "MistralLeChat"
-        :host "api.mistral.ai"
-        :endpoint "/v1/chat/completions"
-        :protocol "https"
-        :key gptel-api-key
-        :models '("mistral-medium")))
+(use-package gptel
+  :config
+  (setq gptel-model   'mistral-medium
+        gptel-backend
+        (gptel-make-openai "MistralLeChat"
+          :host "api.mistral.ai"
+          :endpoint "/v1/chat/completions"
+          :protocol "https"
+          :key gptel-api-key
+          :models '("mistral-medium"))))
 
 (use-package vterm
-  :ensure t
   :config
   ;; Speed up vterm
   (setq vterm-timer-delay 0.01))
 
 (use-package eglot
+  :hook
+  ((js-ts-mode go-ts-mode python-ts-mode php-ts-mode
+    csharp-ts-mode typescript-ts-mode tsx-ts-mode) . eglot-ensure)
   :config
   (add-to-list 'eglot-server-programs
                '((php-ts-mode :language-id "php") . ("intelephense" "--stdio"))))
 
-(add-hook 'js-mode-hook #'eglot-ensure)
-(add-hook 'js-ts-mode-hook #'eglot-ensure)
-(add-hook 'go-mode-hook #'eglot-ensure)
-(add-hook 'go-ts-mode-hook #'eglot-ensure)
-(add-hook 'python-mode-hook #'eglot-ensure)
-(add-hook 'python-ts-mode-hook #'eglot-ensure)
-(add-hook 'php-ts-mode-hook #'eglot-ensure)
-(add-hook 'csharp-ts-mode-hook #'eglot-ensure)
-
-(use-package doom-modeline
-  :ensure t
-  :init (doom-modeline-mode 1))
+(load-theme 'modus-vivendi t)
