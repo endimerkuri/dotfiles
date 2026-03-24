@@ -99,6 +99,7 @@
 (show-paren-mode 1)
 (setq-default indent-tabs-mode nil)
 
+(repeat-mode nil)
 (savehist-mode 1)
 (unless backup-directory-alist
   (setq backup-directory-alist `(("." . ,(concat user-emacs-directory
