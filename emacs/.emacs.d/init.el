@@ -204,13 +204,13 @@
   (setq vterm-timer-delay 0.01))
 
 (use-package markdown-mode
-  :ensure t
   :mode ("README\\.md\\'" . gfm-mode)
   :init (setq markdown-command "pandoc")
   :bind (:map markdown-mode-map
          ("C-c C-e" . markdown-do)))
 
 (use-package eglot
+  :demand t
   :hook
   ((js-ts-mode go-ts-mode python-ts-mode php-ts-mode
     csharp-ts-mode typescript-ts-mode tsx-ts-mode) . eglot-ensure)
