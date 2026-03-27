@@ -173,6 +173,8 @@
   ("C-x C-b" . persp-list-buffers)
   :custom
   (persp-mode-prefix-key (kbd "C-z"))
+  (persp-show-modestring t)
+  (persp-modestring-short t)
   :init
   (persp-mode))
 
