@@ -220,6 +220,8 @@
   (add-to-list 'eglot-server-programs
                '((php-ts-mode :language-id "php") . ("intelephense" "--stdio"))))
 
+(use-package rg)
+
 (use-package doom-modeline
   :config (doom-modeline-mode 1))
 
