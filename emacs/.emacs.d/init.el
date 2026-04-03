@@ -171,6 +171,7 @@
 (use-package perspective
   :bind
   ("C-x C-b" . persp-list-buffers)
+  ("C-x b" . persp-switch-to-buffer*)
   :custom
   (persp-mode-prefix-key (kbd "C-z"))
   (persp-show-modestring t)
