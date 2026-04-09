@@ -199,7 +199,9 @@
   (persp-mode))
 
 (use-package agent-shell
-  :demand t)
+  :demand t
+  :config
+  (define-key projectile-command-map (kbd "h") #'agent-shell))
 
 (use-package alert
   :config
