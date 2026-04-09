@@ -5,6 +5,10 @@
 ;; native-compiling loaded .elc files asynchronously
 (setq native-comp-jit-compilation t)
 
+;; Add site-lisp subdirectories to load path
+(let ((default-directory (expand-file-name "site-lisp/" user-emacs-directory)))
+  (normal-top-level-add-subdirs-to-load-path))
+
 ;; Silence startup message
 (setq inhibit-startup-echo-area-message (user-login-name))
 
@@ -194,7 +198,21 @@
   :init
   (persp-mode))
 
-(use-package agent-shell)
+(use-package agent-shell
+  :demand t)
+
+(use-package alert
+  :config
+  (setq alert-default-style 'osx-notifier))
+
+(use-package agent-shell-attention
+  :ensure nil
+  :after (agent-shell alert)
+  :config
+  (setopt agent-shell-attention-notify-function
+          (lambda (_buffer title body)
+            (alert body :title title)))
+  (agent-shell-attention-mode 1))
 
 (use-package projectile
   :init
