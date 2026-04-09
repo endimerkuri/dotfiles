@@ -8,6 +8,11 @@
 ;; Silence startup message
 (setq inhibit-startup-echo-area-message (user-login-name))
 
+;; Disable bidirectional text scanning
+(setq-default bidi-display-reordering 'left-to-right
+              bidi-paragraph-direction 'left-to-right)
+(setq bidi-inhibit-bpa t)
+
 ;; Default frame configuration: full screen, good-looking title bar on macOS
 (setq frame-resize-pixelwise t)
 (setq default-frame-alist '((fullscreen . maximized)
@@ -32,6 +37,12 @@
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file :no-error-if-file-is-missing)
 (setq-default truncate-lines t)
+
+(setq save-interprogram-paste-before-kill t)
+(setq kill-do-not-save-duplicates t)
+
+(setq-default cursor-in-non-selected-windows nil)
+(setq highlight-nonselected-windows nil)
 
 (setopt line-number-mode t)                        ; Show current line in modeline
 (setopt column-number-mode t)                      ; Show column as well
@@ -100,6 +111,8 @@
 (setq-default indent-tabs-mode nil)
 
 (repeat-mode nil)
+(setq set-mark-command-repeat-pop t)
+
 (savehist-mode 1)
 (unless backup-directory-alist
   (setq backup-directory-alist `(("." . ,(concat user-emacs-directory
@@ -113,6 +126,8 @@
 (use-package delsel
   :ensure nil ; no need to install it as it is built-in
   :hook (after-init . delete-selection-mode))
+
+(setq redisplay-skip-fontification-on-input t)
 
 (setq treesit-font-lock-level 4)
 (setq x-stretch-cursor t)
@@ -190,17 +205,6 @@
 (use-package persp-projectile)
 (use-package magit)
 
-(use-package gptel
-  :config
-  (setq gptel-model   'mistral-medium
-        gptel-backend
-        (gptel-make-openai "MistralLeChat"
-          :host "api.mistral.ai"
-          :endpoint "/v1/chat/completions"
-          :protocol "https"
-          :key gptel-api-key
-          :models '("mistral-medium"))))
-
 (use-package vterm
   :config
   ;; Speed up vterm
@@ -211,6 +215,8 @@
   :init (setq markdown-command "pandoc")
   :bind (:map markdown-mode-map
          ("C-c C-e" . markdown-do)))
+
+(setq read-process-output-max (* 4 1024 1024)) ; 4MB
 
 (use-package eglot
   :demand t
