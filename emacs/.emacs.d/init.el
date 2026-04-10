@@ -200,6 +200,7 @@
 
 (use-package agent-shell
   :demand t
+  :after projectile
   :config
   (define-key projectile-command-map (kbd "h") #'agent-shell))
 
