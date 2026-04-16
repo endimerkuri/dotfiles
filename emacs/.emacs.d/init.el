@@ -202,7 +202,6 @@
   :demand t
   :after projectile
   :config
-  (setopt agent-shell-prefer-viewport-interaction t)
   (define-key projectile-command-map (kbd "h") #'agent-shell))
 
 (use-package alert
