@@ -224,7 +224,12 @@
               ("C-c p" . projectile-command-map)))
 
 (use-package persp-projectile)
-(use-package magit)
+(use-package magit
+  :config
+  (remove-hook 'magit-status-sections-hook
+               'magit-insert-unpushed-to-upstream-or-recent)
+  (add-hook 'magit-status-sections-hook
+            'magit-insert-unpushed-to-upstream t))
 
 (use-package vterm
   :config
