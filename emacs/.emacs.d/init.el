@@ -255,8 +255,6 @@
 
 (use-package rg)
 
-(use-package doom-modeline
-  :config (doom-modeline-mode 1))
-
-(use-package doom-themes
-  :config (load-theme 'doom-one t))
+(add-to-list 'custom-theme-load-path
+             (expand-file-name "themes" user-emacs-directory))
+(load-theme 'vague t)
