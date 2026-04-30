@@ -193,10 +193,13 @@
   ("C-x b" . persp-switch-to-buffer*)
   :custom
   (persp-mode-prefix-key (kbd "C-z"))
-  (persp-show-modestring t)
-  (persp-modestring-short t)
+  (persp-show-modestring nil)
   :init
-  (persp-mode))
+  (persp-mode)
+  :config
+  (setq-default mode-line-format
+                (cons '(:eval (format "[%s] " (persp-current-name)))
+                      (default-value 'mode-line-format))))
 
 (use-package agent-shell
   :demand t
@@ -254,6 +257,9 @@
                '((php-ts-mode :language-id "php") . ("intelephense" "--stdio"))))
 
 (use-package rg)
+(use-package pdf-tools
+  :config
+  (pdf-loader-install))
 
 (add-to-list 'custom-theme-load-path
              (expand-file-name "themes" user-emacs-directory))
