@@ -261,6 +261,4 @@
   :config
   (pdf-loader-install))
 
-(add-to-list 'custom-theme-load-path
-             (expand-file-name "themes" user-emacs-directory))
-(load-theme 'vague t)
+(load-theme 'modus-vivendi t)
